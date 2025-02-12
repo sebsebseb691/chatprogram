@@ -1,0 +1,95 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>370</x><y>670</y><w>230</w><h>190</h></coordinates><panel_attributes>Client_model
+--
+chat c = New message;
+Server s = New server;
+-chat_id: int
+-username: string
+--
+getMessages(chat_id) : ArrayList&lt;Message&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>930</x><y>340</y><w>200</w><h>180</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+View
+--
+
+--
++JPanel p
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>700</x><y>700</y><w>210</w><h>70</h></coordinates><panel_attributes>Login Page
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>510</y><w>170</w><h>210</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>150;10;10;190</additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>320</y><w>210</w><h>190</h></coordinates><panel_attributes>Message
+--
+-Message: string
+-Username: string
+--
+
+-- </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>290</x><y>500</y><w>190</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;170;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>690</y><w>210</w><h>190</h></coordinates><panel_attributes>Controller
+--
+
+--
+-sendMessage(array) VOID
+
+
+
+--
+
+Tar in användarnamn och
+meddelanden, skickar till client model
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>320</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+	USER /
+
+--
+Username string
+--
++changeName(newName string)
++getName()
+
+--
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>750</y><w>90</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;20;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>500</y><w>200</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>180;170;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>960</x><y>50</y><w>240</w><h>190</h></coordinates><panel_attributes>Server Model
+--
+-chat_id
+-msg
+-Username
+Array[ArrayList&lt;Message&gt;]
+--
+saveChat(chat_id int, Message message)
+getMessages(chat_id int) : ArrayList
+--
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>590</x><y>240</y><w>430</w><h>460</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>410;10;10;440</additional_attributes></element><element><id>UMLClass</id><coordinates><x>920</x><y>700</y><w>210</w><h>70</h></coordinates><panel_attributes>Server list
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1140</x><y>700</y><w>210</w><h>70</h></coordinates><panel_attributes>Chat
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1020</x><y>510</y><w>100</w><h>210</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>1120</x><y>510</y><w>160</w><h>210</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;130;190</additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>70</y><w>210</w><h>190</h></coordinates><panel_attributes>chatroom
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>270</y><w>210</w><h>190</h></coordinates><panel_attributes>oberver 
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>70</y><w>210</w><h>190</h></coordinates><panel_attributes>user
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element></diagram>
