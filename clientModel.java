@@ -37,10 +37,10 @@ public class clientModel {
         else if (newName.contains(" ")) throw new RuntimeException("Username cannot contain blankspace");
         else {
             userName = newName;
-            //Update login page view
+            //Update login page view here
         }
     }
 
-    
+
 
 }
