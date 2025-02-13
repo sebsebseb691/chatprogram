@@ -1,6 +1,12 @@
-public class user {
+interface UserI {
+    public String userName = "";
+    public String getUsername();
+    public void changeName(String newName);
+}
+
+public class User implements UserI{
     private String userName = "";
-    
+
     public String getUsername() {return userName;}
 
     /**
@@ -12,9 +18,6 @@ public class user {
     public void changeName(String newName) throws RuntimeException {
         if(newName.isEmpty()) throw new RuntimeException("Username cannot be empty");
         else if (newName.contains(" ")) throw new RuntimeException("Username cannot contain blankspace");
-        else {
-            userName = newName;
-            //Update login page view here
-        }
+        else userName = newName;
     }
 }

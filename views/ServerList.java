@@ -1,5 +1,7 @@
 package views;
 
-public class ServerList {
+import javax.swing.JPanel;
+
+public class ServerList extends JPanel implements View {
     
 }

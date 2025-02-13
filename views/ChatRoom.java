@@ -1,5 +1,7 @@
 package views;
 
-public class ChatRoom {
+import javax.swing.JPanel;
+
+public class ChatRoom extends JPanel implements View {
     
 }
