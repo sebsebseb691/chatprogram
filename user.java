@@ -6,6 +6,10 @@ interface UserI {
 
 public class User implements UserI{
     private String userName = "";
+    //Fascade pattern
+    public User() {
+
+    }
 
     public String getUsername() {return userName;}
 

@@ -65,7 +65,6 @@ public class Controller extends JFrame implements ActionListener {
     public void addListenerChatRoom() {
         cr.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Button pressed");
                 try {
                     Message m = new Message(cr.getJTextField().getText());
                 } catch (RuntimeException exc) {
