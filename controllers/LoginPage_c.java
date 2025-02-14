@@ -1,19 +1,21 @@
-import java.awt.*; 
+package controllers;
 import javax.swing.*;
 import java.awt.event.*;
-import java.lang.*;
-import views.LoginPage;
-import views.ChatRoom;
+import views.LoginPage_v;
+import models.ModelsFascade;
+import models.User;
 
 
-public class Controller extends JFrame implements ActionListener {
-    private User u = new User();
-    private JFrame f;
-    private LoginPage lp;
-    private ChatRoom cr;
+public class LoginPage_c extends JFrame implements ActionListener {
+    private ModelsFascade mf = new ModelsFascade();
+    private ControllersFascade cf = new ControllersFascade();
+    private User u = ModelsFascade.getUser();
+    private JFrame f = ControllersFascade.getJFrame();
+    private LoginPage_v lp;
+    
     public void actionPerformed(ActionEvent e) {}
 
-    public Controller() {
+    public LoginPage_c() {
         //Show login page if first time starting
         if (u.getUsername().isEmpty()) createLoginPage();
     }
@@ -21,8 +23,7 @@ public class Controller extends JFrame implements ActionListener {
 
     //Create frame for login page and create login page object
     public void createLoginPage() {
-        f = new JFrame("Chatprogram");
-        lp = new LoginPage();
+        lp = new LoginPage_v();
 
         f.add(lp.getJPanel());
 
@@ -44,35 +45,8 @@ public class Controller extends JFrame implements ActionListener {
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
-                createChatRoom(); //temp
             }
         });
         lp.getJButton().removeActionListener(this);
     }
-
-
-    public void createChatRoom() {
-        //Code to get all messages and send to chatroom
-
-        f.setSize(600, 300);
-        cr = new ChatRoom();
-        f.add(cr.getJPanel());
-
-        addListenerChatRoom();
-    }
-
-
-    public void addListenerChatRoom() {
-        cr.getJButton().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Message m = new Message(cr.getJTextField().getText());
-                } catch (RuntimeException exc) {
-                    JOptionPane.showMessageDialog(f, exc.getMessage());
-                }
-            }
-        });
-        cr.getJButton().removeActionListener(this);
-    }
-
 }

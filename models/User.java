@@ -1,15 +1,12 @@
+package models;
+
 interface UserI {
-    public String userName = "";
     public String getUsername();
     public void changeName(String newName);
 }
 
 public class User implements UserI{
     private String userName = "";
-    //Fascade pattern
-    public User() {
-
-    }
 
     public String getUsername() {return userName;}
 

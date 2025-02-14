@@ -1,5 +1,8 @@
+package models;
+
 public class Message {
-    User u;
+    ModelsFascade ModelsFascade = new ModelsFascade();
+    User u = ModelsFascade.getUser();
     private String msg;
     private String user;
 
