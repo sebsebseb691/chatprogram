@@ -2,6 +2,6 @@ package views;
 
 import javax.swing.*;
 
-public interface View {
+public interface View {;
 
 }
