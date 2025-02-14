@@ -4,7 +4,11 @@ public class Message {
     private String user;
 
     public Message(String msg) {
-        this.msg = msg;
-        user = u.getUsername();
+        if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
+        else {
+            this.msg = msg;
+            user = u.getUsername();
+        }
+        System.out.println(user + ": " + this.msg);
     }
 }

@@ -6,7 +6,7 @@ public class LoginPage extends JPanel implements View {
     private JPanel p = new JPanel();
     private JLabel enterUsername = new JLabel("Username: ");
     private JTextField userNameF = new JTextField(20);
-    private JButton loginButton = new JButton("Accept");
+    private JButton loginButton = new JButton("Set username");
 
     public LoginPage() {
         p.add(enterUsername);

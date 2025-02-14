@@ -1,25 +1,27 @@
 import java.awt.*; 
 import javax.swing.*;
-import views.LoginPage;
 import java.awt.event.*;
 import java.lang.*;
+import views.LoginPage;
+import views.ChatRoom;
 
 
 public class Controller extends JFrame implements ActionListener {
     private User u = new User();
     private JFrame f;
     private LoginPage lp;
+    private ChatRoom cr;
+    public void actionPerformed(ActionEvent e) {}
 
     public Controller() {
         //Show login page if first time starting
         if (u.getUsername().isEmpty()) createLoginPage();
     }
 
-    public void actionPerformed(ActionEvent e) {}
 
     //Create frame for login page and create login page object
     public void createLoginPage() {
-        f = new JFrame("Login Page");
+        f = new JFrame("Chatprogram");
         lp = new LoginPage();
 
         f.add(lp.getJPanel());
@@ -42,8 +44,36 @@ public class Controller extends JFrame implements ActionListener {
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
+                createChatRoom(); //temp
             }
         });
+        lp.getJButton().removeActionListener(this);
+    }
+
+
+    public void createChatRoom() {
+        //Code to get all messages and send to chatroom
+
+        f.setSize(600, 300);
+        cr = new ChatRoom();
+        f.add(cr.getJPanel());
+
+        addListenerChatRoom();
+    }
+
+
+    public void addListenerChatRoom() {
+        cr.getJButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button pressed");
+                try {
+                    Message m = new Message(cr.getJTextField().getText());
+                } catch (RuntimeException exc) {
+                    JOptionPane.showMessageDialog(f, exc.getMessage());
+                }
+            }
+        });
+        cr.getJButton().removeActionListener(this);
     }
 
 }
