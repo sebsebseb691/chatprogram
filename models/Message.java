@@ -1,8 +1,8 @@
 package models;
 
 public class Message {
-    private ModelsFascade ModelsFascade = new ModelsFascade();
-    private User u = ModelsFascade.getUser();
+    private ModelsFacade ModelsFacade = new ModelsFacade();
+    private User u = ModelsFacade.getUser();
     private String msg;
     private String user;
 
@@ -12,9 +12,10 @@ public class Message {
             this.msg = msg;
             user = u.getUsername();
         }
+
         //Ska meddelandet skickas direkt? Kanske ändra
         try {
-            ChatRoom_m.getChatRoom().addMessage(this);
+            ModelsFacade.getChatRoom().addMessage(this);
         } catch (Exception e) {
             // Visa meddelande i view, user är inte i något chatroom
         }

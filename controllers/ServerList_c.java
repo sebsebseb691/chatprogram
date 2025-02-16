@@ -6,10 +6,10 @@ import views.ServerList_v;
 
 public class ServerList_c extends JFrame implements ActionListener{
     private ServerList_v sl;
-    private ModelsFascade mf = new ModelsFascade();
-    private ControllersFascade cf = new ControllersFascade();
-    private JFrame f = ControllersFascade.getJFrame();
-    private User u = ModelsFascade.getUser();
+    private ModelsFacade mf = new ModelsFacade();
+    private ControllersFacade cf = new ControllersFacade();
+    private JFrame f = ControllersFacade.getJFrame();
+    private User u = ModelsFacade.getUser();
 
     public ServerList_c() {
         f.setSize(600, 300);

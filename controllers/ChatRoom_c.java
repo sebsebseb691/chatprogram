@@ -1,7 +1,7 @@
 package controllers;
 import javax.swing.*;
 import java.awt.event.*;
-import models.ModelsFascade;
+import models.ModelsFacade;
 import models.User;
 import models.Message;
 import views.ChatRoom_v;
@@ -9,10 +9,10 @@ import views.ChatRoom_v;
 
 public class ChatRoom_c extends JFrame implements ActionListener {
     private ChatRoom_v cr;
-    private ModelsFascade mf = new ModelsFascade();
-    private ControllersFascade cf = new ControllersFascade();
-    private JFrame f = ControllersFascade.getJFrame();
-    private User u = ModelsFascade.getUser();
+    private ModelsFacade mf = new ModelsFacade();
+    private ControllersFacade cf = new ControllersFacade();
+    private JFrame f = ControllersFacade.getJFrame();
+    private User u = ModelsFacade.getUser();
 
     public ChatRoom_c() {
         //Code to get all messages and send to chatroom view
