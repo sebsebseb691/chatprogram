@@ -3,25 +3,24 @@ import java.util.LinkedList;
 
 
 public class ChatRoom_m {
-    
-    int idnr; // måste få så alla id nummer blir olika vid skapande 
-    LinkedList<Message> msgs = new LinkedList(); 
-    LinkedList<User> users = new LinkedList();
+    private String chatName;
+    private LinkedList<Message> msgs = new LinkedList(); 
+    private LinkedList<User> users = new LinkedList();
 
-    ChatRoom_m(){
-        idnr = 1;  // eventeullt att man kör ett random generator 
+    public ChatRoom_m(String chatName){
+        if(chatName.isEmpty()) throw new RuntimeException("Chatname cannot be empty");
+        else {this.chatName = chatName;}
     }
 
     public void addMessage(Message msg){
-        msgs.add(msg); 
-
+        msgs.add(msg);
     }
 
-    public void addUser(User u){
-        users.add(u); 
+    public void joinChatRoom(){
+        //Only add user if it is not already in the chatroom
+        if(!users.contains(ModelsFascade.getUser())) users.add(ModelsFascade.getUser());
     }
 
-    public int getIdnr(){
-        return idnr; 
-    }
+    public String getChatName() {return chatName;}
+    public ChatRoom_m getChatRoom() {return this;} 
 }

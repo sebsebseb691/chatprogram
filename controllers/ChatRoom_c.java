@@ -1,7 +1,9 @@
 package controllers;
 import javax.swing.*;
 import java.awt.event.*;
-import models.*;
+import models.ModelsFascade;
+import models.User;
+import models.Message;
 import views.ChatRoom_v;
 
 
@@ -21,7 +23,6 @@ public class ChatRoom_c extends JFrame implements ActionListener {
         f.setVisible(true);
     
         addListenerChatRoom();
-
     }
     
     

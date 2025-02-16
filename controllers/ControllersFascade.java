@@ -3,7 +3,7 @@ package controllers;
 import javax.swing.JFrame;
 
 public class ControllersFascade {
-    private static JFrame f; //Funkar bara om man har static
+    private static JFrame f; //Funkar tydligen bara om man har static
     
     public ControllersFascade() {
         f = new JFrame("Chatprogram");
