@@ -3,7 +3,7 @@ package controllers;
 import javax.swing.JFrame;
 
 public class ControllersFascade {
-    private JFrame f;
+    private static JFrame f; //Funkar bara om man har static
     
     public ControllersFascade() {
         f = new JFrame("Chatprogram");
@@ -11,5 +11,5 @@ public class ControllersFascade {
         f.setVisible(true);
     }
 
-    public JFrame getJFrame() {return f;}
+    public static JFrame getJFrame() {return f;}
 }

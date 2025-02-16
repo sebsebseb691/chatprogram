@@ -7,16 +7,21 @@ import views.ChatRoom_v;
 
 public class ChatRoom_c extends JFrame implements ActionListener {
     private ChatRoom_v cr;
+    private ModelsFascade mf = new ModelsFascade();
+    private ControllersFascade cf = new ControllersFascade();
     private JFrame f = ControllersFascade.getJFrame();
+    private User u = ModelsFascade.getUser();
 
-    public void createChatRoom() {
+    public ChatRoom_c() {
         //Code to get all messages and send to chatroom view
     
         f.setSize(600, 300);
         cr = new ChatRoom_v();
         f.add(cr.getJPanel());
+        f.setVisible(true);
     
         addListenerChatRoom();
+
     }
     
     

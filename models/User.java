@@ -7,7 +7,6 @@ interface UserI {
 
 public class User implements UserI{
     private String userName = "";
-
     public String getUsername() {return userName;}
 
     /**

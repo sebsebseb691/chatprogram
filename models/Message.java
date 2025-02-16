@@ -12,6 +12,7 @@ public class Message {
             this.msg = msg;
             user = u.getUsername();
         }
-        System.out.println(user + ": " + this.msg);
+        //Testa meddelande
+        //System.out.println(user + ": " + this.msg);
     }
 }

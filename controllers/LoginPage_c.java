@@ -9,14 +9,14 @@ import models.User;
 public class LoginPage_c extends JFrame implements ActionListener {
     private ModelsFascade mf = new ModelsFascade();
     private ControllersFascade cf = new ControllersFascade();
-    private User u = ModelsFascade.getUser();
     private JFrame f = ControllersFascade.getJFrame();
+    private User u = ModelsFascade.getUser();
     private LoginPage_v lp;
     
     public void actionPerformed(ActionEvent e) {}
 
     public LoginPage_c() {
-        //Show login page if first time starting
+        //Show login page if there is noo username
         if (u.getUsername().isEmpty()) createLoginPage();
     }
 

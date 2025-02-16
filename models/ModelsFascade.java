@@ -1,7 +1,7 @@
 package models;
 
 public class ModelsFascade {
-    private User u = new User();
+    private static User u = new User();
 
-    public User getUser() {return u;}
+    public static User getUser() {return u;}
 }

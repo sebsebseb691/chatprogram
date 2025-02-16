@@ -6,7 +6,6 @@ import javax.swing.*;
 //Ska få uppdateringar
 
 
-
 public class ChatRoom_v extends JPanel implements View {
     private JPanel p = new JPanel();
     private JLabel chatname = new JLabel("Chatroom name");
