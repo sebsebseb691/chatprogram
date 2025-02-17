@@ -17,8 +17,9 @@ public class ChatRoom_m {
     }
 
     public void joinChatRoom(){
+        ModelsFacade mf = new ModelsFacade();
         //Only add user if it is not already in the chatroom
-        if(!users.contains(ModelsFacade.getUser())) users.add(ModelsFacade.getUser());
+        if(!users.contains(mf.getUser())) users.add(mf.getUser());
     }
 
     public String getChatName() {return chatName;}

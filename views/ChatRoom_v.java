@@ -20,9 +20,7 @@ public class ChatRoom_v extends JPanel implements View {
     }
 
     public void RemoveChatRoom() {
-        p.remove(chatname);
-        p.remove(messageF);
-        p.remove(sendButton);
+        p.removeAll();
         p.repaint();
     }
 

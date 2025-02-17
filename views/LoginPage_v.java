@@ -16,9 +16,7 @@ public class LoginPage_v extends JPanel implements View {
     }
 
     public void RemoveLoginPage() {
-        p.remove(enterUsername);
-        p.remove(userNameF);
-        p.remove(loginButton);
+        p.removeAll();
         p.repaint();
     }
 

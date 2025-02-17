@@ -11,8 +11,8 @@ public class ChatRoom_c extends JFrame implements ActionListener {
     private ChatRoom_v cr;
     private ModelsFacade mf = new ModelsFacade();
     private ControllersFacade cf = new ControllersFacade();
-    private JFrame f = ControllersFacade.getJFrame();
-    private User u = ModelsFacade.getUser();
+    private JFrame f = cf.getJFrame();
+    private User u = mf.getUser();
 
     public ChatRoom_c() {
         //Code to get all messages and send to chatroom view
@@ -36,7 +36,14 @@ public class ChatRoom_c extends JFrame implements ActionListener {
                 }
             }
         });
+        
+    }
+
+
+    public void removeChatRoom() {
         cr.getJButton().removeActionListener(this);
+        f.remove(cr.getJPanel());
+        f.setVisible(false);
     }
 
     public void actionPerformed(ActionEvent e) {}

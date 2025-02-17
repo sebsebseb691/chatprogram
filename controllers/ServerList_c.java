@@ -4,16 +4,16 @@ import java.awt.event.*;
 import models.*;
 import views.ServerList_v;
 
+
 public class ServerList_c extends JFrame implements ActionListener{
     private ServerList_v sl;
     private ModelsFacade mf = new ModelsFacade();
     private ControllersFacade cf = new ControllersFacade();
-    private JFrame f = ControllersFacade.getJFrame();
-    private User u = ModelsFacade.getUser();
+    private JFrame f = cf.getJFrame();
 
     public ServerList_c() {
         f.setSize(600, 300);
-        sl = new ServerList_v();
+        sl = new ServerList_v(mf.getUser().getUsername());
         f.add(sl.getJPanel());
         f.setVisible(true);
     
@@ -22,14 +22,21 @@ public class ServerList_c extends JFrame implements ActionListener{
 
 
     public void addListenerServerList() {
-        sl.getJButton().addActionListener(new ActionListener() {
+        sl.getJoinButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Code to join chatroom
                 //mf.getServerList().chats.
             }
         });
-        sl.getJButton().removeActionListener(this);
-        //Open chat room
+        
+
+        sl.getCreateServerButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //Code to create a new chatroom
+            }
+        });
+
+        sl.getJoinButton().removeActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {}

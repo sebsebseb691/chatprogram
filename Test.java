@@ -6,8 +6,7 @@ import server.*;
 public class Test {
 
     public static void main(String[] args){
-
-        ChatRoom_c c = new ChatRoom_c();
+        LoginPage_c c = new LoginPage_c();
     
     }
 }
