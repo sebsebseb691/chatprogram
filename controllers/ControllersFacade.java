@@ -3,10 +3,10 @@ package controllers;
 import javax.swing.JFrame;
 
 public class ControllersFacade {
-    private JFrame f; //Funkar tydligen bara om man har static
+    private JFrame f;
     
     public ControllersFacade() {
-        f = new JFrame("Chatprogram");
+        f = new JFrame("Chat program");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }

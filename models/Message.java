@@ -9,7 +9,7 @@ public class Message {
         if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
         else {
             this.msg = msg;
-            user = mf.getUser().getUsername();
+            this.user = mf.getUser().getUsername();
         }
 
         //Ska meddelandet skickas direkt? Kanske ändra

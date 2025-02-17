@@ -3,16 +3,15 @@ import javax.swing.*;
 import java.awt.event.*;
 import views.LoginPage_v;
 import models.ModelsFacade;
-import models.User;
 
 
 public class LoginPage_c extends JFrame implements ActionListener {
     private ModelsFacade mf = new ModelsFacade();
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
-    private LoginPage_v lp;
-    
+    private LoginPage_v lp = new LoginPage_v();
     public void actionPerformed(ActionEvent e) {}
+
 
     public LoginPage_c() {
         //Show login page if there is no username
@@ -22,7 +21,7 @@ public class LoginPage_c extends JFrame implements ActionListener {
 
 
     public void createLoginPage() {
-        lp = new LoginPage_v();
+        lp.createView();
 
         f.add(lp.getJPanel());
 
@@ -33,6 +32,7 @@ public class LoginPage_c extends JFrame implements ActionListener {
         addListenerLoginPage();
     }
 
+
     //Add action listener to login page
     public void addListenerLoginPage() {
         lp.getJButton().addActionListener(new ActionListener() {
@@ -40,8 +40,8 @@ public class LoginPage_c extends JFrame implements ActionListener {
                 //Try to change username, if it fails show error message, if it succeeds remove login page
                 try {
                     mf.getUser().changeName(lp.getJTextField().getText());
-                    ServerList_c sr = new ServerList_c();
-                    lp.RemoveLoginPage(); //Remove elements from login panel
+                    ServerList_c sl = new ServerList_c(); //Goto controller for server list
+                    lp.removeView(); //Remove elements from login panel
                     removeLoginPage();
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
@@ -50,6 +50,7 @@ public class LoginPage_c extends JFrame implements ActionListener {
         });
         lp.getJButton().removeActionListener(this);
     }
+
 
     public void removeLoginPage() {
         f.remove(lp.getJPanel());

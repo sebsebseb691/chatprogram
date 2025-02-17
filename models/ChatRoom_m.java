@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 public class ChatRoom_m {
     private String chatName;
-    private LinkedList<Message> msgs = new LinkedList(); 
-    private LinkedList<User> users = new LinkedList();
+    private LinkedList<Message> msgs = new LinkedList<Message>(); 
+    private LinkedList<User> users = new LinkedList<User>();
 
     public ChatRoom_m(String chatName){
         if(chatName.isEmpty()) throw new RuntimeException("Chatname cannot be empty");
