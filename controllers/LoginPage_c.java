@@ -2,15 +2,15 @@ package controllers;
 import javax.swing.*;
 import java.awt.event.*;
 import views.LoginPage_v;
-import models.ModelsFascade;
+import models.ModelsFacade;
 import models.User;
 
 
 public class LoginPage_c extends JFrame implements ActionListener {
-    private ModelsFascade mf = new ModelsFascade();
-    private ControllersFascade cf = new ControllersFascade();
-    private JFrame f = ControllersFascade.getJFrame();
-    private User u = ModelsFascade.getUser();
+    private ModelsFacade mf = new ModelsFacade();
+    private ControllersFacade cf = new ControllersFacade();
+    private JFrame f = ControllersFacade.getJFrame();
+    private User u = ModelsFacade.getUser();
     private LoginPage_v lp;
     
     public void actionPerformed(ActionEvent e) {}
