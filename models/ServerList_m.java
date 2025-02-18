@@ -24,7 +24,7 @@ public class ServerList_m implements ViewSubject{
 
     public void addObserver(ViewObserver observer) {
         observers.add(observer);
-    }//hej
+    }
 
     
     public void removeObserver(ViewObserver observer) {

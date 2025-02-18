@@ -46,23 +46,20 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
         p.repaint();
     }
 
+
     public void update() {
         // Code to update the view when notified
-        
         sp.removeAll();
-        for (ChatRoom_m chatRoom : ServerList_m.getInstance().getServerList()) {
-            JButton chatLabel = new JButton("chatRoom");
+        for (ChatRoom_m i : ServerList_m.getServerList()) { //Är det okej att ta in model i view? Kanske ändra hur man hämtar listan
+            JButton chatLabel = new JButton(i.getChatName());
             p.add(chatLabel);
         
         }
         p.revalidate();
         p.repaint();
-        System.out.println("ServerList_v has been updated.");
     }
     
-
     
-
     public JPanel getJPanel() {return p;}
     public JPanel getServerPanel() {return sp;}
     public JButton getJoinButton() {return joinButton;}

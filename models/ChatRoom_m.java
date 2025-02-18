@@ -8,7 +8,8 @@ public class ChatRoom_m {
     private LinkedList<User> users = new LinkedList<User>();
 
     public ChatRoom_m(String chatName){
-        if(chatName.isEmpty()) throw new RuntimeException("Chatname cannot be empty");
+        if(chatName == null) return; //If chatname is null (user presses cancel), do nothing
+        else if(chatName.isEmpty()) throw new RuntimeException("Chatname cannot be empty");
         else {this.chatName = chatName;}
     }
 
