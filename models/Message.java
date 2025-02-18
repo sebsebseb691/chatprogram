@@ -17,9 +17,10 @@ public class Message {
             mf.getChatRoom().addMessage(this);
         } catch (Exception e) {
             // Visa meddelande i view, user är inte i något chatroom
+            throw new RuntimeException("You need to join a chatroom to send messages");
         }
-        
-        //Testa meddelande 
-        //System.out.println(user + ": " + this.msg);
     }
+
+    public String getMsg() {return this.msg;}
+    public String getUser() {return this.user;}
 }

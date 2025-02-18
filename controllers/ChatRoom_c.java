@@ -38,6 +38,11 @@ public class ChatRoom_c extends JFrame implements ActionListener {
     }
 
 
+    public void getMessages() {
+        Message.getMessages();
+    }
+
+
     public void removeChatRoom() {
         cr.getJButton().removeActionListener(this);
         f.remove(cr.getJPanel());

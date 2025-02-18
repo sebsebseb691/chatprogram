@@ -33,16 +33,13 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
         p.add(chatname);
         p.add(createServerButton);
 
-        sp.repaint();
-        p.repaint();
+        this.repaint();
     }
 
 
     public void removeView() {
-        sp.removeAll();
-        sp.repaint();
-        p.removeAll();
-        p.repaint();
+        this.removeAll();
+        this.repaint();
     }
 
 

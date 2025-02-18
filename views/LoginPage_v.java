@@ -13,13 +13,13 @@ public class LoginPage_v extends JPanel implements View {
         p.add(enterUsername);
         p.add(userNameF);
         p.add(loginButton);
-        p.repaint();
+        this.repaint();
     }
 
 
     public void removeView() {
-        p.removeAll();
-        p.repaint();
+        this.removeAll();
+        this.repaint();
     }
 
 
