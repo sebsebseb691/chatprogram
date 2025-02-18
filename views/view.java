@@ -1,7 +1,6 @@
 package views;
 
-import javax.swing.*;
-
-public interface View {;
-
+public interface View {
+    public void createView();
+    public void removeView();
 }

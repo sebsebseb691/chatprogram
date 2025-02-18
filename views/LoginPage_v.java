@@ -7,20 +7,21 @@ public class LoginPage_v extends JPanel implements View {
     private JLabel enterUsername = new JLabel("Username: ");
     private JTextField userNameF = new JTextField(20);
     private JButton loginButton = new JButton("Set username");
+    
 
-    public LoginPage_v() {
+    public void createView() {
         p.add(enterUsername);
         p.add(userNameF);
         p.add(loginButton);
         p.repaint();
     }
 
-    public void RemoveLoginPage() {
-        p.remove(enterUsername);
-        p.remove(userNameF);
-        p.remove(loginButton);
+
+    public void removeView() {
+        p.removeAll();
         p.repaint();
     }
+
 
     public JPanel getJPanel() {return p;}
     public JButton getJButton() {return loginButton;}
