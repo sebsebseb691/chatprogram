@@ -9,14 +9,14 @@ public class Message {
         if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
         else {
             this.msg = msg;
-            this.user = mf.getUser().getUsername();
+            this.user = "seb"; //mf.getUser().getUsername();
         }
 
         //Ska meddelandet skickas direkt? Kanske ändra
         try {
             mf.getChatRoom().addMessage(this);
         } catch (Exception e) {
-            // Visa meddelande i view, user är inte i något chatroom
+            //User is not in a chat room
             throw new RuntimeException("You need to join a chatroom to send messages");
         }
     }

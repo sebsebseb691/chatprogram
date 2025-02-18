@@ -3,13 +3,17 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import models.ChatRoom_m;
+import models.Message;
+import models.ModelsFacade;
+
 import java.awt.*;
 
 //Lägg till observer som interface
 //Implementera observer i chat
 //Ska få uppdateringar
 
-public class ChatRoom_v extends JPanel implements View {
+public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
     private JPanel topP = new JPanel(); //Panel for chatroom name
     private JPanel mainPanel = new JPanel(new BorderLayout());
     private JPanel bottomP = new JPanel(new FlowLayout()); //Panel for message input
@@ -18,23 +22,19 @@ public class ChatRoom_v extends JPanel implements View {
     private JTextField messageF = new JTextField(30);
     private JButton sendButton = new JButton("Send");
 
+    private ModelsFacade mf = new ModelsFacade();
+    private ChatRoom_m activeChat = mf.getChatRoom();
+
     public void createView() {
-        createView("No chatname");
+        createView("No chat name");
     }
 
     public void createView(String chatName) {
+        mf.setChatRoom(activeChat);
         chatNameL.setText("Connected to: " + chatName);
         chatNameL.setFont(new Font("Calibri", Font.BOLD, 30));
         topP.add(chatNameL, BorderLayout.NORTH);
         topP.setBackground(Color.LIGHT_GRAY);
-
-        //Add code to get all messages from chatroom m
-        JLabel msg = new JLabel("Hej sigma"); // Test message
-        msg.setOpaque(true);
-        msg.setBackground(Color.WHITE); // Set the background color if needed
-        Border border = new LineBorder(Color.LIGHT_GRAY, 2); // Create a light gray border with thickness 2
-        msg.setBorder(border); // Set the border to the label
-        messageP.add(msg, BorderLayout.NORTH);
 
         bottomP.add(messageF, BorderLayout.WEST);
         sendButton.setPreferredSize(new Dimension(80, 18));
@@ -67,6 +67,17 @@ public class ChatRoom_v extends JPanel implements View {
         messageP.add(msg, BorderLayout.NORTH);
     }
 
+    public void update() {
+        activeChat = activeChat.getChatRoom();
+        // Code to update the view when notified
+        for (Message i : activeChat.getChatRoom().getMessages()) {
+            displayMessage(i.getUser(), i.getMsg());
+        }
+
+        messageP.revalidate();
+        messageP.repaint();
+    }
+
 
     public void removeView() {
         this.removeAll();
@@ -75,7 +86,6 @@ public class ChatRoom_v extends JPanel implements View {
 
 
     public JPanel getJPanel() {return mainPanel;}
-    public JPanel getMessageP() {return mp;}
     public JButton getJButton() {return sendButton;}
     public JTextField getJTextField() {return messageF;}
 }

@@ -7,9 +7,9 @@ import views.ServerList_v;
 
 
 public class ServerList_c extends JFrame implements ActionListener{
-    private ServerList_m sm = ServerList_m.getInstance();
     private ModelsFacade mf = new ModelsFacade();
     private ControllersFacade cf = new ControllersFacade();
+    private ServerList_m sm = mf.getServers();
     private JFrame f = cf.getJFrame();
     private ServerList_v sl = new ServerList_v();
     public void actionPerformed(ActionEvent e) {}
