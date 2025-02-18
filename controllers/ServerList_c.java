@@ -24,7 +24,7 @@ public class ServerList_c extends JFrame implements ActionListener{
         f.setVisible(true);
     
         addListenerServerList();
-    }
+    }//
 
 
     public void addListenerServerList() {

@@ -1,11 +1,11 @@
 package views;
-import Observers.ViewObserver;
 import javax.swing.*;
 import java.awt.*;
 
 import models.ChatRoom_m;
 import models.ModelsFacade;
 import models.ServerList_m;
+import observers.ViewObserver;
 
 public class ServerList_v extends JPanel implements View, ViewObserver {
     private JPanel p = new JPanel(); 

@@ -1,4 +1,4 @@
-package Observers;
+package observers;
 
 public interface ViewSubject {
     void addObserver(ViewObserver o);
