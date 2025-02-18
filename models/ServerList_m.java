@@ -2,8 +2,8 @@ package models;
 import java.util.LinkedList;
 import java.util.List;
 
-import Observers.ViewObserver;
-import Observers.ViewSubject;
+import observers.ViewObserver;
+import observers.ViewSubject;
 
 
 public class ServerList_m implements ViewSubject{
