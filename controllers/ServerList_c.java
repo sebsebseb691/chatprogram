@@ -1,8 +1,9 @@
 package controllers;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.LinkedList;
 import models.*;
-import views.ServerList_v; 
+import views.ServerList_v;
 
 
 public class ServerList_c extends JFrame implements ActionListener{
@@ -25,14 +26,6 @@ public class ServerList_c extends JFrame implements ActionListener{
 
 
     public void addListenerServerList() {
-        sl.getJoinButton().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //Code to join chatroom
-                //mf.getServerList().chats.
-            }
-        });
-        
-
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Code to create a new chatroom
@@ -48,6 +41,16 @@ public class ServerList_c extends JFrame implements ActionListener{
                 }
             }
         });
-        sl.getJoinButton().removeActionListener(this);
+        sl.getCreateServerButton().removeActionListener(this);
+    }
+
+    //Add action listener to every server and let user join chatroom
+    public void addListenerServerListServer(LinkedList<ChatRoom_m> serverList) {
+        sl.getJoinButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //Code to join chatroom
+                //mf.getServerList().chats.
+            }
+        });
     }
 }

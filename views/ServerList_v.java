@@ -12,26 +12,25 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
     private JPanel sp = new JPanel(new GridLayout(0, 1));
     private JLabel welcome = new JLabel("Welcome");
     private JLabel chatname = new JLabel("Press a Chat Room to join:");
-    private JButton joinButton = new JButton("Join");
     private JButton createServerButton = new JButton("Create a new server");
+
 
     public void createView() {
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.add(welcome, BorderLayout.NORTH);
         p.add(chatname, BorderLayout.CENTER);
-        sp.add(joinButton, BorderLayout.SOUTH);
         p.add(createServerButton, BorderLayout.SOUTH);
 
         sp.repaint();
         p.repaint(); 
     }
 
+
     public void createView(String username) {
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         welcome.setText(welcome.getText() + ": " + username); //Add username to welcome message
         p.add(welcome);
         p.add(chatname);
-        sp.add(joinButton, BorderLayout.SOUTH);
         p.add(createServerButton);
 
         sp.repaint();
@@ -51,17 +50,18 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
         // Code to update the view when notified
         sp.removeAll();
         for (ChatRoom_m i : ServerList_m.getServerList()) { //Är det okej att ta in model i view? Kanske ändra hur man hämtar listan
-            JButton chatLabel = new JButton(i.getChatName());
-            p.add(chatLabel);
-        
+            JButton joinChat = new JButton(i.getChatName());
+            sp.add(joinChat);
+            //How to add action listener to every button? Is it okay to call a method in controller from viw
+            //Add action listener on every button and listen for what button is pressed
         }
-        p.revalidate();
-        p.repaint();
+
+        sp.revalidate();
+        sp.repaint();
     }
-    
-    
+
+    public JButton getJoinButton() {return joinChat;}
     public JPanel getJPanel() {return p;}
     public JPanel getServerPanel() {return sp;}
-    public JButton getJoinButton() {return joinButton;}
     public JButton getCreateServerButton() {return createServerButton;}
 }

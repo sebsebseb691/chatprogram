@@ -1,7 +1,4 @@
 import controllers.*;
-import models.*;
-import views.*;
-import server.*;
 
 public class run {
 

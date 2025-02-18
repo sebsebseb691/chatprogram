@@ -6,7 +6,7 @@ public class ControllersFacade {
     private JFrame f;
     
     public ControllersFacade() {
-        f = new JFrame("Chat program");
+        f = new JFrame("Sigma chat");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }
