@@ -65,9 +65,9 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
     }
 
     public void update() {
-        activeChat = activeChat.getChatRoom();
+        activeChat = activeChat.getChatRoomObj();
         // Code to update the view when notified
-        for (Message i : activeChat.getChatRoom().getMessages()) {
+        for (Message i : activeChat.getChatRoomObj().getMessages()) {
             displayMessage(i.getUser(), i.getMsg());
         }
 

@@ -16,7 +16,7 @@ public class ChatRoom_c extends JFrame implements ActionListener {
     public ChatRoom_c() {
         //Code to get all messages and send to chatroom view
         f.setSize(600, 300);
-        cr.createView();
+        cr.createView(mf.getChatRoom().getChatName());
         f.add(cr.getJPanel());
         f.setVisible(true);
     
@@ -29,6 +29,7 @@ public class ChatRoom_c extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Message m = new Message(cr.getJTextField().getText());
+                    System.out.println(cr.getJTextField().getText());
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }

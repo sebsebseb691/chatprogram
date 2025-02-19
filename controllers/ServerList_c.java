@@ -28,7 +28,6 @@ public class ServerList_c extends JFrame implements ActionListener{
     public void addListenerServerList() {
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //Code to create a new chatroom
                 try {
                     String serverName = (String)JOptionPane.showInputDialog(f, "Enter a name for the chat room");
                     if (serverName != null) { //If doesn't press cancel, otherwise do nothing
@@ -49,8 +48,11 @@ public class ServerList_c extends JFrame implements ActionListener{
         for (JButton joinButton : joinButtons) {
             joinButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    // Code to join chatroom
-                    System.out.println("User wants to join: " + joinButton.getText());
+                    //Join chat room that is pressed
+                    mf.getChatRoom().joinChatRoom(joinButton.getText());
+                    sl.removeView();
+                    cf.openChatRoom();
+                    
                 }
             });
         }

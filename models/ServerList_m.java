@@ -14,6 +14,7 @@ public class ServerList_m implements ViewSubject{
     private static ServerList_m instance = new ServerList_m();
     private ServerList_m(){}
     public static ServerList_m getInstance() {return instance;}
+    //Finns det något sätt att ge listan genom modelsfacade?
     public static LinkedList<ChatRoom_m> getServerList() {return instance.serverList;}
 
     public void createServer(ChatRoom_m chat){

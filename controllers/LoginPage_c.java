@@ -13,9 +13,7 @@ public class LoginPage_c extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {}
 
     public LoginPage_c() {
-        //Show login page if there is no username
-        //Maybe edit later
-        if (mf.getUser().getUsername().isEmpty()) createLoginPage();
+        createLoginPage();
     }
 
 
@@ -23,16 +21,14 @@ public class LoginPage_c extends JFrame implements ActionListener {
         lp.createView();
 
         f.add(lp.getJPanel());
-
         f.setSize(300, 150);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
 
         addListenerLoginPage();
     }
+    
 
-
-    //Add action listener to login page
     public void addListenerLoginPage() {
         lp.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

@@ -15,7 +15,12 @@ public class ChatRoom_m implements ViewSubject {
     public ChatRoom_m(String chatName){
         if(chatName == null) return; //If chatname is null (user presses cancel), do nothing
         else if(chatName.isEmpty()) throw new RuntimeException("Chat name cannot be empty");
-        else {this.chatName = chatName;}
+        else {
+            for(ChatRoom_m chat : ServerList_m.getServerList()){
+                if(chat.getChatName().equals(chatName)) throw new RuntimeException("Chat name already exists");
+            }
+            this.chatName = chatName;
+        }
     }
 
 
@@ -25,10 +30,12 @@ public class ChatRoom_m implements ViewSubject {
     }
 
 
-    public void joinChatRoom(){
+    public void joinChatRoom(String chatName){
         ModelsFacade mf = new ModelsFacade();
         //Only add user if it is not already in the chatroom
         if(!users.contains(mf.getUser())) users.add(mf.getUser());
+        this.chatName = chatName;
+        notifyObservers(); 
     }
 
 
@@ -42,6 +49,6 @@ public class ChatRoom_m implements ViewSubject {
     public void removeObserver(ViewObserver observer) {observers.remove(observer);}
 
     public String getChatName() {return chatName;}
-    public ChatRoom_m getChatRoom() {return this;}
+    public ChatRoom_m getChatRoomObj() {return this;}
     public LinkedList<Message> getMessages() {return this.msgs;}
 }
