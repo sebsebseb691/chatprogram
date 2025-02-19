@@ -40,10 +40,10 @@ public class LoginPage_c extends JFrame implements ActionListener {
                 //Try to change username, if it fails show error message, if it succeeds remove login page
                 try {
                     mf.getUser().changeName(lp.getJTextField().getText());
-                    ServerList_c sl = new ServerList_c(); //Name changed, now show server list
+                    cf.openServerList(); //Name changed, now show server list
                     lp.removeView(); //Remove elements from login panel
                     removeLoginPage(); //Remove login page from frame
-                    
+
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
