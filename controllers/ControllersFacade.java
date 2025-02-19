@@ -2,6 +2,7 @@ package controllers;
 import javax.swing.JFrame;
 
 public class ControllersFacade {
+    //Kanske göra static?
     private JFrame f;
     
     public ControllersFacade() {

@@ -12,7 +12,6 @@ public class LoginPage_c extends JFrame implements ActionListener {
     private LoginPage_v lp = new LoginPage_v();
     public void actionPerformed(ActionEvent e) {}
 
-
     public LoginPage_c() {
         //Show login page if there is no username
         //Maybe edit later

@@ -1,8 +1,16 @@
 package models;
 
 interface UserI {
+    /**
+     * Get the username of the user
+     * @return the username as a string
+     */
     public String getUsername();
-    public void changeName(String newName);
+    /**
+     * Change the username
+     * @param newName the new username
+     */
+    public void changeName(String newName) throws RuntimeException;
 }
 
 public class User implements UserI{

@@ -38,16 +38,8 @@ public class ChatRoom_m implements ViewSubject {
         }
     }
 
-
-    public void addObserver(ViewObserver observer) {
-        observers.add(observer);
-    }
-
-
-    public void removeObserver(ViewObserver observer) {
-        observers.remove(observer);
-    }
-
+    public void addObserver(ViewObserver observer) {observers.add(observer);}
+    public void removeObserver(ViewObserver observer) {observers.remove(observer);}
 
     public String getChatName() {return chatName;}
     public ChatRoom_m getChatRoom() {return this;}

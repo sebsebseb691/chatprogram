@@ -1,13 +1,8 @@
 package views;
 import javax.swing.*;
-
 import controllers.ServerList_c;
-
 import java.awt.*;
-import java.util.ArrayList;
-
 import models.ChatRoom_m;
-import models.ModelsFacade;
 import models.ServerList_m;
 import observers.ViewObserver;
 import java.util.LinkedList;
@@ -28,7 +23,7 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
     }
 
     public void createView() { //Needed because of view interface
-        //Should not be possible to get here because of how user.changename()
+        //Should not be possible to get here because of how user.changename() works
         createView("No-username");
     }
 
@@ -55,20 +50,23 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
     }
 
 
+    //Runs when model tells view
     public void update() {
-        // Code to update the view when notified
         sp.removeAll();
+
+        //Add buttons for every chatroom
         for (ChatRoom_m i : ServerList_m.getServerList()) { //Är det okej att ta in model i view? Kanske ändra hur man hämtar listan
             JButton joinChat = new JButton(i.getChatName());
             joinButtons.add(joinChat);
             sp.add(joinChat);
         }
 
-        sl.addListenerServerListServer();
-        mainP.add(sp, BorderLayout.EAST);
+        sl.addListenerServerListServer(); //Tell controller to add action listeners to every button
+        mainP.add(sp, BorderLayout.EAST); //Display serverlist to the right, maybe change later
         sp.revalidate();
         sp.repaint();
     }
+
 
     public JPanel getJPanel() {return mainP;}
     public JButton getCreateServerButton() {return createServerButton;}

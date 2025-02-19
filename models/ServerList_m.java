@@ -18,16 +18,12 @@ public class ServerList_m implements ViewSubject{
 
     public void createServer(ChatRoom_m chat){
         serverList.add(chat); 
-        
         notifyObservers();
     }
 
-    public void addObserver(ViewObserver observer) {
-        observers.add(observer);
-    }
-
-    public void removeObserver(ViewObserver observer) {
-        observers.remove(observer);
+    public void removeChat(ChatRoom_m chat){
+        serverList.remove(chat);
+        notifyObservers();
     }
 
     public void notifyObservers() {
@@ -36,8 +32,6 @@ public class ServerList_m implements ViewSubject{
         }
     }
 
-    public void removeChat(ChatRoom_m chat){
-        serverList.remove(chat);
-        notifyObservers();
-    }
+    public void addObserver(ViewObserver observer) {observers.add(observer);}
+    public void removeObserver(ViewObserver observer) {observers.remove(observer);}
 }

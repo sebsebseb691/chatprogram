@@ -2,16 +2,11 @@ package views;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-
+import java.awt.*;
 import models.ChatRoom_m;
 import models.Message;
 import models.ModelsFacade;
 
-import java.awt.*;
-
-//Lägg till observer som interface
-//Implementera observer i chat
-//Ska få uppdateringar
 
 public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
     private JPanel topP = new JPanel(); //Panel for chatroom name
@@ -31,11 +26,13 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
 
     public void createView(String chatName) {
         mf.setChatRoom(activeChat);
+        //Top panel, show server name
         chatNameL.setText("Connected to: " + chatName);
         chatNameL.setFont(new Font("Calibri", Font.BOLD, 30));
         topP.add(chatNameL, BorderLayout.NORTH);
         topP.setBackground(Color.LIGHT_GRAY);
 
+        //Bottom panel, message input and send button
         bottomP.add(messageF, BorderLayout.WEST);
         sendButton.setPreferredSize(new Dimension(80, 18));
         bottomP.add(sendButton, BorderLayout.EAST);
