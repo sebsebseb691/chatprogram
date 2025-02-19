@@ -18,6 +18,7 @@ public class ServerList_m implements ViewSubject{
 
     public void createServer(ChatRoom_m chat){
         serverList.add(chat); 
+        
         notifyObservers();
     }
 
@@ -39,6 +40,4 @@ public class ServerList_m implements ViewSubject{
         serverList.remove(chat);
         notifyObservers();
     }
-
-    private void get_all_chats(){} // i denna funktion kanske vi hämtar alla chatter från servern 
 }

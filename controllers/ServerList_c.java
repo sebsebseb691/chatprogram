@@ -11,7 +11,7 @@ public class ServerList_c extends JFrame implements ActionListener{
     private ControllersFacade cf = new ControllersFacade();
     private ServerList_m sm = mf.getServers();
     private JFrame f = cf.getJFrame();
-    private ServerList_v sl = new ServerList_v();
+    private ServerList_v sl = new ServerList_v(this);
     public void actionPerformed(ActionEvent e) {}
 
     public ServerList_c() {
@@ -29,10 +29,9 @@ public class ServerList_c extends JFrame implements ActionListener{
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Code to create a new chatroom
-                //Gör om så panel ändras, inte frame, frame är singleton!!!
                 try {
                     String serverName = (String)JOptionPane.showInputDialog(f, "Enter a name for the chat room");
-                    if (serverName != null) { //If user presses cancel, do nothing
+                    if (serverName != null) { //If doesn't press cancel, otherwise do nothing
                         ChatRoom_m newChat = new ChatRoom_m(serverName);
                         sm.createServer(newChat); // Notifies model for change 
                     }
@@ -45,12 +44,15 @@ public class ServerList_c extends JFrame implements ActionListener{
     }
 
     //Add action listener to every server and let user join chatroom
-    public void addListenerServerListServer(LinkedList<ChatRoom_m> serverList) {
-        sl.getJoinButton().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //Code to join chatroom
-                //mf.getServerList().chats.
-            }
-        });
+    public void addListenerServerListServer() {
+        LinkedList<JButton> joinButtons = sl.getJoinButtons();
+        for (JButton joinButton : joinButtons) {
+            joinButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // Code to join chatroom
+                    System.out.println("User wants to join: " + joinButton.getText());
+                }
+            });
+        }
     }
 }
