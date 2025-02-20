@@ -51,8 +51,6 @@ public class ServerList_c extends JFrame implements ActionListener{
                     //Join chat room that is pressed
                     mf.getChatRoom().joinChatRoom(joinButton.getText());
                     sl.removeView();
-                    cf.openChatRoom();
-                    
                 }
             });
         }

@@ -2,6 +2,7 @@ package controllers;
 import javax.swing.*;
 import java.awt.event.*;
 import models.ModelsFacade;
+import models.ChatRoom_m;
 import models.Message;
 import views.ChatRoom_v;
 
@@ -10,21 +11,19 @@ public class ChatRoom_c extends JFrame implements ActionListener {
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
-    private ChatRoom_v cr = new ChatRoom_v();
     public void actionPerformed(ActionEvent e) {}
 
-    public ChatRoom_c() {
+    public ChatRoom_c(ChatRoom_v cr) {
         //Code to get all messages and send to chatroom view
         f.setSize(600, 300);
-        cr.createView(mf.getChatRoom().getChatName());
         f.add(cr.getJPanel());
         f.setVisible(true);
     
-        addListenerChatRoom();
+        addListenerChatRoom(cr);
     }
     
     
-    public void addListenerChatRoom() {
+    public void addListenerChatRoom(ChatRoom_v cr) {
         cr.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -38,7 +37,7 @@ public class ChatRoom_c extends JFrame implements ActionListener {
     }
 
 
-    public void removeChatRoom() {
+    public void removeChatRoom(ChatRoom_v cr) {
         cr.getJButton().removeActionListener(this);
         f.remove(cr.getJPanel());
         f.setVisible(false);

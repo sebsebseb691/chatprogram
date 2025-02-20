@@ -2,6 +2,9 @@ package views;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import controllers.ChatRoom_c;
+
 import java.awt.*;
 import models.ChatRoom_m;
 import models.Message;
@@ -16,6 +19,7 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
     private JLabel chatNameL = new JLabel();
     private JTextField messageF = new JTextField(30);
     private JButton sendButton = new JButton("Send");
+    private JScrollPane scroll;
 
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ChatRoom_m activeChat = mf.getChatRoom();
@@ -25,8 +29,7 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
     }
 
     public void createView(String chatName) {
-        mf.setChatRoom(activeChat);
-        //Top panel, show server name
+        //Top panel, server name
         chatNameL.setText("Connected to: " + chatName);
         chatNameL.setFont(new Font("Calibri", Font.BOLD, 30));
         topP.add(chatNameL, BorderLayout.NORTH);
@@ -37,6 +40,12 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
         sendButton.setPreferredSize(new Dimension(80, 18));
         bottomP.add(sendButton, BorderLayout.EAST);
 
+        //Scroll
+        messageP.setLayout(new BoxLayout(messageP, BoxLayout.Y_AXIS));
+        scroll = new JScrollPane(messageP);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         //Add panels to main panel
         mainPanel.add(topP, BorderLayout.NORTH);
         mainPanel.add(bottomP, BorderLayout.SOUTH);
@@ -46,6 +55,8 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
         this.add(mainPanel, BorderLayout.CENTER);
 
         this.repaint();
+
+        update();
     }
 
     public void displayMessage(String username, String message) {
@@ -60,11 +71,14 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
         msg.setBackground(Color.WHITE);
         Border b2 = new LineBorder(Color.LIGHT_GRAY, 2);
         msg.setBorder(b2);
-        messageP.add(user, BorderLayout.NORTH);
-        messageP.add(msg, BorderLayout.NORTH);
+        messageP.add(user);
+        messageP.add(msg);
+
+        messageP.setLayout(new BoxLayout(messageP, BoxLayout.Y_AXIS));
     }
 
     public void update() {
+        messageP.removeAll();
         activeChat = activeChat.getChatRoomObj();
         // Code to update the view when notified
         for (Message i : activeChat.getChatRoomObj().getMessages()) {

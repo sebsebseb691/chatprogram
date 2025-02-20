@@ -1,8 +1,11 @@
 package models;
 import java.util.LinkedList;
 import java.util.List;
+
+import controllers.ChatRoom_c;
 import observers.ViewObserver;
 import observers.ViewSubject;
+import views.ChatRoom_v;
 
 
 public class ChatRoom_m implements ViewSubject {
@@ -10,6 +13,9 @@ public class ChatRoom_m implements ViewSubject {
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
     private LinkedList<Message> msgs = new LinkedList<Message>(); 
     private LinkedList<User> users = new LinkedList<User>();
+
+    private ChatRoom_v crV;
+    public ChatRoom_v getChatRoomView() {return crV;}
 
 
     public ChatRoom_m(String chatName){
@@ -25,6 +31,7 @@ public class ChatRoom_m implements ViewSubject {
 
 
     public void addMessage(Message msg){
+        //System.out.println("hejeheje");
         msgs.add(msg);
         notifyObservers();
     }
@@ -35,6 +42,11 @@ public class ChatRoom_m implements ViewSubject {
         //Only add user if it is not already in the chatroom
         if(!users.contains(mf.getUser())) users.add(mf.getUser());
         this.chatName = chatName;
+
+        ChatRoom_v crV = new ChatRoom_v();
+        observers.add(crV);
+        crV.createView(chatName);
+        ChatRoom_c cr = new ChatRoom_c(crV);
         notifyObservers(); 
     }
 
