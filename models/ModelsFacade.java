@@ -1,6 +1,10 @@
 package models;
 
 public class ModelsFacade {
+    private static ModelsFacade instance = new ModelsFacade();
+    private ModelsFacade(){}
+    public static ModelsFacade getInstance() {return instance;}
+
     private static User u = new User();
     private ChatRoom_m chatRoom = new ChatRoom_m(null);
     private ServerList_m servers = ServerList_m.getInstance();

@@ -6,7 +6,7 @@ import models.ModelsFacade;
 
 
 public class LoginPage_c extends JFrame implements ActionListener {
-    private ModelsFacade mf = new ModelsFacade();
+    private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
     private LoginPage_v lp = new LoginPage_v();

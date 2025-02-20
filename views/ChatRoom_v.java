@@ -17,7 +17,7 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
     private JTextField messageF = new JTextField(30);
     private JButton sendButton = new JButton("Send");
 
-    private ModelsFacade mf = new ModelsFacade();
+    private ModelsFacade mf = ModelsFacade.getInstance();
     private ChatRoom_m activeChat = mf.getChatRoom();
 
     public void createView() {

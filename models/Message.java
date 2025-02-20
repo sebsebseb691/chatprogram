@@ -1,7 +1,7 @@
 package models;
 
 public class Message {
-    private ModelsFacade mf = new ModelsFacade();
+    private ModelsFacade mf = ModelsFacade.getInstance();
     private String msg;
     private String user;
 

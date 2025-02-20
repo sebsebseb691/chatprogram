@@ -7,7 +7,7 @@ import views.ChatRoom_v;
 
 
 public class ChatRoom_c extends JFrame implements ActionListener {
-    private ModelsFacade mf = new ModelsFacade();
+    private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
     private ChatRoom_v cr = new ChatRoom_v();
