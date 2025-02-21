@@ -6,7 +6,7 @@ import models.*;
 import views.ServerList_v;
 
 
-public class ServerList_c extends JFrame implements ActionListener{
+public class ServerList_c implements ActionListener{
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private ServerList_m sm = mf.getServers();

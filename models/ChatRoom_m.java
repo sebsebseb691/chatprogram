@@ -8,6 +8,7 @@ import observers.ViewSubject;
 import views.ChatRoom_v;
 
 
+//Flytta så controller skapar view
 public class ChatRoom_m implements ViewSubject {
     private String chatName;
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
@@ -43,7 +44,7 @@ public class ChatRoom_m implements ViewSubject {
         if(!users.contains(mf.getUser())) users.add(mf.getUser());
         this.chatName = chatName;
 
-        ChatRoom_v crV = new ChatRoom_v();
+        ChatRoom_v crV = new ChatRoom_v(); //Flytta till controller
         observers.add(crV);
         crV.createView(chatName);
         ChatRoom_c cr = new ChatRoom_c(crV);
@@ -63,4 +64,6 @@ public class ChatRoom_m implements ViewSubject {
     public String getChatName() {return chatName;}
     public ChatRoom_m getChatRoomObj() {return this;}
     public LinkedList<Message> getMessages() {return this.msgs;}
+
+
 }

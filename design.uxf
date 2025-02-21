@@ -1,26 +1,26 @@
-<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>448</x><y>609</y><w>161</w><h>133</h></coordinates><panel_attributes>Client_model_n
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>418</x><y>522</y><w>138</w><h>114</h></coordinates><panel_attributes>Client_model_n
 --
 -ChatRoom
 -User 
 --
 getMessages(chat_id) : ArrayList&lt;Message&gt;
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>896</x><y>406</y><w>140</w><h>126</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>802</x><y>348</y><w>120</w><h>108</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 View
 --
 
 --
 +JPanel p
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>791</x><y>630</y><w>147</w><h>49</h></coordinates><panel_attributes>Login Page
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>712</x><y>540</y><w>126</w><h>42</h></coordinates><panel_attributes>Login Page
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>847</x><y>525</y><w>91</w><h>119</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>70;10;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>196</x><y>378</y><w>147</w><h>133</h></coordinates><panel_attributes>Message
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>760</x><y>450</y><w>78</w><h>102</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>70;10;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>202</x><y>324</y><w>126</w><h>114</h></coordinates><panel_attributes>Message
 --
 -Message: string
 -Username: string
 --
 +void createMessage()
--- </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>609</y><w>147</w><h>133</h></coordinates><panel_attributes>Controller
+-- </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>34</x><y>522</y><w>126</w><h>114</h></coordinates><panel_attributes>Controller
 --
 -navigator
 --
@@ -34,7 +34,7 @@ View
 
 Tar in användarnamn och
 meddelanden, skickar till client model
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>203</x><y>609</y><w>147</w><h>133</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>208</x><y>522</y><w>126</w><h>114</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Navigator
 
 --
@@ -46,7 +46,7 @@ Navigator
 +
 --
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>672</y><w>77</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>595</x><y>0</y><w>168</w><h>133</h></coordinates><panel_attributes>Server Model
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>154</x><y>576</y><w>66</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>544</x><y>0</y><w>144</w><h>114</h></coordinates><panel_attributes>Server Model
 --
 -chat_id
 -msg
@@ -58,13 +58,13 @@ getMessages(chat_id int) : ArrayList
 --
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>952</x><y>630</y><w>147</w><h>49</h></coordinates><panel_attributes>Server list
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>850</x><y>540</y><w>126</w><h>42</h></coordinates><panel_attributes>Server list
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1106</x><y>630</y><w>147</w><h>49</h></coordinates><panel_attributes>Chat
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>982</x><y>540</y><w>126</w><h>42</h></coordinates><panel_attributes>Chat
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>959</x><y>525</y><w>98</w><h>119</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;100;150</additional_attributes></element><element><id>Relation</id><coordinates><x>1029</x><y>525</y><w>168</w><h>119</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;220;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>392</x><y>378</y><w>147</w><h>133</h></coordinates><panel_attributes>chatroom
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>450</y><w>90</w><h>102</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;100;150</additional_attributes></element><element><id>Relation</id><coordinates><x>916</x><y>450</y><w>144</w><h>102</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;220;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>324</y><w>126</w><h>114</h></coordinates><panel_attributes>chatroom
 --
 -Idnr
 -users&lt;user&gt; 
@@ -73,13 +73,13 @@ getMessages(chat_id int) : ArrayList
 +void createChat()
 +void addMembers()
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>665</x><y>441</y><w>147</w><h>133</h></coordinates><panel_attributes>oberver 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>604</x><y>378</y><w>126</w><h>114</h></coordinates><panel_attributes>oberver 
 --
-+Update(Navigator Client_model) </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>14</x><y>378</y><w>147</w><h>133</h></coordinates><panel_attributes>user
++Update(Navigator Client_model) </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>46</x><y>324</y><w>126</w><h>114</h></coordinates><panel_attributes>user
 --
 -name 
 --
 
 +void CreateUser()
-+void changeName()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>805</x><y>462</y><w>105</w><h>77</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>455</x><y>504</y><w>70</w><h>119</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>80;150;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>98</x><y>504</y><w>364</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>500;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>343</x><y>665</y><w>119</w><h>35</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;30;150;20</additional_attributes></element><element><id>Relation</id><coordinates><x>336</x><y>427</y><w>70</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>154</x><y>448</y><w>56</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>574</x><y>560</y><w>105</w><h>63</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;130;10</additional_attributes></element></diagram>
++void changeName()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>724</x><y>396</y><w>90</w><h>66</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>432</y><w>60</w><h>102</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>80;150;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>118</x><y>432</y><w>312</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>500;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>328</x><y>570</y><w>102</w><h>30</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;30;150;20</additional_attributes></element><element><id>Relation</id><coordinates><x>322</x><y>366</y><w>60</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>166</x><y>384</y><w>48</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>526</x><y>480</y><w>90</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;130;10</additional_attributes></element></diagram>
