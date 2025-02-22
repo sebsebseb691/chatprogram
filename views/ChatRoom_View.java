@@ -45,7 +45,7 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         //Add panels to main panel
         mainPanel.add(topP, BorderLayout.NORTH);
         mainPanel.add(bottomP, BorderLayout.SOUTH);
-        mainPanel.add(messageP, BorderLayout.CENTER);
+        mainPanel.add(scroll, BorderLayout.CENTER);
 
         this.setLayout(new BorderLayout());
         this.add(mainPanel, BorderLayout.CENTER);
@@ -55,24 +55,14 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         update(); //Update too see messages
     }
 
-    public void displayMessage(String username, String message) {
-        //Display username
-        JLabel user = new JLabel(username + ": ");
-        user.setOpaque(true);
-        user.setBackground(Color.LIGHT_GRAY);
+    public void displayMessage(String username, String msg) {
+        JLabel message = new JLabel(username + ": " + msg);
+        message.setOpaque(true);
+        message.setBackground(Color.WHITE);
         Border b = new LineBorder(Color.LIGHT_GRAY, 2);
-        user.setBorder(b);
+        message.setBorder(b);
 
-        //Display message
-        JLabel msg = new JLabel(message);
-        msg.setOpaque(true);
-        msg.setBackground(Color.WHITE);
-        Border b2 = new LineBorder(Color.LIGHT_GRAY, 2);
-        msg.setBorder(b2);
-
-        messageP.add(user);
-        messageP.add(msg);
-        messageP.setLayout(new BoxLayout(messageP, BoxLayout.Y_AXIS));
+        messageP.add(message);
     }
 
 

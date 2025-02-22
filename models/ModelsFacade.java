@@ -1,5 +1,4 @@
 package models;
-import java.util.LinkedList;
 
 public class ModelsFacade {
     private static ModelsFacade instance = new ModelsFacade();
