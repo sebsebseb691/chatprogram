@@ -11,10 +11,11 @@ public class ModelsFacade {
     private ChatRoom_m chatRoom;
     private ServerList_m servers = ServerList_m.getInstance();
 
+    public void createChatRoom(String name) {
+        chatRoom = new ChatRoom_m(name);
+    }
     public User getUser() {return u;}
     public ServerList_m getServers() {return servers;}
     public void setChatRoom(ChatRoom_m chatRoom) {this.chatRoom = chatRoom;}
-    public ChatRoom_m getChatRoom() {
-        return chatRoom.getChatRoomObj();
-    }
+    public ChatRoom_m getChatRoom() {return chatRoom.getChatRoomObj();}
 }

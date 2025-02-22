@@ -12,7 +12,7 @@ public class Message {
             this.user = mf.getUser().getUsername();
         }
 
-        //Ska meddelandet skickas direkt? Kanske ändra
+        
         try {
             mf.getChatRoom().addMessage(this);
         } catch (Exception e) {

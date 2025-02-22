@@ -1,12 +1,8 @@
 package views;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-
-import controllers.ChatRoom_c;
+import javax.swing.border.*;
 
 import java.awt.*;
-import models.ChatRoom_m;
 import models.Message;
 import models.ModelsFacade;
 
@@ -16,13 +12,13 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
     private JPanel mainPanel = new JPanel(new BorderLayout());
     private JPanel bottomP = new JPanel(new FlowLayout()); //Panel for message input
     private JPanel messageP = new JPanel(new BorderLayout()); //Messages panel
+
     private JLabel chatNameL = new JLabel();
     private JTextField messageF = new JTextField(30);
     private JButton sendButton = new JButton("Send");
     private JScrollPane scroll;
-
     private ModelsFacade mf = ModelsFacade.getInstance();
-    private ChatRoom_m activeChat = mf.getChatRoom();
+
 
     public void createView() {
         createView("No chat name");
@@ -54,37 +50,41 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
         this.setLayout(new BorderLayout());
         this.add(mainPanel, BorderLayout.CENTER);
 
+        //Add self to observer list
+        mf.getChatRoom().addObserver(this);
+
         this.repaint();
 
         update();
     }
 
     public void displayMessage(String username, String message) {
+        //Display username
         JLabel user = new JLabel(username + ": ");
         user.setOpaque(true);
         user.setBackground(Color.LIGHT_GRAY);
         Border b = new LineBorder(Color.LIGHT_GRAY, 2);
         user.setBorder(b);
 
+        //Display message
         JLabel msg = new JLabel(message);
         msg.setOpaque(true);
         msg.setBackground(Color.WHITE);
         Border b2 = new LineBorder(Color.LIGHT_GRAY, 2);
         msg.setBorder(b2);
+
         messageP.add(user);
         messageP.add(msg);
-
         messageP.setLayout(new BoxLayout(messageP, BoxLayout.Y_AXIS));
     }
 
+
     public void update() {
         messageP.removeAll();
-        activeChat = activeChat.getChatRoomObj();
-        // Code to update the view when notified
-        for (Message i : activeChat.getChatRoomObj().getMessages()) {
+
+        for (Message i : mf.getChatRoom().getMessages()) {
             displayMessage(i.getUser(), i.getMsg());
         }
-
         messageP.revalidate();
         messageP.repaint();
     }

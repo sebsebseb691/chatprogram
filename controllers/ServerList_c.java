@@ -25,21 +25,21 @@ public class ServerList_c implements ActionListener{
     }
 
 
+    //Create server button
     public void addListenerServerList() {
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     String serverName = (String)JOptionPane.showInputDialog(f, "Enter a name for the chat room");
                     if (serverName != null) { //If doesn't press cancel, otherwise do nothing
-                        ChatRoom_m newChat = new ChatRoom_m(serverName);
-                        sm.createServer(newChat); // Notifies model for change 
+                        mf.createChatRoom(serverName);
+                        sm.addChatRoom(mf.getChatRoom()); // Notifies model for change 
                     }
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
             }
         });
-        sl.getCreateServerButton().removeActionListener(this);
     }
 
     //Add action listener to every server and let user join chatroom
@@ -50,6 +50,8 @@ public class ServerList_c implements ActionListener{
                 public void actionPerformed(ActionEvent e) {
                     //Join chat room that is pressed
                     mf.getChatRoom().joinChatRoom(joinButton.getText());
+                    ChatRoom_c crC = cf.getChatRoomController();
+                    cf.openChatRoom(crC);
                     sl.removeView();
                 }
             });
