@@ -14,8 +14,7 @@ public class ServerList_Model implements ViewSubject{
     private static ServerList_Model instance = new ServerList_Model();
     private ServerList_Model(){}
     public static ServerList_Model getInstance() {return instance;}
-
-    public LinkedList<ChatRoom_Model> getServerList() {return serverList;}
+    
 
     public void addChatRoom(ChatRoom_Model chat){
         serverList.add(chat); 
@@ -35,4 +34,5 @@ public class ServerList_Model implements ViewSubject{
 
     public void addObserver(ViewObserver observer) {observers.add(observer);}
     public void removeObserver(ViewObserver observer) {observers.remove(observer);}
+    public LinkedList<ChatRoom_Model> getServerList() {return serverList;}
 }

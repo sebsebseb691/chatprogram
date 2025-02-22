@@ -15,9 +15,4 @@ public interface Controller_Interface {
      * Add a listener to a JButton
      */
     public void addListener();
-
-    /**
-     * Add listeners to many JButtons
-     */
-    public void addListeners();
 }

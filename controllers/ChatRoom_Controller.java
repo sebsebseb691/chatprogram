@@ -12,7 +12,6 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
     private ChatRoom_View chatRoomView = new ChatRoom_View();
     private JFrame f = cf.getJFrame();
     public void actionPerformed(ActionEvent e) {}
-    public void addListeners() {}
 
 
     public void addPanelToFrame() {

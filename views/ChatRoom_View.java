@@ -52,7 +52,7 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         this.repaint();
 
         mf.getChatRoom().addObserver(this); //Add self to observer list
-        update(); //Update too see messages
+        update(); //Update to see messages
     }
 
     public void displayMessage(String username, String msg) {

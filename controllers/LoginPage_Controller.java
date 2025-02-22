@@ -11,7 +11,6 @@ public class LoginPage_Controller implements ActionListener, Controller_Interfac
     private JFrame f = cf.getJFrame();
     private LoginPage_View lp = new LoginPage_View();
     public void actionPerformed(ActionEvent e) {}
-    public void addListeners() {}
 
 
     public void addPanelToFrame() {

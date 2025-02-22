@@ -10,3 +10,5 @@ Försök få upp en bild av hur servern ska fungera med connections, TCP socket,
 
 
 Göra så client har lägre koppling genom interface
+
+Ska lyssnare bli tillagda i controller eller genom view?
