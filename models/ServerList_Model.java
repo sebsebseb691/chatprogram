@@ -6,23 +6,23 @@ import observers.ViewObserver;
 import observers.ViewSubject;
 
 
-public class ServerList_m implements ViewSubject{
-    private LinkedList<ChatRoom_m> serverList = new LinkedList<ChatRoom_m>(); 
+public class ServerList_Model implements ViewSubject{
+    private LinkedList<ChatRoom_Model> serverList = new LinkedList<ChatRoom_Model>(); 
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
     
     //Singleton
-    private static ServerList_m instance = new ServerList_m();
-    private ServerList_m(){}
-    public static ServerList_m getInstance() {return instance;}
-    //Finns det något sätt att ge listan genom modelsfacade?
-    public static LinkedList<ChatRoom_m> getServerList() {return instance.serverList;}
+    private static ServerList_Model instance = new ServerList_Model();
+    private ServerList_Model(){}
+    public static ServerList_Model getInstance() {return instance;}
 
-    public void addChatRoom(ChatRoom_m chat){
+    public LinkedList<ChatRoom_Model> getServerList() {return serverList;}
+
+    public void addChatRoom(ChatRoom_Model chat){
         serverList.add(chat); 
         notifyObservers();
     }
 
-    public void removeChat(ChatRoom_m chat){
+    public void removeChat(ChatRoom_Model chat){
         serverList.remove(chat);
         notifyObservers();
     }

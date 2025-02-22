@@ -1,24 +1,26 @@
 package views;
 import javax.swing.*;
-import controllers.ServerList_c;
+import controllers.ServerList_Controller;
 import java.awt.*;
-import models.ChatRoom_m;
-import models.ServerList_m;
+import models.ChatRoom_Model;
+import models.ModelsFacade;
 import observers.ViewObserver;
-import java.util.LinkedList;
 
-public class ServerList_v extends JPanel implements View, ViewObserver {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ServerList_View extends JPanel implements View, ViewObserver {
     private JPanel mainP = new JPanel(new BorderLayout());
     private JPanel p = new JPanel(); 
     private JPanel sp = new JPanel(new GridLayout(0, 1));
     private JLabel welcome = new JLabel("Welcome");
     private JLabel chatname = new JLabel("Press a Chat Room to join or Create a new Chat Room:");
     private JButton createServerButton = new JButton("Create a new Chat Room");
-    private LinkedList<JButton> joinButtons = new LinkedList<JButton>();
-    private ServerList_c sl; //Take in controller to add buttons
+    private List<JButton> joinButtons = new ArrayList<>();
+    private ServerList_Controller sl; //Take in controller to add buttons
 
     //Kommer inte på något annat sätt än att ta in controller
-    public ServerList_v(ServerList_c sl) {
+    public ServerList_View(ServerList_Controller sl) {
         this.sl = sl;
     }
 
@@ -38,6 +40,8 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
         mainP.add(p, BorderLayout.NORTH);
 
         sp.setLayout(new BoxLayout(sp, BoxLayout.Y_AXIS));
+
+        ModelsFacade.getServers().addObserver(this);
         update(); //Show servers
 
         this.repaint();
@@ -50,18 +54,18 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
     }
 
 
-    //Runs when model tells view
     public void update() {
         sp.removeAll();
 
         //Add buttons for every chatroom
-        for (ChatRoom_m i : ServerList_m.getServerList()) { //Är det okej att ta in model i view? Kanske ändra hur man hämtar listan
+        joinButtons.removeAll(joinButtons);
+        for (ChatRoom_Model i : ModelsFacade.getServers().getServerList()) {
             JButton joinChat = new JButton(i.getChatName());
-            joinButtons.add(joinChat);
-            sp.add(joinChat);
+            joinButtons.add(joinChat); //Add all buttons to a list
+            sp.add(joinChat); //Add button to panel
         }
 
-        sl.addListenerServerListServer(); //Tell controller to add action listeners to every button
+        sl.addListeners(); //Controller adds listeners to every button
         mainP.add(sp, BorderLayout.EAST); //Display serverlist to the right, maybe change later
         sp.revalidate();
         sp.repaint();
@@ -70,5 +74,5 @@ public class ServerList_v extends JPanel implements View, ViewObserver {
 
     public JPanel getJPanel() {return mainP;}
     public JButton getCreateServerButton() {return createServerButton;}
-    public LinkedList<JButton> getJoinButtons() {return joinButtons;}
+    public List<JButton> getJoinButtons() {return joinButtons;}
 }

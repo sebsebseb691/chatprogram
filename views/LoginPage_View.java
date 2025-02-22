@@ -2,7 +2,7 @@ package views;
 
 import javax.swing.*;
 
-public class LoginPage_v extends JPanel implements View {
+public class LoginPage_View extends JPanel implements View {
     private JPanel p = new JPanel();
     private JLabel enterUsername = new JLabel("Username: ");
     private JTextField userNameF = new JTextField(20);

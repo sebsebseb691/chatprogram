@@ -7,7 +7,7 @@ import models.Message;
 import models.ModelsFacade;
 
 
-public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
+public class ChatRoom_View extends JPanel implements View, observers.ViewObserver {
     private JPanel topP = new JPanel(); //Panel for chatroom name
     private JPanel mainPanel = new JPanel(new BorderLayout());
     private JPanel bottomP = new JPanel(new FlowLayout()); //Panel for message input
@@ -49,13 +49,10 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
 
         this.setLayout(new BorderLayout());
         this.add(mainPanel, BorderLayout.CENTER);
-
-        //Add self to observer list
-        mf.getChatRoom().addObserver(this);
-
         this.repaint();
 
-        update();
+        mf.getChatRoom().addObserver(this); //Add self to observer list
+        update(); //Update too see messages
     }
 
     public void displayMessage(String username, String message) {
@@ -85,6 +82,7 @@ public class ChatRoom_v extends JPanel implements View, observers.ViewObserver {
         for (Message i : mf.getChatRoom().getMessages()) {
             displayMessage(i.getUser(), i.getMsg());
         }
+        
         messageP.revalidate();
         messageP.repaint();
     }
