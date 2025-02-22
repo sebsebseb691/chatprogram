@@ -65,7 +65,7 @@ public class ServerList_View extends JPanel implements View, ViewObserver {
             sp.add(joinChat); //Add button to panel
         }
 
-        sl.addListeners(); //Controller adds listeners to every button
+        sl.addListener(); //Controller adds listeners to every button
         mainP.add(sp, BorderLayout.EAST); //Display serverlist to the right, maybe change later
         sp.revalidate();
         sp.repaint();

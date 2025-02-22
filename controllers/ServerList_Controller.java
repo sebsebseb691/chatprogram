@@ -30,25 +30,26 @@ public class ServerList_Controller implements ActionListener{
     public void addListener() {
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    String chatRoomName = (String)JOptionPane.showInputDialog(f, "Enter a name for the chat room");
-                    if (chatRoomName != null) { //If doesn't press cancel, otherwise do nothing
-                        mf.createChatRoom(chatRoomName);
-                        ModelsFacade.getServers().addChatRoom(mf.getChatRoom()); // Notifies model for change 
+                if(sl.getCreateServerButton().toString().equals(e.getActionCommand())) {
+                    try {
+                        String chatRoomName = (String)JOptionPane.showInputDialog(f, "Enter a name for the chat room");
+                        if (chatRoomName != null) { //If doesn't press cancel, otherwise do nothing
+                            mf.createChatRoom(chatRoomName);
+                            ModelsFacade.getServers().addChatRoom(mf.getChatRoom()); // Notifies model for change 
+                        }
+                    } catch (RuntimeException exc) {
+                        JOptionPane.showMessageDialog(f, exc.getMessage());
                     }
-                } catch (RuntimeException exc) {
-                    JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
             }
         });
-    }
 
-    //Join server button
-    public void addListeners() {
+        //Join server button
         List<JButton> joinButtons = sl.getJoinButtons();
         for (JButton joinButton : joinButtons) {
             joinButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    System.out.println(e);
                     //Join chat room that is pressed
                     mf.getChatRoom().joinChatRoom(joinButton.getText());
                     cf.openChatRoom();
@@ -57,7 +58,9 @@ public class ServerList_Controller implements ActionListener{
                 }
             });
         }
+
     }
+
 
     public void removePanelFromFrame() {
         f.remove(sl.getJPanel());
