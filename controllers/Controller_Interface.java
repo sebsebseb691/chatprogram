@@ -7,11 +7,6 @@ public interface Controller_Interface {
     public void addPanelToFrame();
 
     /**
-     * Remove a view's JPanel from the JFrame and set the JFrame to not visible
-     */
-    public void removePanelFromFrame();
-
-    /**
      * Add a listener to a JButton
      */
     public void addListener();

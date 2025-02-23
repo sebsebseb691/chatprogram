@@ -37,10 +37,4 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
             }
         });
     }
-
-
-    public void removePanelFromFrame() {
-        f.remove(chatRoomView.getJPanel());
-        f.setVisible(false);
-    }
 };

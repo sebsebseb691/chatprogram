@@ -31,19 +31,11 @@ public class LoginPage_Controller implements ActionListener, Controller_Interfac
                 try {
                     mf.getUser().changeName(lp.getJTextField().getText());
                     cf.openServerList(); //Name changed, now show server list
-                    //lp.removeView(); //Remove elements from login panel
-                    removePanelFromFrame(); //Remove login page from frame
 
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
             }
         });
-    }
-
-
-    public void removePanelFromFrame() {
-        f.remove(lp.getJPanel());
-        f.setVisible(false);
     }
 }

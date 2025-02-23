@@ -17,12 +17,18 @@ public class ServerList_Controller implements ActionListener, Controller_Interfa
     public void addPanelToFrame() {
         sl.createView();
 
-        f.setSize(800, 300);
+        f.setSize(800, 800);
         f.add(sl.getJPanel());
         f.setVisible(true);
     }
 
     public void addListenerCreate() {
+        sl.getBackButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cf.openLoginPage();
+            }
+        });
+
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //if(e.getSource() == sl.getCreateServerButton()) {
@@ -43,26 +49,17 @@ public class ServerList_Controller implements ActionListener, Controller_Interfa
 
     public void addListener() { //Called from view
         List<JButton> joinButtons = sl.getButtons();
-        
+
         for (JButton joinButton : joinButtons) {
-            
             joinButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if(e.getSource() != sl.getCreateServerButton()) {
                         // Join chat room that is pressed
                         mf.getChatRoom().joinChatRoom(joinButton.getText());
                         cf.openChatRoom();
-                        removePanelFromFrame();
-                        // sl.removeView();
                     }
                 }
             });
         }
-    }
-
-
-    public void removePanelFromFrame() {
-        f.remove(sl.getJPanel());
-        f.setVisible(false);
     }
 }

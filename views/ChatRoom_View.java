@@ -76,13 +76,7 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         messageP.revalidate();
         messageP.repaint();
     }
-
-
-    public void removeView() {
-        this.removeAll();
-        this.repaint();
-    }
-
+    
 
     public JPanel getJPanel() {return mainPanel;}
     public JButton getJButton() {return sendButton;}
