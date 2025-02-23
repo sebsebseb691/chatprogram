@@ -1,12 +1,16 @@
 package views;
 
+import javax.swing.JPanel;
+
 public interface View {
     /**
-     * Create a view and add components to one or more panels
+     * Create a view with JPanels and add components to one or more panels
      */
     public void createView();
+
     /**
-     * Remove all components from one or more panels and repaint
+     * Get the main JPanel created
+     * @return the main JPanel that should be added to the frame
      */
-    public void removeView();
+    public JPanel getJPanel();
 }

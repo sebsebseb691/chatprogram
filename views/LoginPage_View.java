@@ -17,12 +17,6 @@ public class LoginPage_View extends JPanel implements View {
     }
 
 
-    public void removeView() {
-        this.removeAll();
-        this.repaint();
-    }
-
-
     public JPanel getJPanel() {return p;}
     public JButton getJButton() {return loginButton;}
     public JTextField getJTextField() {return userNameF;}

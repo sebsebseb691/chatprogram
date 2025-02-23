@@ -11,12 +11,12 @@ import java.util.List;
 
 public class ServerList_View extends JPanel implements View, ViewObserver {
     private JPanel mainP = new JPanel(new BorderLayout());
-    private JPanel p = new JPanel(); 
-    private JPanel sp = new JPanel(new GridLayout(0, 1));
-    private JLabel welcome = new JLabel("Welcome");
-    private JLabel chatname = new JLabel("Press a Chat Room to join or Create a new Chat Room:");
-    private JButton createServerButton = new JButton("Create a new Chat Room");
-    private List<JButton> joinButtons = new ArrayList<>();
+    private JPanel bottomP = new JPanel(new GridLayout(0, 1));
+    private JButton createServerB = new JButton("Create a new Chat Room");
+    private JButton back = new JButton("Change username");
+
+    private List<JButton> buttons = new ArrayList<>(); //List of buttons of chat rooms, fetched in controller to add listeners
+
     private ServerList_Controller sl; //Take in controller to add buttons
 
     //Kommer inte på något annat sätt än att ta in controller
@@ -24,55 +24,77 @@ public class ServerList_View extends JPanel implements View, ViewObserver {
         this.sl = sl;
     }
 
-    public void createView() { //Needed because of view interface
-        //Should not be possible to get here because of how user.changename() works
-        createView("No-username");
-    }
 
-
-    public void createView(String username) {
-        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-        welcome.setText(welcome.getText() + ": " + username); //Add username to welcome message
+    public void createView() {
+        //Labels of top panel
+        JLabel welcome = new JLabel("Welcome");
+        welcome.setText("Welcome: " + ModelsFacade.getInstance().getUser().getUsername()); //Add username to welcome message
         welcome.setFont(new Font("Calibri", Font.BOLD, 30));
-        p.add(welcome);
-        p.add(chatname);
-        p.add(createServerButton);
-        mainP.add(p, BorderLayout.NORTH);
+        welcome.setAlignmentX(LEFT_ALIGNMENT);
 
-        sp.setLayout(new BoxLayout(sp, BoxLayout.Y_AXIS));
+        JLabel list = new JLabel("List of Chat Rooms:");
+        list.setFont(new Font("Calibri", Font.BOLD, 20));
+        list.setAlignmentX(LEFT_ALIGNMENT);
 
-        ModelsFacade.getServers().addObserver(this);
-        update(); //Show servers
+        //Panel for username, info and create chat
+        JPanel labelsP = new JPanel();
+        labelsP.setLayout(new BoxLayout(labelsP, BoxLayout.Y_AXIS));
+        labelsP.add(welcome);
+        labelsP.add(new JLabel("Press a Chat Room to join or Create a new Chat Room"));
+        labelsP.add(list);
+        labelsP.add(createServerB);
+        labelsP.setBackground(Color.LIGHT_GRAY);
+        
+        //Top panel
+        JPanel topP = new JPanel(); 
+        topP.setLayout(new BorderLayout());
+        topP.add(labelsP,BorderLayout.WEST);
+        topP.setBackground(Color.LIGHT_GRAY);
 
-        this.repaint();
-    }
+        //Panel for back button
+        JPanel backP = new JPanel();
+        backP.setBackground(Color.LIGHT_GRAY);
+        backP.add(back);
+        topP.add(backP, BorderLayout.EAST);
 
+        //Chat room list panel
+        JScrollPane scroll;
+        scroll = new JScrollPane(bottomP);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
+        //Add panels to main panel
+        mainP.add(topP, BorderLayout.NORTH);
+        mainP.add(scroll, BorderLayout.CENTER);
 
-    public void removeView() {
-        this.removeAll();
+        bottomP.setLayout(new BoxLayout(bottomP, BoxLayout.Y_AXIS));
+
+        ModelsFacade.getServers().addObserver(this); //Add self to observer
+        sl.addListenerCreate();
+        update();
         this.repaint();
     }
 
 
     public void update() {
-        sp.removeAll();
-
-        //Add buttons for every chatroom
-        joinButtons.removeAll(joinButtons);
+        buttons.clear();
+        bottomP.removeAll();
+        
+        //Add buttons for every chat room
         for (ChatRoom_Model i : ModelsFacade.getServers().getServerList()) {
             JButton joinChat = new JButton(i.getChatName());
-            joinButtons.add(joinChat); //Add all buttons to a list
-            sp.add(joinChat); //Add button to panel
+            buttons.add(joinChat); //Add button to list
+            bottomP.add(joinChat); //Add button to panel
         }
 
-        sl.addListeners(); //Controller adds listeners to every button
-        mainP.add(sp, BorderLayout.EAST); //Display serverlist to the right, maybe change later
-        sp.revalidate();
-        sp.repaint();
+        sl.addListener(); //Controller adds listeners to every button
+        bottomP.revalidate();
+        bottomP.repaint();
     }
 
 
     public JPanel getJPanel() {return mainP;}
-    public JButton getCreateServerButton() {return createServerButton;}
-    public List<JButton> getJoinButtons() {return joinButtons;}
+    public JButton getCreateServerButton() {return createServerB;}
+    public JButton getBackButton() {return back;}
+    public List<JButton> getButtons() {return buttons;}
 }

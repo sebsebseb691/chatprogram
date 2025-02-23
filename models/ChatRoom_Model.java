@@ -1,16 +1,28 @@
 package models;
 import java.util.LinkedList;
 import java.util.List;
-
-import observers.ViewObserver;
-import observers.ViewSubject;
-
+import observers.*;
 
 /**
  * Represents a chat room
  * All messages and connected users are saved two separate linked lists
  */
-public class ChatRoom_Model implements ViewSubject {
+interface ChatRoom_Model_Interface {
+    /**
+     * Add message to a linked list of messages 
+     * @param msg the message object that should be added
+     */
+    public void addMessage(Message msg);
+
+    /**
+     * Add user object to a chat if the user is not already in the chat, also update the current chat to the specified chat
+     * @param chatName string of the chat to join
+     */
+    public void joinChatRoom(String chatName);
+}
+
+
+public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
     private String chatName;
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
     private LinkedList<Message> msgs = new LinkedList<Message>(); 
