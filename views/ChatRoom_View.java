@@ -1,22 +1,18 @@
 package views;
 import javax.swing.*;
 import javax.swing.border.*;
-
 import java.awt.*;
 import models.Message;
 import models.ModelsFacade;
 
 
 public class ChatRoom_View extends JPanel implements View, observers.ViewObserver {
-    private JPanel topP = new JPanel(); //Panel for chatroom name
-    private JPanel mainPanel = new JPanel(new BorderLayout());
-    private JPanel bottomP = new JPanel(new FlowLayout()); //Panel for message input
+    private JPanel mainP = new JPanel(new BorderLayout());
     private JPanel messageP = new JPanel(new BorderLayout()); //Messages panel
 
-    private JLabel chatNameL = new JLabel();
     private JTextField messageF = new JTextField(30);
-    private JButton sendButton = new JButton("Send");
-    private JScrollPane scroll;
+    private JButton sendB = new JButton("Send");
+    private JButton backB = new JButton("Back");
     private ModelsFacade mf = ModelsFacade.getInstance();
 
 
@@ -25,30 +21,54 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
     }
 
     public void createView(String chatName) {
-        //Top panel, server name
-        chatNameL.setText("Connected to: " + chatName);
+        JLabel chatNameL = new JLabel();
+        chatNameL.setText("Connected to Chat Room: " + chatName);
         chatNameL.setFont(new Font("Calibri", Font.BOLD, 30));
-        topP.add(chatNameL, BorderLayout.NORTH);
+        chatNameL.setAlignmentX(LEFT_ALIGNMENT);
+
+        JLabel usernameL = new JLabel();
+        usernameL.setText("Username: " + mf.getUser().getUsername());
+        usernameL.setFont(new Font("Calibri", Font.BOLD, 20));
+        usernameL.setAlignmentX(LEFT_ALIGNMENT);
+
+        //Panel for chatname and username
+        JPanel labelsP = new JPanel();
+        labelsP.setLayout(new BoxLayout(labelsP, BoxLayout.Y_AXIS));
+        labelsP.add(chatNameL);
+        labelsP.add(usernameL);
+        labelsP.setBackground(Color.LIGHT_GRAY);
+
+        //Top panel
+        JPanel topP = new JPanel(); 
+        topP.setLayout(new BorderLayout());
+        topP.add(labelsP, BorderLayout.WEST);
         topP.setBackground(Color.LIGHT_GRAY);
 
+        //Panel for back button
+        JPanel backP = new JPanel();
+        backP.setBackground(Color.LIGHT_GRAY);
+        backP.add(backB);
+        topP.add(backP, BorderLayout.EAST);
+
         //Bottom panel, message input and send button
+        JPanel bottomP = new JPanel(new FlowLayout()); //Panel for message input
         bottomP.add(messageF, BorderLayout.WEST);
-        sendButton.setPreferredSize(new Dimension(80, 18));
-        bottomP.add(sendButton, BorderLayout.EAST);
+        sendB.setPreferredSize(new Dimension(80, 18));
+        bottomP.add(sendB, BorderLayout.EAST);
 
         //Scroll
         messageP.setLayout(new BoxLayout(messageP, BoxLayout.Y_AXIS));
-        scroll = new JScrollPane(messageP);
+        JScrollPane scroll = new JScrollPane(messageP);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         //Add panels to main panel
-        mainPanel.add(topP, BorderLayout.NORTH);
-        mainPanel.add(bottomP, BorderLayout.SOUTH);
-        mainPanel.add(scroll, BorderLayout.CENTER);
+        mainP.add(topP, BorderLayout.NORTH);
+        mainP.add(bottomP, BorderLayout.SOUTH);
+        mainP.add(scroll, BorderLayout.CENTER);
 
         this.setLayout(new BorderLayout());
-        this.add(mainPanel, BorderLayout.CENTER);
+        this.add(mainP, BorderLayout.CENTER);
         this.repaint();
 
         mf.getChatRoom().addObserver(this); //Add self to observer list
@@ -61,7 +81,6 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         message.setBackground(Color.WHITE);
         Border b = new LineBorder(Color.LIGHT_GRAY, 2);
         message.setBorder(b);
-
         messageP.add(message);
     }
 
@@ -72,13 +91,14 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         for (Message i : mf.getChatRoom().getMessages()) {
             displayMessage(i.getUser(), i.getMsg());
         }
-        
+    
         messageP.revalidate();
         messageP.repaint();
     }
     
 
-    public JPanel getJPanel() {return mainPanel;}
-    public JButton getJButton() {return sendButton;}
+    public JPanel getJPanel() {return mainP;}
+    public JButton getJButton() {return sendB;}
+    public JButton getBackButton() {return backB;}
     public JTextField getJTextField() {return messageF;}
 }

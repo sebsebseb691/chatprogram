@@ -13,3 +13,5 @@ Göra så client har lägre koppling genom interface
 
 Ska lyssnare bli tillagda i controller eller genom view?
 Finns det något sätt att undvika att serverlist view tar in controller?
+Behöver setters och getters vara med i interface?
+Är det okej att ha en private constructor som gör något? -ModelsFacade

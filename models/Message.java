@@ -1,9 +1,9 @@
 package models;
 
 /**
- * Interface for creating a message 
+ * Represents a message by username and message text, both as strings 
  */
-interface MessageInterface {
+interface Message_Interface {
     /**
      * Gets the message content.
      *
@@ -19,7 +19,8 @@ interface MessageInterface {
     public String getUser();
 }
 
-public class Message {
+
+public class Message implements Message_Interface {
     private ModelsFacade mf = ModelsFacade.getInstance();
     private String msg;
     private String user; //Hade kunnat spara user som user objekt, men kanske lägre koppling om det är string

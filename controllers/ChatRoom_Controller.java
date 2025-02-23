@@ -17,7 +17,7 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
     public void addPanelToFrame() {
         chatRoomView.createView(mf.getChatRoom().getChatName());
         
-        f.setSize(600, 300);
+        f.setSize(800, 600);
         f.add(chatRoomView.getJPanel());
         f.setVisible(true);
     
@@ -34,6 +34,12 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
+            }
+        });
+
+        chatRoomView.getBackButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cf.openServerList();
             }
         });
     }

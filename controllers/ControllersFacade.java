@@ -1,6 +1,5 @@
 package controllers;
 import javax.swing.JFrame;
-import views.*;
 
 
 //Kanske göra static? och bara så en controller för respektive grej skapas, för allt på panelen uppdateras när en ny skapas
