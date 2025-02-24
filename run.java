@@ -6,7 +6,7 @@ import server.*;
 public class run {
 
     public static void main(String[] args){
-        LoginPage_c c = new LoginPage_c();
+        LoginPageController loginPageController = new LoginPageController();
     
     }
 }

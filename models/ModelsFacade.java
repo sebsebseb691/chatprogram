@@ -1,11 +1,11 @@
 package models;
 
 public class ModelsFacade {
-    private static User u = new User();
-    private ChatRoom_m chatRoom = new ChatRoom_m("test");
-    private ServerList_m servers = ServerList_m.getInstance();
+    private static User user = new User();
+    private ChatroomModel chatRoom = new ChatroomModel("test");
+    private ServerListModel servers = ServerListModel.getInstance();
 
-    public User getUser() {return u;}
-    public ServerList_m getServers() {return servers;}
-    public ChatRoom_m getChatRoom() {return chatRoom;}
+    public User getUser() {return user;}
+    public ServerListModel getServers() {return servers;}
+    public ChatroomModel getChatRoom() {return chatRoom;}
 }

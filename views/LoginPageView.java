@@ -2,28 +2,28 @@ package views;
 
 import javax.swing.*;
 
-public class LoginPage_v extends JPanel implements View {
-    private JPanel p = new JPanel();
+public class LoginPageView extends JPanel implements View {
+    private JPanel loginPanel = new JPanel();
     private JLabel enterUsername = new JLabel("Username: ");
     private JTextField userNameF = new JTextField(20);
     private JButton loginButton = new JButton("Set username");
     
 
     public void createView() {
-        p.add(enterUsername);
-        p.add(userNameF);
-        p.add(loginButton);
-        p.repaint();
+        loginPanel.add(enterUsername);
+        loginPanel.add(userNameF);
+        loginPanel.add(loginButton);
+        loginPanel.repaint();
     }
 
 
     public void removeView() {
-        p.removeAll();
-        p.repaint();
+        loginPanel.removeAll();
+        loginPanel.repaint();
     }
 
 
-    public JPanel getJPanel() {return p;}
+    public JPanel getJPanel() {return loginPanel;}
     public JButton getJButton() {return loginButton;}
     public JTextField getJTextField() {return userNameF;}
     

@@ -5,18 +5,18 @@ public class Navigator {
     private Navigator(){}
     public static Navigator getInstance() {return instance;}
 
-
+// Ska inte dessa metoder uppdatera model bara?
     public void goToLoginPage() {
-        LoginPage_m lp = new LoginPage_m();
+        LoginPageModel loginPageView = new LoginPageModel();
     }
 
     //Serverlist är singleton
     public void goToServerList() {
-        ServerList_m sl = new ServerList_m();
+        ServerListModel serverListView = new ServerListModel();
     }
 
 
     public void goToChatRoom() {
-        ChatRoom_m cr = new ChatRoom_m();
+        ChatroomModel chatRoomView = new ChatroomModel();
     }
 }
