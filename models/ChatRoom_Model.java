@@ -12,7 +12,7 @@ interface ChatRoom_Model_Interface {
      * Add message to a linked list of messages 
      * @param msg the message object that should be added
      */
-    public void addMessage(Message msg);
+    public void addMessage(Message_Interface msg);
 
     /**
      * Add user object to a chat if the user is not already in the chat, also update the current chat to the specified chat
@@ -25,7 +25,7 @@ interface ChatRoom_Model_Interface {
 public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
     private String chatName;
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
-    private LinkedList<Message> msgs = new LinkedList<Message>(); 
+    private LinkedList<Message_Interface> msgs = new LinkedList<Message_Interface>(); 
     private LinkedList<User> users = new LinkedList<User>();
 
     /**
@@ -46,7 +46,7 @@ public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
     }
 
 
-    public void addMessage(Message msg){
+    public void addMessage(Message_Interface msg){
         msgs.add(msg);
         notifyObservers();
     }
@@ -72,7 +72,7 @@ public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
 
     public String getChatName() {return chatName;}
     public ChatRoom_Model getChatRoomObj() {return this;}
-    public LinkedList<Message> getMessages() {return this.msgs;}
+    public LinkedList<Message_Interface> getMessages() {return this.msgs;}
 
 
 }

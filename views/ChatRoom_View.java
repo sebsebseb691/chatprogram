@@ -2,8 +2,9 @@ package views;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
-import models.Message;
+import java.awt.image.BufferedImage;
 import models.ModelsFacade;
+import models.Message_Interface;
 
 
 public class ChatRoom_View extends JPanel implements View, observers.ViewObserver {
@@ -12,6 +13,7 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
 
     private JTextField messageF = new JTextField(30);
     private JButton sendB = new JButton("Send");
+    private JButton sendImageB = new JButton("Send Image");
     private JButton backB = new JButton("Back");
     private ModelsFacade mf = ModelsFacade.getInstance();
 
@@ -55,6 +57,7 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         bottomP.add(messageF, BorderLayout.WEST);
         sendB.setPreferredSize(new Dimension(80, 18));
         bottomP.add(sendB, BorderLayout.EAST);
+        bottomP.add(sendImageB, BorderLayout.EAST);
 
         //Scroll
         messageP.setLayout(new BoxLayout(messageP, BoxLayout.Y_AXIS));
@@ -76,20 +79,38 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
     }
 
     public void displayMessage(String username, String msg) {
+    
         JLabel message = new JLabel(username + ": " + msg);
         message.setOpaque(true);
         message.setBackground(Color.WHITE);
         Border b = new LineBorder(Color.LIGHT_GRAY, 2);
         message.setBorder(b);
         messageP.add(message);
+
+    
+    }
+
+    public void displayImage(String username, BufferedImage image) {
+       
+         
+            JLabel imageLabel = new JLabel(new ImageIcon(image));
+            imageLabel.setOpaque(true);
+            imageLabel.setBackground(Color.WHITE);
+            Border b = new LineBorder(Color.LIGHT_GRAY, 2);
+            imageLabel.setBorder(b);
+            messageP.add(imageLabel);
+        
     }
 
 
     public void update() {
         messageP.removeAll();
 
-        for (Message i : mf.getChatRoom().getMessages()) {
+        for (Message_Interface i : mf.getChatRoom().getMessages()) {
             displayMessage(i.getUser(), i.getMsg());
+            if (i.getImage() != null) {
+                displayImage(i.getUser(), i.getImage());
+            }
         }
     
         messageP.revalidate();
@@ -101,4 +122,7 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
     public JButton getJButton() {return sendB;}
     public JButton getBackButton() {return backB;}
     public JTextField getJTextField() {return messageF;}
+
+    public JButton getSendImageButton() { return sendImageB; }
+
 }
