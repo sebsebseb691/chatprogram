@@ -11,8 +11,8 @@ public class Server {
     static Server instance;
     ServerSocket server;
 
-    ArrayList<Socket> clients = new ArrayList<>();
-    int port = 54321;       // can it be fixed??
+    ArrayList<ClientManager> clientManagers = new ArrayList<>();
+    int port = 54321;
 
     // initiate server on specified port
     private Server() {
@@ -35,36 +35,39 @@ public class Server {
     // awaits attempted connections
     public void start() {
         new Thread(new Runnable() {
+
             @Override
             public void run() {
-                while (true) {
+                while (!server.isClosed() ) {
                     try {
                         Socket clientSocket = server.accept();
-                        clients.add(clientSocket);
-                        new Thread(new ClientManager(clientSocket, Server.this)).start();
+                        ClientManager clientManager = new ClientManager(clientSocket, Server.this);
+                        clientManagers.add(clientManager);
+                        
+                        new Thread(clientManager).start();
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
-                    }
+                      }
                 }
             }
         }).start();
     }
 
     // broadcast the message to groupmembers
-    public void broadcast(String message) {
-        for (Socket clientSocket : clients) {       // future feature: if(clientSocket != sender) don't duplicate message
-            try { 
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                out.println(message);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
+    public void broadcast(Object message, ClientManager clientManager) {
+        synchronized (clientManagers) {
+            for (ClientManager client : clientManagers) {
+                if(client != clientManager){
+                    client.sendMessage(message);        //vill ändra
+                }
+
             }
         }
     }
 
     // removes disconnected clients from chat
-    public void disconnect(Socket client) {
-        clients.remove(client);
-        System.out.println(client + " has disconnected.");
+    public void disconnect(ClientManager clientManager) {
+        clientManagers.remove(clientManager);
+        System.out.println("Client:" + clientManager + " has disconnected.");
     }
 }

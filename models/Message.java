@@ -1,12 +1,20 @@
 package models;
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
     private ModelsFacade mf = new ModelsFacade();
     private String msg;
     private String user;
 
+    // empty message constructor
+    public Message() {
+
+    }
+
+    // constructor with message
     public Message(String msg) {
-        if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
+        if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");   // message can be empty??
         else {
             this.msg = msg;
             this.user = mf.getUser().getUsername();
