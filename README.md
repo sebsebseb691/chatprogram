@@ -13,6 +13,7 @@ Göra så client har lägre koppling genom interface
 
 Fixa: Alla chattrum får samma meddelanden 
 Fixa: Alla chattrum döps om
+Fel i hur den hämtar chattrum
 
 Ska lyssnare bli tillagda i controller eller genom view?
 
