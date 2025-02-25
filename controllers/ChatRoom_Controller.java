@@ -24,7 +24,7 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
         addListener();
     }
     
-    
+    @Override
     public void addListener() {
         chatRoomView.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -42,5 +42,10 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
                 cf.openServerList();
             }
         });
+    }
+
+    @Override
+    public void initalize() {
+        
     }
 };

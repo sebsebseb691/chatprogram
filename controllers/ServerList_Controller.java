@@ -22,7 +22,7 @@ public class ServerList_Controller implements ActionListener, Controller_Interfa
         f.setVisible(true);
     }
 
-    public void addListenerCreate() {
+    public void initalize() {
         sl.getBackButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cf.openLoginPage();

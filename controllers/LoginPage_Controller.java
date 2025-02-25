@@ -38,4 +38,9 @@ public class LoginPage_Controller implements ActionListener, Controller_Interfac
             }
         });
     }
+
+    @Override
+    public void initalize() {
+        
+    }
 }
