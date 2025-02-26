@@ -19,19 +19,19 @@ public class ControllersFacade {
     //Navigator
     public void openChatRoom() {
         removeAllViews();
-        ChatRoom_Controller cr = new ChatRoom_Controller();
+        ChatRoomController cr = new ChatRoomController();
         cr.addPanelToFrame();
     }
 
     public void openLoginPage() {
         removeAllViews();
-        LoginPage_Controller lp = new LoginPage_Controller();
+        LoginPageController lp = new LoginPageController();
         lp.addPanelToFrame();
     }
 
     public void openServerList() {
         removeAllViews();
-        ServerList_Controller sl = new ServerList_Controller();
+        ServerListController sl = new ServerListController();
         sl.addPanelToFrame();
     }
 

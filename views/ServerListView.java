@@ -1,15 +1,15 @@
 package views;
 import javax.swing.*;
-import controllers.ServerList_Controller;
+import controllers.ServerListController;
 import java.awt.*;
-import models.ChatRoom_Model;
+import models.ChatRoomModel;
 import models.ModelsFacade;
 import observers.ViewObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerList_View extends JPanel implements View, ViewObserver {
+public class ServerListView extends JPanel implements View, ViewObserver {
     private JPanel mainP = new JPanel(new BorderLayout());
     private JPanel bottomP = new JPanel(new GridLayout(0, 1));
     private JButton createServerB = new JButton("Create a new Chat Room");
@@ -17,10 +17,10 @@ public class ServerList_View extends JPanel implements View, ViewObserver {
 
     private List<JButton> buttons = new ArrayList<>(); //List of buttons of chat rooms, fetched in controller to add listeners
 
-    private ServerList_Controller sl; //Take in controller to add buttons
+    private ServerListController sl; //Take in controller to add buttons
 
     //Kommer inte på något annat sätt än att ta in controller
-    public ServerList_View(ServerList_Controller sl) {
+    public ServerListView(ServerListController sl) {
         this.sl = sl;
     }
 
@@ -81,7 +81,7 @@ public class ServerList_View extends JPanel implements View, ViewObserver {
         bottomP.removeAll();
         
         //Add buttons for every chat room
-        for (ChatRoom_Model i : ModelsFacade.getServers().getServerList()) {
+        for (ChatRoomModel i : ModelsFacade.getServers().getServerList()) {
             JButton joinChat = new JButton(i.getChatName());
             buttons.add(joinChat); //Add button to list
             bottomP.add(joinChat); //Add button to panel

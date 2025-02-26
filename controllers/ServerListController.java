@@ -3,14 +3,14 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.List;
 import models.*;
-import views.ServerList_View;
+import views.ServerListView;
 
 
-public class ServerList_Controller implements ActionListener, Controller_Interface{
+public class ServerListController implements ActionListener, ControllerInterface{
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
-    private ServerList_View sl = new ServerList_View(this);
+    private ServerListView sl = new ServerListView(this);
     public void actionPerformed(ActionEvent e) {}
 
 

@@ -12,32 +12,32 @@ interface ServerList_Model_Interface {
      * Add a chat room object to a linked list
      * @param chat the chat room to be added
      */
-    public void addChatRoom(ChatRoom_Model chat);
+    public void addChatRoom(ChatRoomModel chat);
 
     /**
      * Remove a chat room from a linked list
      * @param chat the chat room to be removed
      */
-    public void removeChat(ChatRoom_Model chat);
+    public void removeChat(ChatRoomModel chat);
 }
 
 
-public class ServerList_Model implements ServerList_Model_Interface, ViewSubject{
-    private LinkedList<ChatRoom_Model> serverList = new LinkedList<ChatRoom_Model>(); 
+public class ServerListModel implements ServerList_Model_Interface, ViewSubject{
+    private LinkedList<ChatRoomModel> serverList = new LinkedList<ChatRoomModel>(); 
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
     
     //Singleton
-    private static ServerList_Model instance = new ServerList_Model();
-    private ServerList_Model(){}
-    public static ServerList_Model getInstance() {return instance;}
+    private static ServerListModel instance = new ServerListModel();
+    private ServerListModel(){}
+    public static ServerListModel getInstance() {return instance;}
     
 
-    public void addChatRoom(ChatRoom_Model chat){
+    public void addChatRoom(ChatRoomModel chat){
         serverList.add(chat); 
         notifyObservers();
     }
 
-    public void removeChat(ChatRoom_Model chat){
+    public void removeChat(ChatRoomModel chat){
         serverList.remove(chat);
         notifyObservers();
     }
@@ -50,5 +50,5 @@ public class ServerList_Model implements ServerList_Model_Interface, ViewSubject
 
     public void addObserver(ViewObserver observer) {observers.add(observer);}
     public void removeObserver(ViewObserver observer) {observers.remove(observer);}
-    public LinkedList<ChatRoom_Model> getServerList() {return serverList;}
+    public LinkedList<ChatRoomModel> getServerList() {return serverList;}
 }

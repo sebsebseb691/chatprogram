@@ -7,7 +7,7 @@ import observers.*;
  * Represents a chat room
  * All messages and connected users are saved two separate linked lists
  */
-interface ChatRoom_Model_Interface {
+interface ChatRoomModelInterface {
     /**
      * Add message to a linked list of messages 
      * @param msg the message object that should be added
@@ -22,7 +22,7 @@ interface ChatRoom_Model_Interface {
 }
 
 
-public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
+public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject {
     private String chatName;
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
     private LinkedList<Message> msgs = new LinkedList<Message>(); 
@@ -34,11 +34,11 @@ public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
      * @param chatName a string of the chat room
      * @throws RuntimeException if the chat name is empty or already exists in the chat room list
      */
-    public ChatRoom_Model(String chatName){
+    public ChatRoomModel(String chatName){
         if(chatName == null) return; //If chatname is null (user presses cancel), do nothing
         else if(chatName.isEmpty()) throw new RuntimeException("Chat name cannot be empty");
         else {
-            for(ChatRoom_Model chat : ModelsFacade.getServers().getServerList()){
+            for(ChatRoomModel chat : ModelsFacade.getServers().getServerList()){
                 if(chat.getChatName().equals(chatName)) throw new RuntimeException("Chat name already exists");
             }
             this.chatName = chatName;
@@ -71,7 +71,7 @@ public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
     public void removeObserver(ViewObserver observer) {observers.remove(observer);}
 
     public String getChatName() {return chatName;}
-    public ChatRoom_Model getChatRoomObj() {return this;}
+    public ChatRoomModel getChatRoomObj() {return this;}
     public LinkedList<Message> getMessages() {return this.msgs;}
 
 

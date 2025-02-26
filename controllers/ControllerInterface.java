@@ -1,6 +1,6 @@
 package controllers;
 
-public interface Controller_Interface {
+public interface ControllerInterface {
     /**
      * Create a view and add the view's JPanel to a JFrame, also the JFrame visible
      */
