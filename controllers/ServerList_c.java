@@ -1,11 +1,14 @@
 package controllers;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.LinkedList;
 import models.*;
 import views.ServerList_v;
 
-
+/**
+ * Controller for Server list. Manages creating and joining chatrooms.
+ */
 public class ServerList_c extends JFrame implements ActionListener{
     private ModelsFacade mf = new ModelsFacade();
     private ControllersFacade cf = new ControllersFacade();
@@ -14,6 +17,7 @@ public class ServerList_c extends JFrame implements ActionListener{
     private ServerList_v sl = new ServerList_v(this);
     public void actionPerformed(ActionEvent e) {}
 
+    // constructor for Server list
     public ServerList_c() {
         f.setSize(800, 300);
         sl.createView(mf.getUser().getUsername());
@@ -24,7 +28,7 @@ public class ServerList_c extends JFrame implements ActionListener{
         addListenerServerList();
     }
 
-
+    // method for event listener to 'Create Chat' button
     public void addListenerServerList() {
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -43,7 +47,7 @@ public class ServerList_c extends JFrame implements ActionListener{
         sl.getCreateServerButton().removeActionListener(this);
     }
 
-    //Add action listener to every server and let user join chatroom
+    // method adds event listener to every servers 'Join' button
     public void addListenerServerListServer() {
         LinkedList<JButton> joinButtons = sl.getJoinButtons();
         for (JButton joinButton : joinButtons) {
@@ -55,4 +59,5 @@ public class ServerList_c extends JFrame implements ActionListener{
             });
         }
     }
+
 }

@@ -2,6 +2,9 @@ package models;
 
 import java.io.Serializable;
 
+/**
+ * Message represents a chat message, and stores content and user information.
+ */
 public class Message implements Serializable {
     private ModelsFacade mf = new ModelsFacade();
     private String msg;
