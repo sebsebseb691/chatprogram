@@ -7,13 +7,13 @@ import models.ModelsFacade;
 
 
 public class ChatRoom_View extends JPanel implements View, observers.ViewObserver {
-    private JPanel mainP = new JPanel(new BorderLayout());
-    private JPanel messageP = new JPanel(new BorderLayout()); //Messages panel
+    private JPanel mainPanel = new JPanel(new BorderLayout());
+    private JPanel messagePanel = new JPanel(new BorderLayout()); //Messages panel
 
-    private JTextField messageF = new JTextField(30);
-    private JButton sendB = new JButton("Send");
-    private JButton backB = new JButton("Back");
-    private ModelsFacade mf = ModelsFacade.getInstance();
+    private JTextField messageField = new JTextField(30);
+    private JButton sendButton = new JButton("Send");
+    private JButton backButton = new JButton("Back");
+    private ModelsFacade modelsFacade = ModelsFacade.getInstance();
 
 
     public void createView() {
@@ -27,51 +27,51 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         chatNameL.setAlignmentX(LEFT_ALIGNMENT);
 
         JLabel usernameL = new JLabel();
-        usernameL.setText("Username: " + mf.getUser().getUsername());
+        usernameL.setText("Username: " + modelsFacade.getUser().getUsername());
         usernameL.setFont(new Font("Calibri", Font.BOLD, 20));
         usernameL.setAlignmentX(LEFT_ALIGNMENT);
 
         //Panel for chatname and username
-        JPanel labelsP = new JPanel();
-        labelsP.setLayout(new BoxLayout(labelsP, BoxLayout.Y_AXIS));
-        labelsP.add(chatNameL);
-        labelsP.add(usernameL);
-        labelsP.setBackground(Color.LIGHT_GRAY);
+        JPanel labelsPanel = new JPanel();
+        labelsPanel.setLayout(new BoxLayout(labelsPanel, BoxLayout.Y_AXIS));
+        labelsPanel.add(chatNameL);
+        labelsPanel.add(usernameL);
+        labelsPanel.setBackground(Color.LIGHT_GRAY);
 
         //Top panel
-        JPanel topP = new JPanel(); 
-        topP.setLayout(new BorderLayout());
-        topP.add(labelsP, BorderLayout.WEST);
-        topP.setBackground(Color.LIGHT_GRAY);
+        JPanel topPanel = new JPanel(); 
+        topPanel.setLayout(new BorderLayout());
+        topPanel.add(labelsPanel, BorderLayout.WEST);
+        topPanel.setBackground(Color.LIGHT_GRAY);
 
         //Panel for back button
-        JPanel backP = new JPanel();
-        backP.setBackground(Color.LIGHT_GRAY);
-        backP.add(backB);
-        topP.add(backP, BorderLayout.EAST);
+        JPanel backPanel = new JPanel();
+        backPanel.setBackground(Color.LIGHT_GRAY);
+        backPanel.add(backButton);
+        topPanel.add(backPanel, BorderLayout.EAST);
 
         //Bottom panel, message input and send button
-        JPanel bottomP = new JPanel(new FlowLayout()); //Panel for message input
-        bottomP.add(messageF, BorderLayout.WEST);
-        sendB.setPreferredSize(new Dimension(80, 18));
-        bottomP.add(sendB, BorderLayout.EAST);
+        JPanel bottomPanel = new JPanel(new FlowLayout()); //Panel for message input
+        bottomPanel.add(messageField, BorderLayout.WEST);
+        sendButton.setPreferredSize(new Dimension(80, 18));
+        bottomPanel.add(sendButton, BorderLayout.EAST);
 
         //Scroll
-        messageP.setLayout(new BoxLayout(messageP, BoxLayout.Y_AXIS));
-        JScrollPane scroll = new JScrollPane(messageP);
+        messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
+        JScrollPane scroll = new JScrollPane(messagePanel);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         //Add panels to main panel
-        mainP.add(topP, BorderLayout.NORTH);
-        mainP.add(bottomP, BorderLayout.SOUTH);
-        mainP.add(scroll, BorderLayout.CENTER);
+        mainPanel.add(topPanel, BorderLayout.NORTH);
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+        mainPanel.add(scroll, BorderLayout.CENTER);
 
         this.setLayout(new BorderLayout());
-        this.add(mainP, BorderLayout.CENTER);
+        this.add(mainPanel, BorderLayout.CENTER);
         this.repaint();
 
-        mf.getChatRoom().addObserver(this); //Add self to observer list
+        modelsFacade.getChatRoom().addObserver(this); //Add self to observer list
         update(); //Update to see messages
     }
 
@@ -79,26 +79,26 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
         JLabel message = new JLabel(username + ": " + msg);
         message.setOpaque(true);
         message.setBackground(Color.WHITE);
-        Border b = new LineBorder(Color.LIGHT_GRAY, 2);
-        message.setBorder(b);
-        messageP.add(message);
+        Border border = new LineBorder(Color.LIGHT_GRAY, 2);
+        message.setBorder(border);
+        messagePanel.add(message);
     }
 
 
     public void update() {
-        messageP.removeAll();
+        messagePanel.removeAll();
 
-        for (Message i : mf.getChatRoom().getMessages()) {
+        for (Message i : modelsFacade.getChatRoom().getMessages()) {
             displayMessage(i.getUser(), i.getMsg());
         }
     
-        messageP.revalidate();
-        messageP.repaint();
+        messagePanel.revalidate();
+        messagePanel.repaint();
     }
     
 
-    public JPanel getJPanel() {return mainP;}
-    public JButton getJButton() {return sendB;}
-    public JButton getBackButton() {return backB;}
-    public JTextField getJTextField() {return messageF;}
+    public JPanel getJPanel() {return mainPanel;}
+    public JButton getJButton() {return sendButton;}
+    public JButton getBackButton() {return backButton;}
+    public JTextField getJTextField() {return messageField;}
 }

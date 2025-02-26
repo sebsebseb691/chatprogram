@@ -6,34 +6,34 @@ import models.ModelsFacade;
 
 
 public class LoginPage_Controller implements ActionListener, Controller_Interface {
-    private ModelsFacade mf = ModelsFacade.getInstance();
-    private ControllersFacade cf = new ControllersFacade();
-    private JFrame f = cf.getJFrame();
-    private LoginPage_View lp = new LoginPage_View();
+    private ModelsFacade modelsFacade = ModelsFacade.getInstance();
+    private ControllersFacade controllersFacade = new ControllersFacade();
+    private JFrame frame = controllersFacade.getJFrame();
+    private LoginPage_View loginPageView = new LoginPage_View();
     public void actionPerformed(ActionEvent e) {}
 
 
     public void addPanelToFrame() {
-        lp.createView();
+        loginPageView.createView();
 
-        f.add(lp.getJPanel());
-        f.setSize(300, 150);
-        f.setVisible(true);
+        frame.add(loginPageView.getJPanel());
+        frame.setSize(300, 150);
+        frame.setVisible(true);
 
         addListener();
     }
     
 
     public void addListener() {
-        lp.getJButton().addActionListener(new ActionListener() {
+        loginPageView.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Try to change username, if it fails show error message, if it succeeds remove login page
                 try {
-                    mf.getUser().changeName(lp.getJTextField().getText());
-                    cf.openServerList(); //Name changed, now show server list
+                    modelsFacade.getUser().changeName(loginPageView.getJTextField().getText());
+                    controllersFacade.openServerList(); //Name changed, now show server list
 
                 } catch (RuntimeException exc) {
-                    JOptionPane.showMessageDialog(f, exc.getMessage());
+                    JOptionPane.showMessageDialog(frame, exc.getMessage());
                 }
             }
         });

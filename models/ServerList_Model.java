@@ -10,15 +10,15 @@ import observers.*;
 interface ServerList_Model_Interface {
     /**
      * Add a chat room object to a linked list
-     * @param chat the chat room to be added
+     * @param chatRoom the chat room to be added
      */
-    public void addChatRoom(ChatRoom_Model chat);
+    public void addChatRoom(ChatRoom_Model chatRoom);
 
     /**
      * Remove a chat room from a linked list
-     * @param chat the chat room to be removed
+     * @param chatRoom the chat room to be removed
      */
-    public void removeChat(ChatRoom_Model chat);
+    public void removeChatRoom(ChatRoom_Model chatRoom);
 }
 
 
@@ -32,13 +32,13 @@ public class ServerList_Model implements ServerList_Model_Interface, ViewSubject
     public static ServerList_Model getInstance() {return instance;}
     
 
-    public void addChatRoom(ChatRoom_Model chat){
-        serverList.add(chat); 
+    public void addChatRoom(ChatRoom_Model chatRoom){
+        serverList.add(chatRoom); 
         notifyObservers();
     }
 
-    public void removeChat(ChatRoom_Model chat){
-        serverList.remove(chat);
+    public void removeChatRoom(ChatRoom_Model chatRoom){
+        serverList.remove(chatRoom);
         notifyObservers();
     }
 

@@ -21,7 +21,7 @@ interface Message_Interface {
 
 
 public class Message implements Message_Interface {
-    private ModelsFacade mf = ModelsFacade.getInstance();
+    private ModelsFacade modelsFacade = ModelsFacade.getInstance();
     private String msg;
     private String user; //Hade kunnat spara user som user objekt, men kanske lägre koppling om det är string
 
@@ -29,11 +29,11 @@ public class Message implements Message_Interface {
         if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
         else {
             this.msg = msg;
-            this.user = mf.getUser().getUsername();
+            this.user = modelsFacade.getUser().getUsername();
         }
 
         try {
-            mf.getChatRoom().addMessage(this);
+            modelsFacade.getChatRoom().addMessage(this);
         } catch (Exception e) {
             throw new RuntimeException("You need to join a chatroom to send messages");
         }

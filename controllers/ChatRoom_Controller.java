@@ -7,39 +7,40 @@ import views.ChatRoom_View;
 
 
 public class ChatRoom_Controller extends JFrame implements ActionListener, Controller_Interface {
-    private ModelsFacade mf = ModelsFacade.getInstance();
-    private ControllersFacade cf = new ControllersFacade();
+    private ModelsFacade modelsFacade = ModelsFacade.getInstance();
+    private ControllersFacade controllersFacade = new ControllersFacade();
     private ChatRoom_View chatRoomView = new ChatRoom_View();
-    private JFrame f = cf.getJFrame();
+    private JFrame frame = controllersFacade.getJFrame();
     public void actionPerformed(ActionEvent e) {}
 
 
     public void addPanelToFrame() {
-        chatRoomView.createView(mf.getChatRoom().getChatName());
+        chatRoomView.createView(modelsFacade.getChatRoom().getChatName());
         
-        f.setSize(800, 600);
-        f.add(chatRoomView.getJPanel());
-        f.setVisible(true);
+        frame.setSize(800, 600);
+        frame.add(chatRoomView.getJPanel());
+        frame.setVisible(true);
     
         addListener();
     }
     
     
     public void addListener() {
+        //Adds listener to the send button
         chatRoomView.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     @SuppressWarnings("unused")
-                    Message m = new Message(chatRoomView.getJTextField().getText());
+                    Message sentMessage = new Message(chatRoomView.getJTextField().getText());
                 } catch (RuntimeException exc) {
-                    JOptionPane.showMessageDialog(f, exc.getMessage());
+                    JOptionPane.showMessageDialog(frame, exc.getMessage());
                 }
             }
         });
-
+        //Adds listener to the back button
         chatRoomView.getBackButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                cf.openServerList();
+                controllersFacade.openServerList();
             }
         });
     }

@@ -5,42 +5,42 @@ import javax.swing.JFrame;
 //Kanske göra static? och bara så en controller för respektive grej skapas, för allt på panelen uppdateras när en ny skapas
 //och slippa new ChatRoom_View i controller tex
 public class ControllersFacade {
-    private JFrame f;
+    private JFrame frame;
 
     
     public ControllersFacade() {
-        f = new JFrame("Sigma chat");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new JFrame("Sigma chat");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public JFrame getJFrame() {return f;}
+    public JFrame getJFrame() {return frame;}
 
 
     //Navigator
     public void openChatRoom() {
         removeAllViews();
-        ChatRoom_Controller cr = new ChatRoom_Controller();
-        cr.addPanelToFrame();
+        ChatRoom_Controller chatRoomController = new ChatRoom_Controller();
+        chatRoomController.addPanelToFrame();
     }
 
     public void openLoginPage() {
         removeAllViews();
-        LoginPage_Controller lp = new LoginPage_Controller();
-        lp.addPanelToFrame();
+        LoginPage_Controller loginPageController = new LoginPage_Controller();
+        loginPageController.addPanelToFrame();
     }
 
     public void openServerList() {
         removeAllViews();
-        ServerList_Controller sl = new ServerList_Controller();
-        sl.addPanelToFrame();
+        ServerList_Controller serverListController = new ServerList_Controller();
+        serverListController.addPanelToFrame();
     }
 
     /**
      * Remove panel from the frame, used to clear frame when opening a new "window" 
      */
     private void removeAllViews() {
-        f.getContentPane().removeAll();
-        f.setVisible(false);
-        f.repaint();
+        frame.getContentPane().removeAll();
+        frame.setVisible(false);
+        frame.repaint();
     }
 }

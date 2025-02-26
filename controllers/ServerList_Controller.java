@@ -7,39 +7,39 @@ import views.ServerList_View;
 
 
 public class ServerList_Controller implements ActionListener, Controller_Interface{
-    private ModelsFacade mf = ModelsFacade.getInstance();
-    private ControllersFacade cf = new ControllersFacade();
-    private JFrame f = cf.getJFrame();
-    private ServerList_View sl = new ServerList_View(this);
+    private ModelsFacade modelsFacade = ModelsFacade.getInstance();
+    private ControllersFacade controllersFacade = new ControllersFacade();
+    private JFrame frame = controllersFacade.getJFrame();
+    private ServerList_View serverListView = new ServerList_View(this);
     public void actionPerformed(ActionEvent e) {}
 
 
     public void addPanelToFrame() {
-        sl.createView();
+        serverListView.createView();
 
-        f.setSize(800, 800);
-        f.add(sl.getJPanel());
-        f.setVisible(true);
+        frame.setSize(800, 800);
+        frame.add(serverListView.getJPanel());
+        frame.setVisible(true);
     }
 
     public void addListenerCreate() {
-        sl.getBackButton().addActionListener(new ActionListener() {
+        serverListView.getBackButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                cf.openLoginPage();
+                controllersFacade.openLoginPage();
             }
         });
 
-        sl.getCreateServerButton().addActionListener(new ActionListener() {
+        serverListView.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //if(e.getSource() == sl.getCreateServerButton()) {
                     try {
-                        String chatRoomName = (String) JOptionPane.showInputDialog(f, "Enter a name for the chat room");
+                        String chatRoomName = (String) JOptionPane.showInputDialog(frame, "Enter a name for the chat room");
                         if (chatRoomName != null) { // If doesn't press cancel, otherwise do nothing
-                            mf.createChatRoom(chatRoomName);
-                            ModelsFacade.getServers().addChatRoom(mf.getChatRoom()); // Notifies model for change
+                            modelsFacade.createChatRoom(chatRoomName);
+                            ModelsFacade.getServers().addChatRoom(modelsFacade.getChatRoom()); // Notifies model for change
                         }
                     } catch (RuntimeException exc) {
-                        JOptionPane.showMessageDialog(f, exc.getMessage());
+                        JOptionPane.showMessageDialog(frame, exc.getMessage());
                     }
                 //}
             }
@@ -48,15 +48,15 @@ public class ServerList_Controller implements ActionListener, Controller_Interfa
 
 
     public void addListener() { //Called from view
-        List<JButton> joinButtons = sl.getButtons();
+        List<JButton> joinButtons = serverListView.getButtons();
 
         for (JButton joinButton : joinButtons) {
             joinButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    if(e.getSource() != sl.getCreateServerButton()) {
+                    if(e.getSource() != serverListView.getCreateServerButton()) {
                         // Join chat room that is pressed
-                        mf.getChatRoom().joinChatRoom(joinButton.getText());
-                        cf.openChatRoom();
+                        modelsFacade.getChatRoom().joinChatRoom(joinButton.getText());
+                        controllersFacade.openChatRoom();
                     }
                 }
             });

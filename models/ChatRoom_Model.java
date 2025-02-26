@@ -53,9 +53,9 @@ public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
 
 
     public void joinChatRoom(String chatName){
-        ModelsFacade mf = ModelsFacade.getInstance();
+        ModelsFacade modelsFacade = ModelsFacade.getInstance();
         //Only add user if it is not already in the chatroom
-        if(!users.contains(mf.getUser())) users.add(mf.getUser());
+        if(!users.contains(modelsFacade.getUser())) users.add(modelsFacade.getUser());
         this.chatName = chatName;
         notifyObservers(); 
     }
