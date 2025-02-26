@@ -2,15 +2,15 @@ package models;
 
 public class ModelsFacade {
     private static ModelsFacade instance = new ModelsFacade();
-    private ModelsFacade(){chatRoom = new ChatRoom_Model(null);}
+    private ModelsFacade(){chatRoom = new ChatRoomModel(null);}
     public static ModelsFacade getInstance() {return instance;}
 
     private static User u = new User();
-    private ChatRoom_Model chatRoom;
+    private ChatRoomModel chatRoom;
 
-    public static ServerList_Model getServers() {return ServerList_Model.getInstance();}
-    public void createChatRoom(String name) {chatRoom = new ChatRoom_Model(name);}
+    public static ServerListModel getServers() {return ServerListModel.getInstance();}
+    public void createChatRoom(String name) {chatRoom = new ChatRoomModel(name);}
     public User getUser() {return u;}
-    public void setChatRoom(ChatRoom_Model chatRoom) {this.chatRoom = chatRoom;}
-    public ChatRoom_Model getChatRoom() {return chatRoom.getChatRoomObj();}
+    public void setChatRoom(ChatRoomModel chatRoom) {this.chatRoom = chatRoom;}
+    public ChatRoomModel getChatRoom() {return chatRoom.getChatRoomObj();}
 }

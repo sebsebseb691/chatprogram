@@ -3,13 +3,13 @@ import javax.swing.*;
 import java.awt.event.*;
 import models.ModelsFacade;
 import models.Message;
-import views.ChatRoom_View;
+import views.ChatRoomView;
 
 
-public class ChatRoom_Controller extends JFrame implements ActionListener, Controller_Interface {
+public class ChatRoomController extends JFrame implements ActionListener, ControllerInterface {
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
-    private ChatRoom_View chatRoomView = new ChatRoom_View();
+    private ChatRoomView chatRoomView = new ChatRoomView();
     private JFrame f = cf.getJFrame();
     public void actionPerformed(ActionEvent e) {}
 
@@ -31,6 +31,7 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
                 try {
                     @SuppressWarnings("unused")
                     Message m = new Message(chatRoomView.getJTextField().getText());
+                    chatRoomView.getJTextField().setText("");                       // Clears the text field
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }

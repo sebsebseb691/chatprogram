@@ -1,5 +1,5 @@
 package server;
 
-public class serverModel {
+public class ServerModel {
 
 }

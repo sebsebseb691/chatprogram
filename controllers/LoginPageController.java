@@ -1,15 +1,15 @@
 package controllers;
 import javax.swing.*;
 import java.awt.event.*;
-import views.LoginPage_View;
+import views.LoginPageView;
 import models.ModelsFacade;
 
 
-public class LoginPage_Controller implements ActionListener, Controller_Interface {
+public class LoginPageController implements ActionListener, ControllerInterface {
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
-    private LoginPage_View lp = new LoginPage_View();
+    private LoginPageView lp = new LoginPageView();
     public void actionPerformed(ActionEvent e) {}
 
 

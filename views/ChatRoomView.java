@@ -6,7 +6,7 @@ import models.Message;
 import models.ModelsFacade;
 
 
-public class ChatRoom_View extends JPanel implements View, observers.ViewObserver {
+public class ChatRoomView extends JPanel implements View, observers.ViewObserver {
     private JPanel mainP = new JPanel(new BorderLayout());
     private JPanel messageP = new JPanel(new BorderLayout()); //Messages panel
 
