@@ -28,34 +28,46 @@ public class ServerList_Controller implements ActionListener, Controller_Interfa
                 cf.openLoginPage();
             }
         });
-
+    
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //if(e.getSource() == sl.getCreateServerButton()) {
-                    try {
-                        String chatRoomName = (String) JOptionPane.showInputDialog(f, "Enter a name for the chat room");
-                        if (chatRoomName != null) { // If doesn't press cancel, otherwise do nothing
-                            mf.createChatRoom(chatRoomName);
-                            ModelsFacade.getServers().addChatRoom(mf.getChatRoom()); // Notifies model for change
+                try {
+                    String chatRoomName = (String) JOptionPane.showInputDialog(f, "Enter a name for the chat room");
+                    if (chatRoomName != null && !chatRoomName.trim().isEmpty()) { // If doesn't press cancel and name is not empty
+                        // Check if chat room already exists
+                        ChatRoom_Model existingChatRoom = mf.getChatRoomByName(chatRoomName);
+                        if (existingChatRoom == null) {
+                            // Create a new chat room and add it to the model
+                            ChatRoom_Model newChatRoom = new ChatRoom_Model(chatRoomName);
+                            mf.addChatRoom(newChatRoom);
+                        } else {
+                            JOptionPane.showMessageDialog(f, "Chat room with this name already exists.");
                         }
-                    } catch (RuntimeException exc) {
-                        JOptionPane.showMessageDialog(f, exc.getMessage());
                     }
-                //}
+                } catch (RuntimeException exc) {
+                    JOptionPane.showMessageDialog(f, exc.getMessage());
+                }
             }
         });
     }
 
 
-    public void addListener() { //Called from view
+    public void addListener() { // Called from view
         List<JButton> joinButtons = sl.getButtons();
-
+    
         for (JButton joinButton : joinButtons) {
             joinButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    if(e.getSource() != sl.getCreateServerButton()) {
+                    if (e.getSource() != sl.getCreateServerButton()) {
                         // Join chat room that is pressed
-                        mf.getChatRoom().joinChatRoom(joinButton.getText());
+                        String chatRoomName = joinButton.getText();
+                        ChatRoom_Model chatRoom = mf.getChatRoomByName(chatRoomName);
+                        if (chatRoom == null) {
+                            chatRoom = new ChatRoom_Model(chatRoomName);
+                            mf.addChatRoom(chatRoom);
+                        }
+                        chatRoom.joinChatRoom(chatRoomName);
+                        mf.setChatRoom(chatRoom);
                         cf.openChatRoom();
                     }
                 }

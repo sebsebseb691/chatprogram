@@ -1,16 +1,43 @@
 package models;
 
+
+
 public class ModelsFacade {
     private static ModelsFacade instance = new ModelsFacade();
-    private ModelsFacade(){chatRoom = new ChatRoom_Model(null);}
-    public static ModelsFacade getInstance() {return instance;}
+    private ChatRoom_Model currentChatRoom;
 
-    private static User u = new User();
-    private ChatRoom_Model chatRoom;
+    private ModelsFacade() {}
+
+    public static User u = new User();
+
+    public static ModelsFacade getInstance() {
+        return instance;
+    }
 
     public static ServerList_Model getServers() {return ServerList_Model.getInstance();}
-    public void createChatRoom(String name) {chatRoom = new ChatRoom_Model(name);}
-    public User getUser() {return u;}
-    public void setChatRoom(ChatRoom_Model chatRoom) {this.chatRoom = chatRoom;}
-    public ChatRoom_Model getChatRoom() {return chatRoom.getChatRoomObj();}
+
+    public ChatRoom_Model getChatRoom() {
+        return currentChatRoom;
+    }
+
+    public void setChatRoom(ChatRoom_Model chatRoom) {
+        this.currentChatRoom = chatRoom;
+    }
+
+    public ChatRoom_Model getChatRoomByName(String chatName) {
+        for (ChatRoom_Model chatRoom : getServers().getServerList()) {
+            if (chatRoom.getChatName().equals(chatName)) {
+                return chatRoom;
+            }
+        }
+        return null;
+    }
+
+    public void addChatRoom(ChatRoom_Model chatRoom) {
+        getServers().addChatRoom(chatRoom);
+    }
+
+    public User getUser() {
+        return u;
+    }
 }
