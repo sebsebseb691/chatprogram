@@ -53,7 +53,6 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
                     File selectedFile = fileChooser.getSelectedFile();
                     try {
                         Image imageMessage = new Image(selectedFile);
-                        chatRoomView.displayImage(imageMessage.getUser(), imageMessage.getImage());
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
