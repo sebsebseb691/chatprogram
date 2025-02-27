@@ -41,10 +41,10 @@ public class Server {
                 while (!server.isClosed() ) {
                     try {
                         Socket clientSocket = server.accept();
-                        ClientManager clientManager = new ClientManager(clientSocket, Server.this);
-                        clientManagers.add(clientManager);
+                        ClientManager clientManager = new ClientManager(clientSocket, Server.this);     // skapa clientManager för den som ansluter på servern
+                        clientManagers.add(clientManager);      // lägger till clientManager:n på vår lista
                         
-                        new Thread(clientManager).start();
+                        new Thread(clientManager).start();      // skapar egen tråd för varje klient
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                       }
@@ -60,14 +60,20 @@ public class Server {
                 if(client != clientManager){
                     client.sendMessage(message);        //vill ändra
                 }
-
             }
         }
     }
+
+    // get method clients in array
+    public boolean isConnected(ClientManager clientManager) {
+        synchronized (clientManagers) {
+            return clientManagers.contains(clientManager);
+        }
 
     // removes disconnected clients from chat
     public void disconnect(ClientManager clientManager) {
         clientManagers.remove(clientManager);
         System.out.println("Client:" + clientManager + " has disconnected.");
     }
+
 }

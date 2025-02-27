@@ -2,7 +2,7 @@ package server;
 
 import java.io.*;
 import java.net.*;
-import models.Message;
+import models.*;
 
 /**
  * Handles individual client connections.
@@ -14,7 +14,7 @@ public class ClientManager implements Runnable {
     private final ObjectOutputStream out;
     private final ObjectInputStream in;
 
-    // initiate the clientmanager
+    // constructor
     public ClientManager(Socket clientSocket, Server server) throws IOException {      // future feature: add user/username??
         this.clientSocket = clientSocket;
         this.server = server;
@@ -23,15 +23,41 @@ public class ClientManager implements Runnable {
         in = new ObjectInputStream(clientSocket.getInputStream());
     }
 
+    // close connection
+    public void close() {
+        try {
+            if (clientSocket != null && !clientSocket.isClosed()) {
+                clientSocket.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+            if (in != null) {
+                in.close();
+            }
+            
+            System.out.println("Client connecion is closed.");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     // creates a continius connection while in chatroom
     @Override
     public void run() {
-        try{
+        try {
             Object message;
-
             while ((message = in.readObject()) != null) {
+
+                if (!server.isConnected(this)) {
+                    System.out.println("Client already disconnected.");
+                    close();
+                    break;
+                }
+                
                 if (message instanceof Message) {
-                    server.broadcast(message, this);       // 'this' funkar ibland och plötsligt inte
+                    System.out.println("Broadcasting message from: " + this);
+                    server.broadcast(message, this);
                 }
             }
         } catch (IOException e) {
@@ -39,12 +65,7 @@ public class ClientManager implements Runnable {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         } finally {
-            try {
-                clientSocket.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-            server.disconnect(this);       // 'this'
+            close();
         }
     }
 
