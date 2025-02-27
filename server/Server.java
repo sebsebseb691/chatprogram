@@ -4,12 +4,15 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import models.*;
+
 /**
  * Responsible for running the server, while listening on a specified port and accepting new connections.
  */
 public class Server {
     static Server instance;
     ServerSocket server;
+    ArrayList<ServerList_m> list = new ArrayList<ServerList_m>();       //lista över chattrum
 
     ArrayList<ClientManager> clientManagers = new ArrayList<>();
     int port = 54321;
@@ -69,7 +72,7 @@ public class Server {
         synchronized (clientManagers) {
             return clientManagers.contains(clientManager);
         }
-
+    }
     // removes disconnected clients from chat
     public void disconnect(ClientManager clientManager) {
         clientManagers.remove(clientManager);
