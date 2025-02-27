@@ -4,8 +4,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Image implements Message_Interface {
+public class Image implements Message_Interface, Serializable {
     private ModelsFacade mf = ModelsFacade.getInstance();
     private String msg;
     private String user;
