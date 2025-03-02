@@ -40,4 +40,9 @@ public class LoginPageController implements ActionListener, ControllerInterface 
             }
         });
     }
+
+    @Override
+    public void initalize() {
+        
+    }
 }

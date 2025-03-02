@@ -6,6 +6,8 @@ public interface ControllerInterface {
      */
     public void addPanelToFrame();
 
+    public void initalize();
+
     /**
      * Add a listener to a JButton
      */

@@ -1,6 +1,6 @@
 package views;
 import javax.swing.*;
-import controllers.ServerListController;
+import controllers.ControllerInterface;
 import java.awt.*;
 import models.ChatRoomModel;
 import models.ModelsFacade;
@@ -17,10 +17,10 @@ public class ServerListView extends JPanel implements View, ViewObserver {
 
     private List<JButton> buttons = new ArrayList<>(); //List of buttons of chat rooms, fetched in controller to add listeners
 
-    private ServerListController sl; //Take in controller to add buttons
+    private ControllerInterface sl; //Take in controller to add buttons
 
     //Kommer inte på något annat sätt än att ta in controller
-    public ServerListView(ServerListController sl) {
+    public ServerListView(ControllerInterface sl) {
         this.sl = sl;
     }
 
@@ -70,7 +70,7 @@ public class ServerListView extends JPanel implements View, ViewObserver {
         bottomP.setLayout(new BoxLayout(bottomP, BoxLayout.Y_AXIS));
 
         ModelsFacade.getServers().addObserver(this); //Add self to observer
-        sl.addListenerCreate();
+        sl.initalize();
         update();
         this.repaint();
     }
