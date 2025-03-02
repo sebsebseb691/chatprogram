@@ -4,77 +4,61 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import models.ChatRoom_Model;
+import models.Message_Interface;
+
 /**
  * Responsible for running the server, while listening on a specified port and accepting new connections.
  */
 public class Server {
-    static Server instance;
-    ServerSocket server;
+    private ServerSocket serverSocket;
+    private List<ClientManager> clientManagers = new ArrayList<>();
+    private LinkedList<ChatRoom_Model> serverList = new LinkedList<ChatRoom_Model>();
 
-    ArrayList<ClientManager> clientManagers = new ArrayList<>();
-    int port = 54321;
+    private static Server instance = new Server();
+    private Server(){}
+    public static Server getInstance() {return instance;}
 
-    // initiate server on specified port
-    private Server() {
+    public void start(int port) {
         try {
-            server = new ServerSocket(port);
-            System.out.println("Server connected on port: " + port);
+            serverSocket = new ServerSocket(port);
+            InetAddress ip = InetAddress.getLocalHost();
+            System.out.println("Server started on IP: " + ip.getHostAddress() + " Port: " + port);
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                ClientManager clientManager = new ClientManager(clientSocket, this);
+                clientManagers.add(clientManager);
+                new Thread(clientManager).start();
+                System.out.println("Client connected: " + clientSocket.getInetAddress());
+            }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    // makes sure only one instance exists of server, follow Singleton pattern
-    public static Server getInstance() {
-        if (instance == null) {
-            instance = new Server();
-        }
-        return instance;
-    }
-
-    // awaits attempted connections
-    public void start() {
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while (!server.isClosed() ) {
-                    try {
-                        Socket clientSocket = server.accept();
-                        ClientManager clientManager = new ClientManager(clientSocket, Server.this);     // skapa clientManager för den som ansluter på servern
-                        clientManagers.add(clientManager);      // lägger till clientManager:n på vår lista
-                        
-                        new Thread(clientManager).start();      // skapar egen tråd för varje klient
-                    } catch (IOException e) {
-                        System.out.println(e.getMessage());
-                      }
-                }
-            }
-        }).start();
-    }
-
-    // broadcast the message to groupmembers
-    public void broadcast(Object message, ClientManager clientManager) {
-        synchronized (clientManagers) {
-            for (ClientManager client : clientManagers) {
-                if(client != clientManager){
-                    client.sendMessage(message);        //vill ändra
-                }
+    public void broadcast(Object message, ClientManager sender) {
+        for (ClientManager clientManager : clientManagers) {
+            if (clientManager != sender) {
+                clientManager.sendMessage(message);
             }
         }
     }
 
-    // get method clients in array
-    public boolean isConnected(ClientManager clientManager) {
-        synchronized (clientManagers) {
-            return clientManagers.contains(clientManager);
-        }
+    public void addChatRoom(ChatRoom_Model chatRoom) { 
+        // Add chat room to the server's list
+        serverList.add(chatRoom);
+       
     }
 
-    // removes disconnected clients from chat
-    public void disconnect(ClientManager clientManager) {
-        clientManagers.remove(clientManager);
-        System.out.println("Client:" + clientManager + " has disconnected.");
-    }
+    
 
+    public void addMessage (Message_Interface msg) {
+        // Add message to the chat room
+       for(ChatRoom_Model chatRoom : serverList){
+           if(chatRoom.getChatName().equals(msg.getChatRoomName())){
+               chatRoom.addMessage(msg);
+           }
+        
+         }
+    }
 }

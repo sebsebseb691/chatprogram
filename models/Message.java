@@ -1,33 +1,45 @@
 package models;
+
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 
+
 public class Message implements Message_Interface, Serializable {
-    private ModelsFacade mf = ModelsFacade.getInstance();
+    private static final long serialVersionUID = 1L; // Add a serialVersionUID for better serialization control
+
     private String msg;
-    private String user; //Hade kunnat spara user som user objekt, men kanske lägre koppling om det är string
+    private String user;
+    private String chatRoomName;
 
     public Message() {
-        // emty message
+        // empty message
     }
 
-
-    public Message(String msg) {
+    public Message(String msg, String user, String chatRoomName) {
         if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
         else {
             this.msg = msg;
-            this.user = mf.getUser().getUsername();
+            this.user = user;
+            this.chatRoomName = chatRoomName;
         }
 
-        try {
-            mf.getChatRoom().addMessage(this);
-        } catch (Exception e) {
-            throw new RuntimeException("You need to join a chatroom to send messages");
-        }
     }
 
-    public String getMsg() {return this.msg;}
-    public String getUser() {return this.user;}
-    public BufferedImage getImage(){return null;}
+    public String getMsg() {
+        return this.msg;
+    }
+
+    public String getUser() {
+        return this.user;
+    }
+
+    public String getChatRoomName() {
+        return this.chatRoomName;
+    }
+
+    public BufferedImage getImage() {
+        return null;
+    }
+    
 }

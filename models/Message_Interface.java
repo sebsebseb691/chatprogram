@@ -1,7 +1,8 @@
 package models;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public interface Message_Interface {
+public interface Message_Interface extends Serializable {
     /**
      * Gets the message content.
      *
@@ -14,7 +15,10 @@ public interface Message_Interface {
      *
      * @return the username of who sent the message as a string
      */
-    public String getUser();
+    public String getUser(); 
 
-    BufferedImage getImage();
+    public BufferedImage getImage(); 
+
+
+    public String getChatRoomName(); 
 }

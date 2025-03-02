@@ -1,4 +1,7 @@
 package models;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import observers.*;
@@ -22,11 +25,12 @@ interface ChatRoom_Model_Interface {
 }
 
 
-public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
+public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject, Serializable {
     private String chatName;
-    private List<ViewObserver> observers = new LinkedList<ViewObserver>();
+    private transient List<ViewObserver> observers = new LinkedList<ViewObserver>();
     private LinkedList<Message_Interface> msgs = new LinkedList<Message_Interface>(); 
     private LinkedList<User> users = new LinkedList<User>();
+
 
     /**
      * Constructs a new ChatRoom with a specified chat name
@@ -49,6 +53,8 @@ public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
     public void addMessage(Message_Interface msg){
         msgs.add(msg);
         notifyObservers();
+
+
     }
 
 
@@ -65,6 +71,11 @@ public class ChatRoom_Model implements ChatRoom_Model_Interface, ViewSubject {
         for(ViewObserver observer : observers){
             observer.update();
         }
+    }
+
+     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+        ois.defaultReadObject();
+        observers = new LinkedList<>(); // Initialize the observers list after deserialization
     }
 
     public void addObserver(ViewObserver observer) {observers.add(observer);}

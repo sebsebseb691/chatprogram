@@ -1,12 +1,14 @@
 package models;
 
-
-
 public class ModelsFacade {
     private static ModelsFacade instance = new ModelsFacade();
     private ChatRoom_Model currentChatRoom;
+    private static Client c; 
+    private boolean isProcessingLocal = false;
 
-    private ModelsFacade() {}
+    private ModelsFacade() {
+     c = Client.getInstance();
+    }
 
     public static User u = new User();
 
@@ -33,11 +35,25 @@ public class ModelsFacade {
         return null;
     }
 
-    public void addChatRoom(ChatRoom_Model chatRoom) {
+    public void addChatRoom(ChatRoom_Model chatRoom) { 
+        if(isProcessingLocal) return;
         getServers().addChatRoom(chatRoom);
+        c.send(chatRoom); 
+
     }
+    
+    public void addChatRoomFromServer(ChatRoom_Model chatRoom) {
+        isProcessingLocal = true;
+        getServers().addChatRoom(chatRoom);
+        isProcessingLocal = false;
+    }
+    
 
     public User getUser() {
         return u;
+    }
+
+    public Client getClient() {
+        return c;
     }
 }

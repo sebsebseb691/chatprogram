@@ -92,7 +92,7 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
 
     public void displayImage(String username, BufferedImage image) {
        
-         
+           System.out.println("Displaying image for user: ");
             JLabel imageLabel = new JLabel(new ImageIcon(image));
             imageLabel.setOpaque(true);
             imageLabel.setBackground(Color.WHITE);
@@ -108,8 +108,9 @@ public class ChatRoom_View extends JPanel implements View, observers.ViewObserve
 
         for (Message_Interface i : mf.getChatRoom().getMessages()) {
             displayMessage(i.getUser(), i.getMsg());
-            if (i.getImage() != null) {
-                displayImage(i.getUser(), i.getImage());
+             if (i.getImage() != null) {
+                System.out.println("Image found for user: ");
+               displayImage(i.getUser(), i.getImage());
             }
         }
     

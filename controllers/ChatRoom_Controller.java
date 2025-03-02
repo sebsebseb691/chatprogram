@@ -7,12 +7,14 @@ import models.ModelsFacade;
 import models.Message;
 import models.Image;
 import views.ChatRoom_View;
+import models.Client;
 
 public class ChatRoom_Controller extends JFrame implements ActionListener, Controller_Interface {
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private ChatRoom_View chatRoomView = new ChatRoom_View();
     private JFrame f = cf.getJFrame();
+    private Client c = Client.getInstance();
 
     public void actionPerformed(ActionEvent e) {}
 
@@ -30,8 +32,11 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
         chatRoomView.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    @SuppressWarnings("unused")
-                    Message m = new Message(chatRoomView.getJTextField().getText());
+                   // @SuppressWarnings("unused")
+                    Message m = new Message(chatRoomView.getJTextField().getText(), mf.getUser().getUsername(), mf.getChatRoom().getChatName());
+                    mf.getChatRoom().addMessage(m);
+                    c.send(m);
+
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
@@ -52,7 +57,9 @@ public class ChatRoom_Controller extends JFrame implements ActionListener, Contr
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
                     try {
-                        Image imageMessage = new Image(selectedFile);
+                        Image imageMessage = new Image(selectedFile, mf.getChatRoom().getChatName(), mf.getUser().getUsername());
+                        mf.getChatRoom().addMessage(imageMessage);
+                        c.send(imageMessage);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

@@ -7,77 +7,63 @@ import models.*;
 /**
  * Handles individual client connections.
  */
+// filepath: /c:/Users/richa/Desktop/chatprogram/server/ClientManager.java
 public class ClientManager implements Runnable {
-    
-    private final Server server;
-    private final Socket clientSocket;
-    private final ObjectOutputStream out;
-    private final ObjectInputStream in;
+    private Socket socket;
+    private Server server;
+    private ObjectOutputStream oout;
+    private ObjectInputStream oin;
 
-    // constructor
-    public ClientManager(Socket clientSocket, Server server) throws IOException {      // future feature: add user/username??
-        this.clientSocket = clientSocket;
+    public ClientManager(Socket socket, Server server) {
+        this.socket = socket;
         this.server = server;
-
-        out = new ObjectOutputStream(clientSocket.getOutputStream());
-        in = new ObjectInputStream(clientSocket.getInputStream());
-    }
-
-    // close connection
-    public void close() {
         try {
-            if (clientSocket != null && !clientSocket.isClosed()) {
-                clientSocket.close();
-            }
-            if (out != null) {
-                out.close();
-            }
-            if (in != null) {
-                in.close();
-            }
-            
-            System.out.println("Client connecion is closed.");
+            oout = new ObjectOutputStream(socket.getOutputStream());
+            oout.flush();
+            oin = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    // creates a continius connection while in chatroom
     @Override
     public void run() {
         try {
             Object message;
-            while ((message = in.readObject()) != null) {
-
-                if (!server.isConnected(this)) {
-                    System.out.println("Client already disconnected.");
-                    close();
-                    break;
-                }
-                
-                if (message instanceof Message) {
-                    System.out.println("Broadcasting message from: " + this);
+            while ((message = oin.readObject()) != null) {
+                if (message instanceof ChatRoom_Model) {
+                    server.addChatRoom((ChatRoom_Model) message);
+                    server.broadcast(message, this);
+                } else if (message instanceof Message_Interface) {
+                    server.addMessage((Message_Interface) message);
                     server.broadcast(message, this);
                 }
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
+        }catch (EOFException e) {
+            System.out.println("Client disconnected."+ e.getMessage());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         } finally {
-            close();
+            closeConnection();
         }
     }
 
-    // method for sending messages
-    public void sendMessage(Object message) {
+    public synchronized void sendMessage(Object message) {
         try {
-            out.writeObject(message);
-            out.flush();
+            oout.writeObject(message);
+            oout.flush();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-          }
+            e.printStackTrace();
+        }
     }
-    
 
+    private void closeConnection() {
+        try {
+            if (oin != null) oin.close();
+            if (oout != null) oout.close();
+            if (socket != null) socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
