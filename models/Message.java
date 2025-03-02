@@ -1,20 +1,15 @@
 package models;
 
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
 
 
 
-public class Message implements Message_Interface, Serializable {
+public class Message implements Message_Interface {
     private static final long serialVersionUID = 1L; // Add a serialVersionUID for better serialization control
 
     private String msg;
     private String user;
     private String chatRoomName;
-
-    public Message() {
-        // empty message
-    }
 
     public Message(String msg, String user, String chatRoomName) {
         if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
