@@ -2,7 +2,10 @@ package views;
 
 import javax.swing.JPanel;
 
-public interface View {
+/**
+ * Adds elements to different JPanels, adds itself to a observer 
+ */
+public interface View{
     /**
      * Create a view with JPanels and add components to one or more panels
      */

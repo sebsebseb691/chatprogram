@@ -2,7 +2,10 @@ package models;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
-public interface Message_Interface extends Serializable {
+/**
+ * Represents a message. Contains message as text, user that sent the message, name of the chat room it belongs to and an image if there is one
+ */
+public interface MessageInterface extends Serializable {
     /**
      * Gets the message content.
      *
@@ -18,7 +21,6 @@ public interface Message_Interface extends Serializable {
     public String getUser(); 
 
     public BufferedImage getImage(); 
-
 
     public String getChatRoomName(); 
 }

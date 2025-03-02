@@ -4,7 +4,7 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import models.ModelsFacade;
-import models.Message_Interface;
+import models.MessageInterface;
 
 
 public class ChatRoomView extends JPanel implements View, observers.ViewObserver {
@@ -22,7 +22,23 @@ public class ChatRoomView extends JPanel implements View, observers.ViewObserver
         createView("No chat name");
     }
 
+
     public void createView(String chatName) {
+        //Add panels to main panel
+        mainP.add(createTopPanel(chatName), BorderLayout.NORTH);
+        mainP.add(createBottomPanel(), BorderLayout.SOUTH);
+        mainP.add(createMessagePanel(), BorderLayout.CENTER);
+
+        this.setLayout(new BorderLayout());
+        this.add(mainP, BorderLayout.CENTER);
+        this.repaint();
+
+        mf.getChatRoom().addObserver(this); //Add self to observer list
+        update(); //Update to see messages
+    }
+
+
+    public JPanel createTopPanel(String chatName) {
         JLabel chatNameL = new JLabel();
         chatNameL.setText("Connected to Chat Room: " + chatName);
         chatNameL.setFont(new Font("Calibri", Font.BOLD, 30));
@@ -52,46 +68,42 @@ public class ChatRoomView extends JPanel implements View, observers.ViewObserver
         backP.add(backB);
         topP.add(backP, BorderLayout.EAST);
 
-        //Bottom panel, message input and send button
+        return topP;
+    }
+
+
+    //Bottom panel, message input and send button
+    public JPanel createBottomPanel() {
         JPanel bottomP = new JPanel(new FlowLayout()); //Panel for message input
         bottomP.add(messageF, BorderLayout.WEST);
         sendB.setPreferredSize(new Dimension(80, 18));
         bottomP.add(sendB, BorderLayout.EAST);
-        bottomP.add(sendImageB, BorderLayout.EAST);
+        bottomP.add(sendImageB, BorderLayout.EAST);  
 
-        //Scroll
+        return bottomP;
+    }
+
+
+    public JScrollPane createMessagePanel() {
         messageP.setLayout(new BoxLayout(messageP, BoxLayout.Y_AXIS));
         JScrollPane scroll = new JScrollPane(messageP);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        //Add panels to main panel
-        mainP.add(topP, BorderLayout.NORTH);
-        mainP.add(bottomP, BorderLayout.SOUTH);
-        mainP.add(scroll, BorderLayout.CENTER);
-
-        this.setLayout(new BorderLayout());
-        this.add(mainP, BorderLayout.CENTER);
-        this.repaint();
-
-        mf.getChatRoom().addObserver(this); //Add self to observer list
-        update(); //Update to see messages
+        return scroll;
     }
 
+
     public void displayMessage(String username, String msg) {
-    
         JLabel message = new JLabel(username + ": " + msg);
         message.setOpaque(true);
         message.setBackground(Color.WHITE);
         Border b = new LineBorder(Color.LIGHT_GRAY, 2);
         message.setBorder(b);
         messageP.add(message);
-
-    
     }
 
     public void displayImage(String username, BufferedImage image) {
-       
            System.out.println("Displaying image for user: ");
             JLabel imageLabel = new JLabel(new ImageIcon(image));
             imageLabel.setOpaque(true);
@@ -99,14 +111,12 @@ public class ChatRoomView extends JPanel implements View, observers.ViewObserver
             Border b = new LineBorder(Color.LIGHT_GRAY, 2);
             imageLabel.setBorder(b);
             messageP.add(imageLabel);
-        
     }
-
 
     public void update() {
         messageP.removeAll();
 
-        for (Message_Interface i : mf.getChatRoom().getMessages()) {
+        for (MessageInterface i : mf.getChatRoom().getMessages()) {
             displayMessage(i.getUser(), i.getMsg());
              if (i.getImage() != null) {
                 System.out.println("Image found for user: ");
@@ -123,7 +133,5 @@ public class ChatRoomView extends JPanel implements View, observers.ViewObserver
     public JButton getJButton() {return sendB;}
     public JButton getBackButton() {return backB;}
     public JTextField getJTextField() {return messageF;}
-
-    public JButton getSendImageButton() { return sendImageB; }
-
+    public JButton getSendImageButton() {return sendImageB;}
 }

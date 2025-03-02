@@ -14,16 +14,14 @@ public class ServerListView extends JPanel implements View, ViewObserver {
     private JPanel bottomP = new JPanel(new GridLayout(0, 1));
     private JButton createServerB = new JButton("Create a new Chat Room");
     private JButton back = new JButton("Change username");
-
+    private ControllerInterface sl; //Take in controller interface to add buttons
     private List<JButton> buttons = new ArrayList<>(); //List of buttons of chat rooms, fetched in controller to add listeners
 
-    private ControllerInterface sl; //Take in controller to add buttons
 
-    //Kommer inte på något annat sätt än att ta in controller
     public ServerListView(ControllerInterface sl) {
         this.sl = sl;
     }
-
+    
 
     public void createView() {
         //Labels of top panel
@@ -70,7 +68,7 @@ public class ServerListView extends JPanel implements View, ViewObserver {
         bottomP.setLayout(new BoxLayout(bottomP, BoxLayout.Y_AXIS));
 
         ModelsFacade.getServers().addObserver(this); //Add self to observer
-        sl.initalize();
+        sl.addListener();
         update();
         this.repaint();
     }
@@ -87,7 +85,7 @@ public class ServerListView extends JPanel implements View, ViewObserver {
             bottomP.add(joinChat); //Add button to panel
         }
 
-        sl.addListener(); //Controller adds listeners to every button
+        sl.addListeners(); //Controller adds listeners to every button
         bottomP.revalidate();
         bottomP.repaint();
     }

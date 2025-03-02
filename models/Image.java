@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
-public class Image implements Message_Interface {
+public class Image implements MessageInterface {
     private static final long serialVersionUID = 2L; // Unique serialVersionUID for Image class
 
     private String chatRoomName;

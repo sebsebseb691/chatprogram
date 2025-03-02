@@ -37,20 +37,14 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
                     mf.getChatRoom().addMessage(m);
                     c.send(m);
 
-                    chatRoomView.getJTextField().setText(""); // Clears the text field
+                    chatRoomView.getJTextField().setText(""); // Clears the text field after message is sent
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
                 }
             }
         });
 
-        chatRoomView.getBackButton().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cf.openServerList();
-            }
-        });
-
-        // Add listener for sending image messages
+        //Add listener for sending image messages
         chatRoomView.getSendImageButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
@@ -67,5 +61,15 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
                 }
             }
         });
+
+        //Add listener to back button
+        chatRoomView.getBackButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cf.openServerList();
+            }
+        });
     }
+
+    @Override
+    public void addListeners() {}
 }

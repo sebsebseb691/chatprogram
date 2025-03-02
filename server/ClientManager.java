@@ -37,8 +37,8 @@ public class ClientManager implements Runnable {
                 if (message instanceof ChatRoomModel) {
                     server.addChatRoom((ChatRoomModel) message);
                     server.broadcast(message, this);
-                } else if (message instanceof Message_Interface) {
-                    server.addMessage((Message_Interface) message);
+                } else if (message instanceof MessageInterface) {
+                    server.addMessage((MessageInterface) message);
                     server.broadcast(message, this);
                 }
             }

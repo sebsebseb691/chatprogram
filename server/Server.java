@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.*;
 
 import models.ChatRoomModel;
-import models.Message_Interface;
+import models.MessageInterface;
 
 /**
  * Responsible for running the server, while listening on a specified port and accepting new connections.
@@ -51,7 +51,7 @@ public class Server {
         saveChatHistory(); // Save chat history whenever a new chat room is added
     }
 
-    public void addMessage(Message_Interface msg) {
+    public void addMessage(MessageInterface msg) {
         for (ChatRoomModel chatRoom : serverList) {
             if (chatRoom.getChatName().equals(msg.getChatRoomName())) {
                 chatRoom.addMessage(msg);

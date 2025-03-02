@@ -28,7 +28,7 @@ public class ModelsFacade {
         this.currentChatRoom = chatRoom;
     } 
 
-     public void setChatRoomsList(LinkedList<ChatRoomModel> chatRoomsList) {
+    public void setChatRoomsList(LinkedList<ChatRoomModel> chatRoomsList) {
 
         getServers().getServerList().clear();
         for (ChatRoomModel chatRoom : chatRoomsList) {

@@ -2,12 +2,9 @@ package controllers;
 import javax.swing.JFrame;
 
 
-//Kanske göra static? och bara så en controller för respektive grej skapas, för allt på panelen uppdateras när en ny skapas
-//och slippa new ChatRoom_View i controller tex
 public class ControllersFacade {
     private JFrame f;
 
-    
     public ControllersFacade() {
         f = new JFrame("Sigma chat");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

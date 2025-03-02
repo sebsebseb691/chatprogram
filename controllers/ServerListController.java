@@ -12,8 +12,7 @@ public class ServerListController implements ActionListener, ControllerInterface
     private JFrame f = cf.getJFrame();
     private ServerListView sl = new ServerListView(this);
     public void actionPerformed(ActionEvent e) {}
-
-
+    
     @Override
     public void addPanelToFrame() {
         sl.createView();
@@ -23,8 +22,8 @@ public class ServerListController implements ActionListener, ControllerInterface
         f.setVisible(true);
     }
 
-
-    public void addListenerCreate() {
+    @Override
+    public void addListener() {
         sl.getBackButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cf.openLoginPage();
@@ -35,7 +34,7 @@ public class ServerListController implements ActionListener, ControllerInterface
             public void actionPerformed(ActionEvent e) {
                 try {
                     String chatRoomName = (String) JOptionPane.showInputDialog(f, "Enter a name for the chat room");
-                    if (chatRoomName != null && !chatRoomName.trim().isEmpty()) { // If doesn't press cancel and name is not empty
+                    if (chatRoomName != null && !chatRoomName.trim().isEmpty()) { // If user doesn't press cancel and name is not empty
                         // Check if chat room already exists
                         ChatRoomModel existingChatRoom = mf.getChatRoomByName(chatRoomName);
                         if (existingChatRoom == null) {
@@ -55,7 +54,7 @@ public class ServerListController implements ActionListener, ControllerInterface
 
 
     @Override
-    public void addListener() {
+    public void addListeners() {
         List<JButton> joinButtons = sl.getButtons();
     
         for (JButton joinButton : joinButtons) {

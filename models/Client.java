@@ -60,8 +60,8 @@ public class Client {
                     if (serverMessage instanceof ChatRoomModel) {
                         System.out.println("Received ChatRoom_Model");
                         mf.addChatRoomFromServer((ChatRoomModel) serverMessage);
-                    } else if (serverMessage instanceof Message_Interface) {
-                        Message_Interface message = (Message_Interface) serverMessage;
+                    } else if (serverMessage instanceof MessageInterface) {
+                        MessageInterface message = (MessageInterface) serverMessage;
                         System.out.println("Received Message_Interface: " + message.getMsg());
                         ChatRoomModel chatRoom = mf.getChatRoomByName(message.getChatRoomName());
                         if (chatRoom != null) {
