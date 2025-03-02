@@ -1,44 +1,40 @@
 package models;
 
-/**
- * Represents a message by username and message text, both as strings 
- */
-interface Message_Interface {
-    /**
-     * Gets the message content.
-     *
-     * @return a string of the message
-     */
-    public String getMsg();
+import java.awt.image.BufferedImage;
 
-    /**
-     * Gets the username of the user who sent a message
-     *
-     * @return the username of who sent the message as a string
-     */
-    public String getUser();
-}
 
 
 public class Message implements Message_Interface {
-    private ModelsFacade mf = ModelsFacade.getInstance();
-    private String msg;
-    private String user; //Hade kunnat spara user som user objekt, men kanske lägre koppling om det är string
+    private static final long serialVersionUID = 1L; // Add a serialVersionUID for better serialization control
 
-    public Message(String msg) {
+    private String msg;
+    private String user;
+    private String chatRoomName;
+
+    public Message(String msg, String user, String chatRoomName) {
         if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
         else {
             this.msg = msg;
-            this.user = mf.getUser().getUsername();
+            this.user = user;
+            this.chatRoomName = chatRoomName;
         }
 
-        try {
-            mf.getChatRoom().addMessage(this);
-        } catch (Exception e) {
-            throw new RuntimeException("You need to join a chatroom to send messages");
-        }
     }
 
-    public String getMsg() {return this.msg;}
-    public String getUser() {return this.user;}
+    public String getMsg() {
+        return this.msg;
+    }
+
+    public String getUser() {
+        return this.user;
+    }
+
+    public String getChatRoomName() {
+        return this.chatRoomName;
+    }
+
+    public BufferedImage getImage() {
+        return null;
+    }
+    
 }

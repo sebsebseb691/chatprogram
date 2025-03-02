@@ -4,7 +4,7 @@ package models;
 /**
  * Represents a user by username as a string
  */
-interface User_Interface {
+interface User_Interface extends java.io.Serializable{
     /**
      * Get the username of the user
      * @return the username as a string
@@ -19,7 +19,7 @@ interface User_Interface {
     public void changeName(String newName) throws RuntimeException;
 }
 
-public class User implements User_Interface{
+public class User implements User_Interface, java.io.Serializable {
     private String userName = "";
     public String getUsername() {return userName;}
 

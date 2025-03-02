@@ -1,4 +1,7 @@
 package models;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import observers.*;
@@ -12,7 +15,7 @@ interface ChatRoomModelInterface {
      * Add message to a linked list of messages 
      * @param msg the message object that should be added
      */
-    public void addMessage(Message msg);
+    public void addMessage(Message_Interface msg);
 
     /**
      * Add user object to a chat if the user is not already in the chat, also update the current chat to the specified chat
@@ -22,11 +25,12 @@ interface ChatRoomModelInterface {
 }
 
 
-public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject {
+public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject, Serializable {
     private String chatName;
-    private List<ViewObserver> observers = new LinkedList<ViewObserver>();
-    private LinkedList<Message> msgs = new LinkedList<Message>(); 
+    private transient List<ViewObserver> observers = new LinkedList<ViewObserver>();
+    private LinkedList<Message_Interface> msgs = new LinkedList<Message_Interface>(); 
     private LinkedList<User> users = new LinkedList<User>();
+
 
     /**
      * Constructs a new ChatRoom with a specified chat name
@@ -46,9 +50,11 @@ public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject {
     }
 
 
-    public void addMessage(Message msg){
+    public void addMessage(Message_Interface msg){
         msgs.add(msg);
         notifyObservers();
+
+
     }
 
 
@@ -67,12 +73,17 @@ public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject {
         }
     }
 
+     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+        ois.defaultReadObject();
+        observers = new LinkedList<>(); // Initialize the observers list after deserialization
+    }
+
     public void addObserver(ViewObserver observer) {observers.add(observer);}
     public void removeObserver(ViewObserver observer) {observers.remove(observer);}
 
     public String getChatName() {return chatName;}
     public ChatRoomModel getChatRoomObj() {return this;}
-    public LinkedList<Message> getMessages() {return this.msgs;}
+    public LinkedList<Message_Interface> getMessages() {return this.msgs;}
 
 
 }
