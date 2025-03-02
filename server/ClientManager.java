@@ -29,6 +29,9 @@ public class ClientManager implements Runnable {
     @Override
     public void run() {
         try {
+
+            sendChatHistory(); // Send chat history to the client when it connects
+
             Object message;
             while ((message = oin.readObject()) != null) {
                 if (message instanceof ChatRoom_Model) {
@@ -46,7 +49,17 @@ public class ClientManager implements Runnable {
         } finally {
             closeConnection();
         }
+    } 
+
+    private void sendChatHistory() {
+        try {
+            oout.writeObject(server.getServerList());
+            oout.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public synchronized void sendMessage(Object message) {
         try {

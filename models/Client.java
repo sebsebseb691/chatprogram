@@ -2,8 +2,7 @@ package models;
 
 import java.io.*;
 import java.net.*;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.util.LinkedList;
 
 
 /**
@@ -50,7 +49,11 @@ public class Client {
 
     private void listen() {
         new Thread(() -> {
-            try {
+            try {  
+                     // Receive chat history from the server
+                LinkedList<ChatRoom_Model> chatHistory = (LinkedList<ChatRoom_Model>) oin.readObject();
+                mf.setChatRoomsList(chatHistory); // Set the chat history in the ModelsFacade
+            
                 Object serverMessage;
                 while ((serverMessage = oin.readObject()) != null) {
                     System.out.println("Message received from server: " + serverMessage);

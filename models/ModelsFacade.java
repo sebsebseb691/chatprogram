@@ -1,5 +1,7 @@
 package models;
 
+import java.util.LinkedList;
+
 public class ModelsFacade {
     private static ModelsFacade instance = new ModelsFacade();
     private ChatRoom_Model currentChatRoom;
@@ -24,6 +26,15 @@ public class ModelsFacade {
 
     public void setChatRoom(ChatRoom_Model chatRoom) {
         this.currentChatRoom = chatRoom;
+    } 
+
+     public void setChatRoomsList(LinkedList<ChatRoom_Model> chatRoomsList) {
+
+        getServers().getServerList().clear();
+        for (ChatRoom_Model chatRoom : chatRoomsList) {
+            getServers().addChatRoom(chatRoom);
+        }
+
     }
 
     public ChatRoom_Model getChatRoomByName(String chatName) {
@@ -41,7 +52,7 @@ public class ModelsFacade {
         c.send(chatRoom); 
 
     }
-    
+
     public void addChatRoomFromServer(ChatRoom_Model chatRoom) {
         isProcessingLocal = true;
         getServers().addChatRoom(chatRoom);
