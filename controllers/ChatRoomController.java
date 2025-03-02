@@ -15,9 +15,9 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
     private ChatRoomView chatRoomView = new ChatRoomView();
     private JFrame f = cf.getJFrame();
     private Client c = Client.getInstance();
-
     public void actionPerformed(ActionEvent e) {}
 
+    @Override
     public void addPanelToFrame() {
         chatRoomView.createView(mf.getChatRoom().getChatName());
         
@@ -28,11 +28,11 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
         addListener();
     }
     
+    @Override
     public void addListener() {
         chatRoomView.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                   // @SuppressWarnings("unused")
                     Message m = new Message(chatRoomView.getJTextField().getText(), mf.getUser().getUsername(), mf.getChatRoom().getChatName());
                     mf.getChatRoom().addMessage(m);
                     c.send(m);

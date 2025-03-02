@@ -34,8 +34,8 @@ public class ClientManager implements Runnable {
 
             Object message;
             while ((message = oin.readObject()) != null) {
-                if (message instanceof ChatRoom_Model) {
-                    server.addChatRoom((ChatRoom_Model) message);
+                if (message instanceof ChatRoomModel) {
+                    server.addChatRoom((ChatRoomModel) message);
                     server.broadcast(message, this);
                 } else if (message instanceof Message_Interface) {
                     server.addMessage((Message_Interface) message);

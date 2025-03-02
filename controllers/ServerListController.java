@@ -14,6 +14,7 @@ public class ServerListController implements ActionListener, ControllerInterface
     public void actionPerformed(ActionEvent e) {}
 
 
+    @Override
     public void addPanelToFrame() {
         sl.createView();
 
@@ -21,6 +22,7 @@ public class ServerListController implements ActionListener, ControllerInterface
         f.add(sl.getJPanel());
         f.setVisible(true);
     }
+
 
     public void addListenerCreate() {
         sl.getBackButton().addActionListener(new ActionListener() {
@@ -35,10 +37,10 @@ public class ServerListController implements ActionListener, ControllerInterface
                     String chatRoomName = (String) JOptionPane.showInputDialog(f, "Enter a name for the chat room");
                     if (chatRoomName != null && !chatRoomName.trim().isEmpty()) { // If doesn't press cancel and name is not empty
                         // Check if chat room already exists
-                        ChatRoom_Model existingChatRoom = mf.getChatRoomByName(chatRoomName);
+                        ChatRoomModel existingChatRoom = mf.getChatRoomByName(chatRoomName);
                         if (existingChatRoom == null) {
                             // Create a new chat room and add it to the model
-                            ChatRoom_Model newChatRoom = new ChatRoom_Model(chatRoomName);
+                            ChatRoomModel newChatRoom = new ChatRoomModel(chatRoomName);
                             mf.addChatRoom(newChatRoom);
                         } else {
                             JOptionPane.showMessageDialog(f, "Chat room with this name already exists.");
@@ -52,7 +54,8 @@ public class ServerListController implements ActionListener, ControllerInterface
     }
 
 
-    public void addListener() { // Called from view
+    @Override
+    public void addListener() {
         List<JButton> joinButtons = sl.getButtons();
     
         for (JButton joinButton : joinButtons) {
@@ -61,9 +64,9 @@ public class ServerListController implements ActionListener, ControllerInterface
                     if (e.getSource() != sl.getCreateServerButton()) {
                         // Join chat room that is pressed
                         String chatRoomName = joinButton.getText();
-                        ChatRoom_Model chatRoom = mf.getChatRoomByName(chatRoomName);
+                        ChatRoomModel chatRoom = mf.getChatRoomByName(chatRoomName);
                         if (chatRoom == null) {
-                            chatRoom = new ChatRoom_Model(chatRoomName);
+                            chatRoom = new ChatRoomModel(chatRoomName);
                             mf.addChatRoom(chatRoom);
                         }
                         chatRoom.joinChatRoom(chatRoomName);

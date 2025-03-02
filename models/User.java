@@ -19,7 +19,7 @@ interface User_Interface extends java.io.Serializable{
     public void changeName(String newName) throws RuntimeException;
 }
 
-public class User implements User_Interface, java.io.Serializable {
+public class User implements User_Interface {
     private String userName = "";
     public String getUsername() {return userName;}
 

@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import models.ChatRoom_Model;
+import models.ChatRoomModel;
 import models.Message_Interface;
 
 /**
@@ -13,7 +13,7 @@ import models.Message_Interface;
 public class Server {
     private ServerSocket serverSocket;
     private List<ClientManager> clientManagers = new ArrayList<>();
-    private LinkedList<ChatRoom_Model> serverList = new LinkedList<ChatRoom_Model>();
+    private LinkedList<ChatRoomModel> serverList = new LinkedList<ChatRoomModel>();
     private static final String HISTORY_FILE = "chat_history.ser";
 
     private static Server instance = new Server();
@@ -46,13 +46,13 @@ public class Server {
         }
     }
 
-    public void addChatRoom(ChatRoom_Model chatRoom) {
+    public void addChatRoom(ChatRoomModel chatRoom) {
         serverList.add(chatRoom);
         saveChatHistory(); // Save chat history whenever a new chat room is added
     }
 
     public void addMessage(Message_Interface msg) {
-        for (ChatRoom_Model chatRoom : serverList) {
+        for (ChatRoomModel chatRoom : serverList) {
             if (chatRoom.getChatName().equals(msg.getChatRoomName())) {
                 chatRoom.addMessage(msg);
                 saveChatHistory(); // Save chat history whenever a new message is added
@@ -72,7 +72,7 @@ public class Server {
 
     private void loadChatHistory() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(HISTORY_FILE))) {
-            serverList = (LinkedList<ChatRoom_Model>) ois.readObject();
+            serverList = (LinkedList<ChatRoomModel>) ois.readObject();
             System.out.println("Chat history loaded.");
         } catch (FileNotFoundException e) {
             System.out.println("No chat history found. Starting fresh.");
@@ -81,7 +81,7 @@ public class Server {
         }
     } 
 
-    public LinkedList<ChatRoom_Model> getServerList() {
+    public LinkedList<ChatRoomModel> getServerList() {
         return serverList;
     }
 }

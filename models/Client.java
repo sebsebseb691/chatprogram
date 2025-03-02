@@ -51,19 +51,19 @@ public class Client {
         new Thread(() -> {
             try {  
                      // Receive chat history from the server
-                LinkedList<ChatRoom_Model> chatHistory = (LinkedList<ChatRoom_Model>) oin.readObject();
+                LinkedList<ChatRoomModel> chatHistory = (LinkedList<ChatRoomModel>) oin.readObject();
                 mf.setChatRoomsList(chatHistory); // Set the chat history in the ModelsFacade
             
                 Object serverMessage;
                 while ((serverMessage = oin.readObject()) != null) {
                     System.out.println("Message received from server: " + serverMessage);
-                    if (serverMessage instanceof ChatRoom_Model) {
+                    if (serverMessage instanceof ChatRoomModel) {
                         System.out.println("Received ChatRoom_Model");
-                        mf.addChatRoomFromServer((ChatRoom_Model) serverMessage);
+                        mf.addChatRoomFromServer((ChatRoomModel) serverMessage);
                     } else if (serverMessage instanceof Message_Interface) {
                         Message_Interface message = (Message_Interface) serverMessage;
                         System.out.println("Received Message_Interface: " + message.getMsg());
-                        ChatRoom_Model chatRoom = mf.getChatRoomByName(message.getChatRoomName());
+                        ChatRoomModel chatRoom = mf.getChatRoomByName(message.getChatRoomName());
                         if (chatRoom != null) {
                             chatRoom.addMessage(message);
                             chatRoom.notifyObservers();
