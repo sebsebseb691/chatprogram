@@ -1,85 +1,129 @@
-<diagram program="umletino" version="15.1"><zoom_level>5</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>470</x><y>435</y><w>115</w><h>95</h></coordinates><panel_attributes>Client_model_n
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>399</x><y>252</y><w>308</w><h>154</h></coordinates><panel_attributes>ModelFacade
 --
--ChatRoom
--User 
+-ChatRoomModel currentChatRoom;
+-Client c; 
 --
-getMessages(chat_id) : ArrayList&lt;Message&gt;
-
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>290</y><w>100</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
++public static ModelsFacade getInstance()
++ public static ServerListModel getChats()
++public void setChatRoom(ChatRoomModel chatRoom)
++public void setChatRoomsList(LinkedList&lt;ChatRoomModel&gt; chatRoomsList)
++public ChatRoomModel getChatRoomByName(String chatName)
++public void addChatRoom(ChatRoomModel chatRoom)
++public void addChatRoomFromServer(ChatRoomModel chatRoom)
++ public User getUser()
++ public Client getClient()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>987</x><y>336</y><w>140</w><h>133</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 View
 --
 
 --
-+JPanel p
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>715</x><y>450</y><w>105</w><h>35</h></coordinates><panel_attributes>Login Page
++ void createView()
++JPanel getJPanel();
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>917</x><y>560</y><w>147</w><h>49</h></coordinates><panel_attributes>Login Page
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>755</x><y>375</y><w>65</w><h>85</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>70;10;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>270</y><w>105</w><h>95</h></coordinates><panel_attributes>Message
+update()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>203</x><y>14</y><w>147</w><h>133</h></coordinates><panel_attributes>Controller_InterFace
 --
--Message: string
--Username: string
---
-+void createMessage()
--- </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>435</y><w>105</w><h>95</h></coordinates><panel_attributes>Controller
---
--navigator
---
--sendMessage(array) VOID
--void loginpage(panel)
--void serverlist(panel) 
--void 
 
-
+--
+ +public void addPanelToFrame()
+ +public void addListener();
+ +public void addListener();
 --
 
 Tar in användarnamn och
 meddelanden, skickar till client model
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>295</x><y>435</y><w>105</w><h>95</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
-Navigator
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>903</x><y>35</y><w>315</w><h>168</h></coordinates><panel_attributes>Server 
+--
+-ServerSocket serverSocket;
+-List&lt;ClientManager&gt; clientManagers = new ArrayList&lt;&gt;();
+-LinkedList&lt;ChatRoomModel&gt; serverList = new LinkedList&lt;ChatRoomModel&gt;();
+-static final String HISTORY_FILE = "chat_history.ser";
 
 --
--Username string
 
++void start(int port) 
++void broadcast(Object message, ClientManager sender)
++void addChatRoom(ChatRoomModel chatRoom)
++ void addMessage(MessageInterface msg)
+-void saveChatHistory()
+- void loadChatHistory()
++LinkedList&lt;ChatRoomModel&gt; getServerList()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>833</x><y>490</y><w>147</w><h>49</h></coordinates><panel_attributes>Server list
 --
-+changeName(newName string)
-+getName()
-+
+Update()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>994</x><y>490</y><w>147</w><h>49</h></coordinates><panel_attributes>Chat
 --
-
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>480</y><w>55</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>575</x><y>0</y><w>120</w><h>95</h></coordinates><panel_attributes>Server Model
---
--chat_id
--msg
--Username
-Array[ArrayList&lt;Message&gt;]
---
-saveChat(chat_id int, Message message)
-getMessages(chat_id int) : ArrayList
+update()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>826</x><y>336</y><w>147</w><h>133</h></coordinates><panel_attributes>Viewoberver 
 --
 
-
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>830</x><y>450</y><w>105</w><h>35</h></coordinates><panel_attributes>Server list
+-- 
++Update() </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>42</x><y>14</y><w>147</w><h>133</h></coordinates><panel_attributes>ControllerFacade/Navigator 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>940</x><y>450</y><w>105</w><h>35</h></coordinates><panel_attributes>Chat
+-JFrame f
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>835</x><y>375</y><w>75</w><h>85</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;100;150</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>375</y><w>120</w><h>85</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;220;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>270</y><w>105</w><h>95</h></coordinates><panel_attributes>chatroom
+ +public void openChatRoom()
+ +public void openLoginPage() 
+ +public void openServerList()
 --
--Idnr
--users&lt;user&gt; 
--messages&lt;message&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>42</x><y>161</y><w>147</w><h>49</h></coordinates><panel_attributes> LoginPageController
 --
-+void createChat()
-+void addMembers()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>203</x><y>161</y><w>147</w><h>49</h></coordinates><panel_attributes>ChatroomController
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>625</x><y>315</y><w>105</w><h>95</h></coordinates><panel_attributes>oberver 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>105</x><y>224</y><w>147</w><h>49</h></coordinates><panel_attributes>ServerListController
 --
-+Update(Navigator Client_model) </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>270</y><w>105</w><h>95</h></coordinates><panel_attributes>user
---
--name 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>427</y><w>147</w><h>133</h></coordinates><panel_attributes>ServerListModel_Interface 
 --
 
-+void CreateUser()
-+void changeName()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>725</x><y>330</y><w>75</w><h>55</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>475</x><y>360</y><w>50</w><h>85</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>80;150;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>360</y><w>260</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>500;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>395</x><y>475</y><w>85</w><h>25</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;30;150;20</additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>305</y><w>50</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>320</y><w>40</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>400</y><w>75</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;130;10</additional_attributes></element></diagram>
+
+--
++public void addChatRoom(ChatRoomModel chat);
++public void removeChat(ChatRoomModel chat);</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>133</x><y>357</y><w>147</w><h>133</h></coordinates><panel_attributes>MessageInterface
+--
+
+
+--
+ +public String getMsg();
+ +public String getUser(); 
+ +public BufferedImage getImage(); 
+ +public String getChatRoomName(); </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>133</x><y>504</y><w>147</w><h>49</h></coordinates><panel_attributes>Messge
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>133</x><y>574</y><w>147</w><h>49</h></coordinates><panel_attributes>Image
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>518</x><y>574</y><w>147</w><h>49</h></coordinates><panel_attributes>ServerList
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>357</x><y>574</y><w>147</w><h>49</h></coordinates><panel_attributes>ChatRoomModel
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>441</x><y>651</y><w>147</w><h>84</h></coordinates><panel_attributes>ViewSubject
+--
+
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>518</x><y>427</y><w>147</w><h>133</h></coordinates><panel_attributes>ChatRoomModel_Interface
+--
+
+
+--
+ +public void addMessage(MessageInterface msg);
+ +public void joinChatRoom(String chatName);
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>672</x><y>56</y><w>210</w><h>133</h></coordinates><panel_attributes>ClientManager
+--
+ -Socket socket;
+ -Server server;
+ -ObjectOutputStream oout;
+ -ObjectInputStream oin;
+--
++void run()
+-void sendChatHistory()
++synchronized void sendMessage(Object message)
+- void closeConnection()
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>427</x><y>56</y><w>189</w><h>133</h></coordinates><panel_attributes>Client
+--
+ -Socket socket;
+ -ObjectOutputStream oout;
+ -ObjectInputStream oin;
+
+--
++void connect(String serverAddress, int port)
++synchronized void send(Object message)
+-private void listen()
+- private void closeConnection()
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
