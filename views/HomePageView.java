@@ -23,6 +23,7 @@ public class HomePageView extends JPanel implements View, ViewObserver {
     }
     
 
+    @Override
     public void createView() {
         //Labels of top panel
         JLabel welcome = new JLabel("Welcome");
@@ -90,7 +91,7 @@ public class HomePageView extends JPanel implements View, ViewObserver {
         bottomP.repaint();
     }
 
-
+    @Override
     public JPanel getJPanel() {return mainP;}
     public JButton getCreateServerButton() {return createServerB;}
     public JButton getBackButton() {return back;}

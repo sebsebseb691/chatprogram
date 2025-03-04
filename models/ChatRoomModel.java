@@ -22,6 +22,12 @@ interface ChatRoomModelInterface {
      * @param chatName string of the chat to join
      */
     public void joinChatRoom(String chatName);
+
+    /**
+     * Get all messages sent in a specific chat room
+     * @return a linked list of Messages that implements MessageInterface
+     */
+    public LinkedList<MessageInterface> getMessages();
 }
 
 
@@ -75,10 +81,9 @@ public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject, Seria
         observers = new LinkedList<>(); // Initialize the observers list after deserialization
     }
 
-    
     public void addObserver(ViewObserver observer) {observers.add(observer);}
     public void removeObserver(ViewObserver observer) {observers.remove(observer);}
     public String getChatName() {return chatName;}
-    public ChatRoomModel getChatRoomObj() {return this;}
+    @Override
     public LinkedList<MessageInterface> getMessages() {return this.msgs;}
 }

@@ -19,6 +19,12 @@ interface ServerListModelInterface {
      * @param chat the chat room to be removed
      */
     public void removeChat(ChatRoomModel chat);
+
+    /**
+     * Used to get the list of chat rooms
+     * @return a linked list of all existing ChatRoomModels
+     */
+    public LinkedList<ChatRoomModel> getServerList();
 }
 
 
@@ -31,16 +37,20 @@ public class HomePageModel implements ServerListModelInterface, ViewSubject{
     private HomePageModel(){}
     public static HomePageModel getInstance() {return instance;}
     
-
+    @Override
     public void addChatRoom(ChatRoomModel chat){
         serverList.add(chat); 
         notifyObservers();
     }
 
+    @Override
     public void removeChat(ChatRoomModel chat){
         serverList.remove(chat);
         notifyObservers();
     }
+
+    @Override
+    public LinkedList<ChatRoomModel> getServerList() {return serverList;}
 
     public void notifyObservers() {
         for(ViewObserver observer : observers){
@@ -50,5 +60,4 @@ public class HomePageModel implements ServerListModelInterface, ViewSubject{
 
     public void addObserver(ViewObserver observer) {observers.add(observer);}
     public void removeObserver(ViewObserver observer) {observers.remove(observer);}
-    public LinkedList<ChatRoomModel> getServerList() {return serverList;}
 }

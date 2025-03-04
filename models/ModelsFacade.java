@@ -1,22 +1,18 @@
 package models;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+
 public class ModelsFacade {
     private static ModelsFacade instance = new ModelsFacade();
     private ChatRoomModel currentChatRoom;
-    private static Client c; 
+    private static Client client; 
     private boolean isProcessingLocal = false;
     private static User u = new User();
 
     private ModelsFacade() {
-        c = Client.getInstance();
-    }
-
-    public static ModelsFacade getInstance() {
-        return instance;
+        client = Client.getInstance();
     }
 
     public void setChatRoomsList(LinkedList<ChatRoomModel> chatRoomsList) {
@@ -38,8 +34,7 @@ public class ModelsFacade {
     public void addChatRoom(ChatRoomModel chatRoom) { 
         if(isProcessingLocal) return;
         getServers().addChatRoom(chatRoom);
-        c.send(chatRoom); 
-
+        client.send(chatRoom); 
     }
 
     public void addChatRoomFromServer(ChatRoomModel chatRoom) {
@@ -70,8 +65,9 @@ public class ModelsFacade {
     }
 
     public static HomePageModel getServers() {return HomePageModel.getInstance();}
+    public static ModelsFacade getInstance() {return instance;}
     public ChatRoomModel getChatRoom() {return currentChatRoom;}
-    public void setChatRoom(ChatRoomModel chatRoom) {this.currentChatRoom = chatRoom;} 
+    public void setChatRoom(ChatRoomModel chatRoom) {this.currentChatRoom = chatRoom;}
     public User getUser() {return u;}
-    public Client getClient() {return c;}
+    public Client getClient() {return client;}
 }

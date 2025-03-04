@@ -1,5 +1,4 @@
 package models;
-
 import java.io.*;
 import java.net.*;
 import java.util.LinkedList;
@@ -10,7 +9,6 @@ import java.util.LinkedList;
  */
 // filepath: /c:/Users/richa/Desktop/chatprogram/models/Client.java
 public class Client {
-   
     private Socket socket;
     private ObjectOutputStream oout;
     private ObjectInputStream oin;
@@ -50,7 +48,7 @@ public class Client {
     private void listen() {
         new Thread(() -> {
             try {  
-                     // Receive chat history from the server
+                // Receive chat history from the server
                 LinkedList<ChatRoomModel> chatHistory = (LinkedList<ChatRoomModel>) oin.readObject();
                 mf.setChatRoomsList(chatHistory); // Set the chat history in the ModelsFacade
             
@@ -58,11 +56,11 @@ public class Client {
                 while ((serverMessage = oin.readObject()) != null) {
                     System.out.println("Message received from server: " + serverMessage);
                     if (serverMessage instanceof ChatRoomModel) {
-                        System.out.println("Received ChatRoom_Model");
+                        System.out.println("Received ChatRoomModel");
                         mf.addChatRoomFromServer((ChatRoomModel) serverMessage);
                     } else if (serverMessage instanceof MessageInterface) {
                         MessageInterface message = (MessageInterface) serverMessage;
-                        System.out.println("Received Message_Interface: " + message.getMsg());
+                        System.out.println("Received MessageInterface: " + message.getMsg());
                         ChatRoomModel chatRoom = mf.getChatRoomByName(message.getChatRoomName());
                         if (chatRoom != null) {
                             chatRoom.addMessage(message);
@@ -74,7 +72,7 @@ public class Client {
                         System.out.println("Unknown message type received: " + serverMessage.getClass().getName());
                     }
                 }
-            }  catch (EOFException e) {
+            } catch (EOFException e) {
                 System.out.println("Connection closed by server.");
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

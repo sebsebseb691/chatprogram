@@ -10,7 +10,6 @@ import models.MessageInterface;
 public class ChatRoomView extends JPanel implements View, observers.ViewObserver {
     private JPanel mainP = new JPanel(new BorderLayout());
     private JPanel messageP = new JPanel(new BorderLayout()); //Messages panel
-
     private JTextField messageF = new JTextField(30);
     private JButton sendB = new JButton("Send");
     private JButton sendImageB = new JButton("Send Image");
