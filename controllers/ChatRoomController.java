@@ -2,10 +2,7 @@ package controllers;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.IOException;
 import models.ModelsFacade;
-import models.Message;
-import models.Image;
 import views.ChatRoomView;
 
 
