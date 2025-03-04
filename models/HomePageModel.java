@@ -23,14 +23,14 @@ interface ServerListModelInterface {
 }
 
 
-public class ServerListModel implements ServerListModelInterface, ViewSubject{
+public class HomePageModel implements ServerListModelInterface, ViewSubject{
     private LinkedList<ChatRoomModel> serverList = new LinkedList<ChatRoomModel>(); 
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
     
     //Singleton
-    private static ServerListModel instance = new ServerListModel();
-    private ServerListModel(){}
-    public static ServerListModel getInstance() {return instance;}
+    private static HomePageModel instance = new HomePageModel();
+    private HomePageModel(){}
+    public static HomePageModel getInstance() {return instance;}
     
 
     public void addChatRoom(ChatRoomModel chat){

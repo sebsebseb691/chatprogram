@@ -28,7 +28,7 @@ public class ControllersFacade {
 
     public void openServerList() {
         removeAllViews();
-        ServerListController sl = new ServerListController();
+        HomePageController sl = new HomePageController();
         sl.addPanelToFrame();
     }
 

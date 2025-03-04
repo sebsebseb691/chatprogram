@@ -18,7 +18,7 @@ public class ModelsFacade {
         return instance;
     }
 
-    public static ServerListModel getServers() {return ServerListModel.getInstance();}
+    public static HomePageModel getServers() {return HomePageModel.getInstance();}
 
     public ChatRoomModel getChatRoom() {
         return currentChatRoom;

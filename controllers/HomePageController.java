@@ -3,14 +3,14 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.List;
 import models.*;
-import views.ServerListView;
+import views.HomePageView;
 
 
-public class ServerListController implements ActionListener, ControllerInterface{
+public class HomePageController implements ActionListener, ControllerInterface{
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
-    private ServerListView sl = new ServerListView(this);
+    private HomePageView sl = new HomePageView(this);
     public void actionPerformed(ActionEvent e) {}
     
     @Override

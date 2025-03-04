@@ -9,7 +9,7 @@ import observers.ViewObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerListView extends JPanel implements View, ViewObserver {
+public class HomePageView extends JPanel implements View, ViewObserver {
     private JPanel mainP = new JPanel(new BorderLayout());
     private JPanel bottomP = new JPanel(new GridLayout(0, 1));
     private JButton createServerB = new JButton("Create a new Chat Room");
@@ -18,7 +18,7 @@ public class ServerListView extends JPanel implements View, ViewObserver {
     private List<JButton> buttons = new ArrayList<>(); //List of buttons of chat rooms, fetched in controller to add listeners
 
 
-    public ServerListView(ControllerInterface sl) {
+    public HomePageView(ControllerInterface sl) {
         this.sl = sl;
     }
     
