@@ -34,13 +34,12 @@ public class HomePageController implements ActionListener, ControllerInterface{
             public void actionPerformed(ActionEvent e) {
                 try {
                     String chatRoomName = (String) JOptionPane.showInputDialog(f, "Enter a name for the chat room");
-                    if (chatRoomName != null && !chatRoomName.trim().isEmpty()) { // If user doesn't press cancel and name is not empty
+                    if (chatRoomName != null && !chatRoomName.trim().isEmpty()) { //If user doesn't press cancel and name is not empty
                         // Check if chat room already exists
                         ChatRoomModel existingChatRoom = mf.getChatRoomByName(chatRoomName);
                         if (existingChatRoom == null) {
                             // Create a new chat room and add it to the model
-                            ChatRoomModel newChatRoom = new ChatRoomModel(chatRoomName);
-                            mf.addChatRoom(newChatRoom);
+                            mf.createChatRoom(chatRoomName);
                         } else {
                             JOptionPane.showMessageDialog(f, "Chat room with this name already exists.");
                         }

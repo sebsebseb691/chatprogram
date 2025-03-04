@@ -1,5 +1,7 @@
 package models;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class ModelsFacade {
@@ -7,34 +9,21 @@ public class ModelsFacade {
     private ChatRoomModel currentChatRoom;
     private static Client c; 
     private boolean isProcessingLocal = false;
+    private static User u = new User();
 
     private ModelsFacade() {
-     c = Client.getInstance();
+        c = Client.getInstance();
     }
-
-    public static User u = new User();
 
     public static ModelsFacade getInstance() {
         return instance;
     }
 
-    public static HomePageModel getServers() {return HomePageModel.getInstance();}
-
-    public ChatRoomModel getChatRoom() {
-        return currentChatRoom;
-    }
-
-    public void setChatRoom(ChatRoomModel chatRoom) {
-        this.currentChatRoom = chatRoom;
-    } 
-
     public void setChatRoomsList(LinkedList<ChatRoomModel> chatRoomsList) {
-
         getServers().getServerList().clear();
         for (ChatRoomModel chatRoom : chatRoomsList) {
             getServers().addChatRoom(chatRoom);
         }
-
     }
 
     public ChatRoomModel getChatRoomByName(String chatName) {
@@ -58,13 +47,31 @@ public class ModelsFacade {
         getServers().addChatRoom(chatRoom);
         isProcessingLocal = false;
     }
-    
 
-    public User getUser() {
-        return u;
+    public void createChatRoom(String chatRoomName) {
+        ChatRoomModel newChatRoom = new ChatRoomModel(chatRoomName);
+        addChatRoom(newChatRoom);
     }
 
-    public Client getClient() {
-        return c;
+    public void createMessage(String text, String sender, String chatRoomName) {
+        Message m = new Message(text, sender, chatRoomName);
+        getChatRoom().addMessage(m);
+        getClient().send(m);
     }
+
+    public void createImage(File imageFile, String chatRoomName, String user) {
+        try {
+            Image i = new Image(imageFile, chatRoomName, user);
+            getChatRoom().addMessage(i);
+            getClient().send(i);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static HomePageModel getServers() {return HomePageModel.getInstance();}
+    public ChatRoomModel getChatRoom() {return currentChatRoom;}
+    public void setChatRoom(ChatRoomModel chatRoom) {this.currentChatRoom = chatRoom;} 
+    public User getUser() {return u;}
+    public Client getClient() {return c;}
 }

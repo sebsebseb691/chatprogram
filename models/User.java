@@ -3,7 +3,7 @@ package models;
 /**
  * Represents a user by username as a string
  */
-interface User_Interface extends java.io.Serializable{
+interface UserInterface extends java.io.Serializable{
     /**
      * Get the username of the user
      * @return the username as a string
@@ -19,13 +19,13 @@ interface User_Interface extends java.io.Serializable{
 }
 
 
-public class User implements User_Interface {
-    private String userName = "";
-    public String getUsername() {return userName;}
+public class User implements UserInterface {
+    private String username = "";
+    public String getUsername() {return username;}
 
     public void changeName(String newName) throws RuntimeException {
         if(newName.isEmpty()) throw new RuntimeException("Username cannot be empty");
         else if (newName.contains(" ")) throw new RuntimeException("Username cannot contain blankspace");
-        else userName = newName;
+        else username = newName;
     }
 }

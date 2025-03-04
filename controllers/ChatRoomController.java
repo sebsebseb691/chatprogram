@@ -7,14 +7,13 @@ import models.ModelsFacade;
 import models.Message;
 import models.Image;
 import views.ChatRoomView;
-import models.Client;
+
 
 public class ChatRoomController extends JFrame implements ActionListener, ControllerInterface {
     private ModelsFacade mf = ModelsFacade.getInstance();
     private ControllersFacade cf = new ControllersFacade();
     private ChatRoomView chatRoomView = new ChatRoomView();
     private JFrame f = cf.getJFrame();
-    private Client c = Client.getInstance();
     public void actionPerformed(ActionEvent e) {}
 
     @Override
@@ -33,10 +32,7 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
         chatRoomView.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Message m = new Message(chatRoomView.getJTextField().getText(), mf.getUser().getUsername(), mf.getChatRoom().getChatName());
-                    mf.getChatRoom().addMessage(m);
-                    c.send(m);
-
+                    mf.createMessage(chatRoomView.getJTextField().getText(), mf.getUser().getUsername(), mf.getChatRoom().getChatName());
                     chatRoomView.getJTextField().setText(""); // Clears the text field after message is sent
                 } catch (RuntimeException exc) {
                     JOptionPane.showMessageDialog(f, exc.getMessage());
@@ -51,13 +47,7 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
                 int returnValue = fileChooser.showOpenDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
-                    try {
-                        Image imageMessage = new Image(selectedFile, mf.getChatRoom().getChatName(), mf.getUser().getUsername());
-                        mf.getChatRoom().addMessage(imageMessage);
-                        c.send(imageMessage);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+                    mf.createImage(selectedFile, mf.getChatRoom().getChatName(), mf.getUser().getUsername());
                 }
             }
         });

@@ -4,24 +4,24 @@ import java.awt.image.BufferedImage;
 
 public class Message implements MessageInterface {
     private static final long serialVersionUID = 1L; // Add a serialVersionUID for better serialization control
-    private String msg;
-    private String user;
+    private String text;
+    private String sender;
     private String chatRoomName;
 
 
-    public Message(String msg, String user, String chatRoomName) {
-        if (msg.isEmpty()) throw new RuntimeException("Message cannot be empty");
+    public Message(String text, String sender, String chatRoomName) {
+        if (text.isEmpty()) throw new RuntimeException("Message cannot be empty");
         else {
-            this.msg = msg;
-            this.user = user;
+            this.text = text;
+            this.sender = sender;
             this.chatRoomName = chatRoomName;
         }
     }
 
     @Override
-    public String getMsg() {return this.msg;}
+    public String getMsg() {return this.text;}
     @Override
-    public String getUser() {return this.user;}
+    public String getUser() {return this.sender;}
     @Override
     public String getChatRoomName() {return this.chatRoomName;}
     @Override

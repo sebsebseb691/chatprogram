@@ -1,52 +1,24 @@
 package models;
-
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
+import java.io.*;
 import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 
 public class Image implements MessageInterface {
     private static final long serialVersionUID = 2L; // Unique serialVersionUID for Image class
-
-    private String chatRoomName;
-    private String user;
     private transient BufferedImage image;
+    private String chatRoomName;
+    private String sender;
     private byte[] imageBytes; // Use byte array for serialization
 
-    public Image(File imageFile, String chatRoomName, String user) throws IOException {
+    public Image(File imageFile, String chatRoomName, String sender) throws IOException {
         if (imageFile == null) throw new RuntimeException("Image file cannot be null");
         else {
             this.chatRoomName = chatRoomName;
-            this.user = user;
+            this.sender = sender;
             this.image = ImageIO.read(imageFile);
             this.imageBytes = bufferedImageToByteArray(this.image);
         }
-
-      
-    }
-
-    @Override
-    public String getMsg() {
-        return "image message";
-    }
-
-    @Override
-    public String getUser() {
-        return this.user;
-    }
-
-    
-    public BufferedImage getImage() {
-        return this.image;
-    }
-
-    public String getChatRoomName() {
-        return this.chatRoomName;
     }
 
     private void writeObject(ObjectOutputStream oos) throws IOException {
@@ -81,4 +53,13 @@ public class Image implements MessageInterface {
             return null;
         }
     }
+
+    @Override
+    public BufferedImage getImage() {return this.image;}
+    @Override
+    public String getMsg() {return "image message";}
+    @Override
+    public String getUser() {return this.sender;}
+    @Override
+    public String getChatRoomName() {return this.chatRoomName;}
 }
