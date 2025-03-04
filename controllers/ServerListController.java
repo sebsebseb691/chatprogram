@@ -64,10 +64,6 @@ public class ServerListController implements ActionListener, ControllerInterface
                         // Join chat room that is pressed
                         String chatRoomName = joinButton.getText();
                         ChatRoomModel chatRoom = mf.getChatRoomByName(chatRoomName);
-                        if (chatRoom == null) {
-                            chatRoom = new ChatRoomModel(chatRoomName);
-                            mf.addChatRoom(chatRoom);
-                        }
                         chatRoom.joinChatRoom(chatRoomName);
                         mf.setChatRoom(chatRoom);
                         cf.openChatRoom();

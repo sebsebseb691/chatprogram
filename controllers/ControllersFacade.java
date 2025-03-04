@@ -3,14 +3,14 @@ import javax.swing.JFrame;
 
 
 public class ControllersFacade {
-    private JFrame f;
+    private JFrame frame;
 
     public ControllersFacade() {
-        f = new JFrame("Sigma chat");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new JFrame("Sigma chat");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public JFrame getJFrame() {return f;}
+    public JFrame getJFrame() {return frame;}
 
 
     //Navigator
@@ -36,8 +36,8 @@ public class ControllersFacade {
      * Remove panel from the frame, used to clear frame when opening a new "window" 
      */
     private void removeAllViews() {
-        f.getContentPane().removeAll();
-        f.setVisible(false);
-        f.repaint();
+        frame.getContentPane().removeAll();
+        frame.setVisible(false);
+        frame.repaint();
     }
 }
