@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>1430</x><y>627</y><w>473</w><h>286</h></coordinates><panel_attributes>ModelFacade
+<diagram program="umletino" version="15.1"><zoom_level>12</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>1560</x><y>684</y><w>516</w><h>312</h></coordinates><panel_attributes>ModelFacade
 --
 -currentChatRoom: ChatRoomModel 
 -client: Client
@@ -16,7 +16,7 @@
 +createMessage(text: String, sender: String, chatRoomName: String) : void
 +createImage(imageFile: File, chatRoomName: String, user: String) : void
 +getChatRoom() : ChatRoomModel
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2772</x><y>1100</y><w>220</w><h>209</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3024</x><y>1200</y><w>240</w><h>228</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 View
 --
 +createView() : void
@@ -25,14 +25,14 @@ View
 Creates JPanels and all elements
 such as buttons and JTextFields.
 Displays elements on JPanel
-Observes controller</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>517</x><y>1122</y><w>286</w><h>99</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+Observes controller</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>564</x><y>1224</y><w>312</w><h>108</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 UserInterface
 --
 +getUsername() : String
 +changeUsername(newName: String) : void
 --
 Represents a user with a username and
-changes the username</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>858</x><y>55</y><w>220</w><h>165</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+changes the username</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>936</x><y>60</y><w>240</w><h>180</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 ControllerInterface
 --
 +addPanelToFrame() : void
@@ -43,7 +43,7 @@ Adds JPanel to JFrame,
 creates listeners for elements
 in view and handles the actions
 performed
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>484</y><w>418</w><h>242</h></coordinates><panel_attributes>Server 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>528</y><w>456</w><h>264</h></coordinates><panel_attributes>Server 
 --
 -serverSocket: ServerSocket
 -clientManagers: List&lt;ClientManager&gt;
@@ -59,7 +59,7 @@ performed
 +getServerList() : LinkedList&lt;ChatRoomModel&gt;
 --
 Runs the server, listens to a specific port and accepts connections.
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1551</x><y>44</y><w>220</w><h>198</h></coordinates><panel_attributes>ControllerFacade/Navigator 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1692</x><y>48</y><w>240</w><h>216</h></coordinates><panel_attributes>ControllerFacade/Navigator 
 --
 -frame: JFrame
 --
@@ -71,15 +71,15 @@ Runs the server, listens to a specific port and accepts connections.
 --
 Creates and returns the JFrame
 used for all panels. Also handles
-the navigation between views</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1199</x><y>0</y><w>231</w><h>77</h></coordinates><panel_attributes> LoginPageController
+the navigation between views</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1308</x><y>0</y><w>252</w><h>84</h></coordinates><panel_attributes> LoginPageController
 --
 Lets the user change username
-and handles unaccepted usernames</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1199</x><y>209</y><w>231</w><h>77</h></coordinates><panel_attributes>ChatRoomController
+and handles unaccepted usernames</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1308</x><y>228</y><w>252</w><h>84</h></coordinates><panel_attributes>ChatRoomController
 --
-Sends messages and images</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1199</x><y>99</y><w>231</w><h>77</h></coordinates><panel_attributes>ServerListController
+Sends messages and images</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1308</x><y>108</y><w>252</w><h>84</h></coordinates><panel_attributes>ServerListController
 --
 Creates a new chat room, lets user
-connect to a chat</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>506</x><y>1254</y><w>297</w><h>132</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+connect to a chat</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>552</x><y>1368</y><w>324</w><h>144</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 HomePageModelInterface
 --
 +addChatRoom(chat: ChatRoomModel) : void
@@ -88,7 +88,7 @@ HomePageModelInterface
 Implemented as a singleton.
 Displays all created chat rooms, lets user join
 a existing chat room or create a new one.
-Notifies view at updates</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>374</x><y>880</y><w>231</w><h>154</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+Notifies view at updates</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>408</x><y>960</y><w>252</w><h>168</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 MessageInterface
 --
 +getMsg(): String
@@ -98,12 +98,12 @@ MessageInterface
 --
 Represents a message by text,
 sender, and which chat room it
-belongs to</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>902</x><y>1001</y><w>231</w><h>77</h></coordinates><panel_attributes>Message
+belongs to</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>984</x><y>1092</y><w>252</w><h>84</h></coordinates><panel_attributes>Message
 --
 -text: String
 -sender: String
 -chatRoomName: String
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>737</x><y>792</y><w>396</w><h>176</h></coordinates><panel_attributes>Image
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>804</x><y>864</y><w>432</w><h>192</h></coordinates><panel_attributes>Image
 --
 -chatRoomName: String
 -user: String
@@ -113,7 +113,7 @@ belongs to</panel_attributes><additional_attributes></additional_attributes></el
 -readObject(ois: ObjectInputStream) : void
 -writeObject(oos: ObjectOutputStream) : void
 -bufferedImageToByteArray(image: BufferedImage) : byte[]
--byteArrayToBufferedImage(bytes: byte[]) : BufferedImage</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>495</x><y>1430</y><w>308</w><h>132</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+-byteArrayToBufferedImage(bytes: byte[]) : BufferedImage</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>1560</y><w>336</w><h>144</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 ChatRoomModelInterface
 --
 +addMessage(msg: MessageInterface) : void
@@ -121,7 +121,7 @@ ChatRoomModelInterface
 +getMessages() : LinkedList&lt;MessageInterface&gt;
 --
 Represents a chat room by name. Stores
-messages and connected users as lists</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>473</x><y>484</y><w>330</w><h>220</h></coordinates><panel_attributes>ClientManager
+messages and connected users as lists</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>516</x><y>528</y><w>360</w><h>240</h></coordinates><panel_attributes>ClientManager
 --
 -socket: Socket 
 -server: Server
@@ -135,24 +135,24 @@ messages and connected users as lists</panel_attributes><additional_attributes><
 --
 Handles the comuntion between the server
 and client. 
-Is created when a client connect to the server.</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1067</x><y>198</y><w>154</w><h>66</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;120;40</additional_attributes></element><element><id>Relation</id><coordinates><x>1067</x><y>110</y><w>154</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1067</x><y>22</y><w>154</w><h>55</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;30;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1419</x><y>22</y><w>154</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1419</x><y>110</y><w>154</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1419</x><y>220</y><w>154</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>594</x><y>979</y><w>330</w><h>88</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;280;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>902</x><y>1122</y><w>231</w><h>77</h></coordinates><panel_attributes>User
+Is created when a client connect to the server.</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1164</x><y>216</y><w>168</w><h>72</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;120;40</additional_attributes></element><element><id>Relation</id><coordinates><x>1164</x><y>120</y><w>168</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1164</x><y>24</y><w>168</w><h>60</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;30;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1548</x><y>24</y><w>168</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1548</x><y>120</y><w>168</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1548</x><y>240</y><w>168</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>648</x><y>1068</y><w>360</w><h>96</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;280;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>984</x><y>1224</y><w>252</w><h>84</h></coordinates><panel_attributes>User
 --
 -userName: String
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>1144</y><w>132</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>Relation</id><coordinates><x>594</x><y>825</y><w>165</w><h>121</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;90;130;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>902</x><y>1254</y><w>231</w><h>77</h></coordinates><panel_attributes>HomePageModel
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>1248</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>Relation</id><coordinates><x>648</x><y>900</y><w>180</w><h>132</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;90;130;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>984</x><y>1368</y><w>252</w><h>84</h></coordinates><panel_attributes>HomePageModel
 --
 -serverList: LinkedList&lt;ChatRoomModel&gt;
 -observers: List&lt;ViewObserver&gt;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>1276</y><w>132</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>902</x><y>1430</y><w>242</w><h>110</h></coordinates><panel_attributes>ChatRoomModel
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>1392</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>984</x><y>1560</y><w>264</w><h>120</h></coordinates><panel_attributes>ChatRoomModel
 --
 -chatName: String
 -msgs: LinkedList&lt;MessageInterface&gt;
@@ -160,8 +160,8 @@ Is created when a client connect to the server.</panel_attributes><additional_at
 -observsrs: List&lt;ViewObserver&gt;
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>1463</y><w>132</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>737</y><w>330</w><h>451</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;390;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>737</y><w>330</w><h>583</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;510;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1133</x><y>737</y><w>319</w><h>759</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;670;270;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>836</x><y>484</y><w>297</w><h>176</h></coordinates><panel_attributes>Client
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>1596</y><w>144</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1224</x><y>804</y><w>360</w><h>492</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;390;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1224</x><y>804</y><w>360</w><h>636</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;510;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1236</x><y>804</y><w>348</w><h>828</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;670;270;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>912</x><y>528</y><w>324</w><h>192</h></coordinates><panel_attributes>Client
 --
 -socket: Socket
 -oout: ObjectOutputStream
@@ -172,14 +172,14 @@ Is created when a client connect to the server.</panel_attributes><additional_at
 -listen() : void
 -closeConnection() : void
 --
-Handles client connection </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>550</y><w>330</w><h>220</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;280;180</additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>737</y><w>330</w><h>176</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;140;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>737</y><w>330</w><h>330</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;280;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1650</x><y>231</y><w>33</w><h>418</h></coordinates><panel_attributes>lt=-&gt;</panel_attributes><additional_attributes>10;10;10;360</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1430</x><y>1001</y><w>275</w><h>99</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+Handles client connection </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1224</x><y>600</y><w>360</w><h>240</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;280;180</additional_attributes></element><element><id>Relation</id><coordinates><x>1224</x><y>804</y><w>360</w><h>192</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;140;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1224</x><y>804</y><w>360</w><h>360</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;280;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1800</x><y>252</y><w>36</w><h>456</h></coordinates><panel_attributes>lt=-&gt;</panel_attributes><additional_attributes>10;10;10;360</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1560</x><y>1092</y><w>300</w><h>108</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 ViewSubject
 --
 +addObserver(o: ViewObserver) : void
 +removeObserver(o: ViewObserver) : void
-+notifyObservers() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>1089</y><w>330</w><h>231</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;190;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1133</x><y>1089</y><w>319</w><h>407</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;350;270;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>2200</x><y>935</y><w>396</w><h>143</h></coordinates><panel_attributes>LoginPageView
++notifyObservers() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1224</x><y>1188</y><w>360</w><h>252</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;190;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1236</x><y>1188</y><w>348</w><h>444</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;350;270;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>2400</x><y>1020</y><w>432</w><h>156</h></coordinates><panel_attributes>LoginPageView
 --
 -mainP: JPanel
 -enterUsername: JLabel
@@ -188,7 +188,7 @@ ViewSubject
 --
 +getJButton() : JButton
 +getJTextField() : JTextField
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2200</x><y>1111</y><w>396</w><h>165</h></coordinates><panel_attributes>HomePageView
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2400</x><y>1212</y><w>432</w><h>180</h></coordinates><panel_attributes>HomePageView
 --
 -mainP: JPanel
 -bottomP: JPanel
@@ -198,7 +198,7 @@ ViewSubject
 --
 +getCreateServerButton() : createServerB
 +getBackButton() : JButton 
-+getButtons() : List&lt;JButton&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2200</x><y>1320</y><w>396</w><h>297</h></coordinates><panel_attributes>ChatRoomView
++getButtons() : List&lt;JButton&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2400</x><y>1440</y><w>432</w><h>324</h></coordinates><panel_attributes>ChatRoomView
 --
 -mainP: JPanel
 -messageP: JPanel
@@ -216,16 +216,15 @@ ViewSubject
 +getJButton() : JButton
 +getBackButton() : JButton 
 +getJTextField() : JTextField
-+getSendImageButton() : JButton</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1727</x><y>1001</y><w>275</w><h>99</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
++getSendImageButton() : JButton</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1884</x><y>1092</y><w>300</w><h>108</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 ViewObserver
 --
 +update() : void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2585</x><y>1001</y><w>209</w><h>220</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;170;180</additional_attributes></element><element><id>Relation</id><coordinates><x>2585</x><y>1177</y><w>209</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;170;20</additional_attributes></element><element><id>Relation</id><coordinates><x>2585</x><y>1188</y><w>209</w><h>286</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;240;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1991</x><y>979</y><w>231</w><h>55</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;190;30</additional_attributes></element><element><id>Relation</id><coordinates><x>1991</x><y>1056</y><w>231</w><h>165</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;190;130</additional_attributes></element><element><id>Relation</id><coordinates><x>1991</x><y>1056</y><w>231</w><h>440</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;190;380</additional_attributes></element><element><id>Relation</id><coordinates><x>1133</x><y>1452</y><w>1089</w><h>44</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;update&gt;&gt;</panel_attributes><additional_attributes>970;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>1188</y><w>1100</w><h>132</h></coordinates><panel_attributes>lt=&lt;.
-&lt;&lt;update&gt;&gt;</panel_attributes><additional_attributes>980;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>561</y><w>66</w><h>33</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element><element><id>Relation</id><coordinates><x>407</x><y>561</y><w>88</w><h>33</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2820</x><y>1092</y><w>228</w><h>240</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;170;180</additional_attributes></element><element><id>Relation</id><coordinates><x>2820</x><y>1284</y><w>228</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;20;170;20</additional_attributes></element><element><id>Relation</id><coordinates><x>2820</x><y>1296</y><w>228</w><h>312</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;240;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2172</x><y>1152</y><w>252</w><h>180</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;190;130</additional_attributes></element><element><id>Relation</id><coordinates><x>2172</x><y>1152</y><w>252</w><h>480</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes><additional_attributes>10;10;190;380</additional_attributes></element><element><id>Relation</id><coordinates><x>1236</x><y>1584</y><w>1188</w><h>48</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;update&gt;&gt;</panel_attributes><additional_attributes>970;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1224</x><y>1296</y><w>1200</w><h>144</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;update&gt;&gt;</panel_attributes><additional_attributes>980;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>612</y><w>72</w><h>36</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element><element><id>Relation</id><coordinates><x>444</x><y>612</y><w>96</w><h>36</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element></diagram>
