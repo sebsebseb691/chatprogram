@@ -70,6 +70,7 @@ public class Server {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void loadChatHistory() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(HISTORY_FILE))) {
             serverList = (LinkedList<ChatRoomModel>) ois.readObject();

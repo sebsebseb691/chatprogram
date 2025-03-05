@@ -49,6 +49,7 @@ public class Client {
         new Thread(() -> {
             try {  
                 // Receive chat history from the server
+                @SuppressWarnings("unchecked")
                 LinkedList<ChatRoomModel> chatHistory = (LinkedList<ChatRoomModel>) oin.readObject();
                 mf.setChatRoomsList(chatHistory); // Set the chat history in the ModelsFacade
             

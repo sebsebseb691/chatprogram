@@ -103,13 +103,13 @@ public class ChatRoomView extends JPanel implements View, observers.ViewObserver
     }
 
     public void displayImage(String username, BufferedImage image) {
-           System.out.println("Displaying image for user: ");
-            JLabel imageLabel = new JLabel(new ImageIcon(image));
-            imageLabel.setOpaque(true);
-            imageLabel.setBackground(Color.WHITE);
-            Border b = new LineBorder(Color.LIGHT_GRAY, 2);
-            imageLabel.setBorder(b);
-            messageP.add(imageLabel);
+        System.out.println("Displaying image for user: ");
+        JLabel imageLabel = new JLabel(new ImageIcon(image));
+        imageLabel.setOpaque(true);
+        imageLabel.setBackground(Color.WHITE);
+        Border b = new LineBorder(Color.LIGHT_GRAY, 2);
+        imageLabel.setBorder(b);
+        messageP.add(imageLabel);
     }
 
     public void update() {
