@@ -11,7 +11,6 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
     private ControllersFacade cf = new ControllersFacade();
     private ChatRoomView chatRoomView = new ChatRoomView();
     private JFrame f = cf.getJFrame();
-    public void actionPerformed(ActionEvent e) {}
 
     @Override
     public void addPanelToFrame() {
@@ -59,4 +58,6 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
 
     @Override
     public void addListeners() {}
+    @Override
+    public void actionPerformed(ActionEvent e) {}
 }

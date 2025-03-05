@@ -8,7 +8,6 @@ public class Message implements MessageInterface {
     private String sender;
     private String chatRoomName;
 
-
     public Message(String text, String sender, String chatRoomName) {
         if (text.isEmpty()) throw new RuntimeException("Message cannot be empty");
         else {

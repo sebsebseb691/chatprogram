@@ -7,20 +7,26 @@ import java.io.Serializable;
  */
 public interface MessageInterface extends Serializable {
     /**
-     * Gets the message content.
-     *
+     * Gets the message content
      * @return a string of the message
      */
     public String getMsg();
 
     /**
      * Gets the username of the user who sent a message
-     *
      * @return the username of who sent the message as a string
      */
     public String getUser(); 
 
+    /**
+     * Get the sent image
+     * @return the image as a buffered image
+     */
     public BufferedImage getImage(); 
 
+    /**
+     * Get the name of the chat room the message belongs to
+     * @return string of the chat room name
+     */
     public String getChatRoomName(); 
 }

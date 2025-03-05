@@ -37,7 +37,6 @@ public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject, Seria
     private LinkedList<MessageInterface> msgs = new LinkedList<MessageInterface>(); 
     private LinkedList<User> users = new LinkedList<User>();
 
-
     /**
      * Constructs a new ChatRoom with a specified chat name
      * 
@@ -66,7 +65,7 @@ public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject, Seria
         ModelsFacade mf = ModelsFacade.getInstance();
         //Only add user if it is not already in the chatroom
         if(!users.contains(mf.getUser())) users.add(mf.getUser());
-        this.chatName = chatName;//Fixa
+        this.chatName = chatName;
         notifyObservers(); 
     }
 

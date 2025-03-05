@@ -5,9 +5,8 @@ import java.util.LinkedList;
 
 
 /**
- * Temporary test client.
+ * Handles client connection
  */
-// filepath: /c:/Users/richa/Desktop/chatprogram/models/Client.java
 public class Client {
     private Socket socket;
     private ObjectOutputStream oout;

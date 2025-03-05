@@ -11,12 +11,10 @@ public class HomePageController implements ActionListener, ControllerInterface{
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
     private HomePageView sl = new HomePageView(this);
-    public void actionPerformed(ActionEvent e) {}
     
     @Override
     public void addPanelToFrame() {
         sl.createView();
-
         f.setSize(800, 800);
         f.add(sl.getJPanel());
         f.setVisible(true);
@@ -71,4 +69,6 @@ public class HomePageController implements ActionListener, ControllerInterface{
             });
         }
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {}
 }

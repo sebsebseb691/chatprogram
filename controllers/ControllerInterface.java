@@ -1,7 +1,7 @@
 package controllers;
 
 /**
- * Interface that every controller implements. Adds JPanel to the JFrame and adds listeners on buttons from view
+ * Adds JPanel to the JFrame and adds listeners on buttons from view. Sends the actions performed to model
  */
 public interface ControllerInterface {
     /**

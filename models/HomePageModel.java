@@ -7,7 +7,7 @@ import observers.*;
 /**
  * Handles the list of created chat rooms in a linked list
  */
-interface ServerListModelInterface {
+interface HomePageModelInterface {
     /**
      * Add a chat room object to a linked list
      * @param chat the chat room to be added
@@ -28,7 +28,7 @@ interface ServerListModelInterface {
 }
 
 
-public class HomePageModel implements ServerListModelInterface, ViewSubject{
+public class HomePageModel implements HomePageModelInterface, ViewSubject{
     private LinkedList<ChatRoomModel> serverList = new LinkedList<ChatRoomModel>(); 
     private List<ViewObserver> observers = new LinkedList<ViewObserver>();
     

@@ -10,7 +10,6 @@ public class LoginPageController implements ActionListener, ControllerInterface 
     private ControllersFacade cf = new ControllersFacade();
     private JFrame f = cf.getJFrame();
     private LoginPageView lp = new LoginPageView();
-    public void actionPerformed(ActionEvent e) {}
     
     @Override
     public void addPanelToFrame() {
@@ -41,4 +40,6 @@ public class LoginPageController implements ActionListener, ControllerInterface 
 
     @Override
     public void addListeners() {}
+    @Override
+    public void actionPerformed(ActionEvent e) {}
 }
