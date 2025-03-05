@@ -7,7 +7,6 @@ import models.*;
 /**
  * Handles individual client connections.
  */
-// filepath: /c:/Users/richa/Desktop/chatprogram/server/ClientManager.java
 public class ClientManager implements Runnable {
     private Socket socket;
     private Server server;
@@ -29,7 +28,6 @@ public class ClientManager implements Runnable {
     @Override
     public void run() {
         try {
-
             sendChatHistory(); // Send chat history to the client when it connects
 
             Object message;
@@ -50,6 +48,7 @@ public class ClientManager implements Runnable {
             closeConnection();
         }
     } 
+    
 
     private void sendChatHistory() {
         try {
@@ -69,6 +68,7 @@ public class ClientManager implements Runnable {
             e.printStackTrace();
         }
     }
+
 
     private void closeConnection() {
         try {

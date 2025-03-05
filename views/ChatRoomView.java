@@ -9,7 +9,7 @@ import models.MessageInterface;
 
 public class ChatRoomView extends JPanel implements View, observers.ViewObserver {
     private JPanel mainP = new JPanel(new BorderLayout());
-    private JPanel messageP = new JPanel(new BorderLayout()); //Messages panel
+    private JPanel messageP = new JPanel(new BorderLayout()); //Panel for displaying messages
     private JTextField messageF = new JTextField(30);
     private JButton sendB = new JButton("Send");
     private JButton sendImageB = new JButton("Send Image");
@@ -127,7 +127,7 @@ public class ChatRoomView extends JPanel implements View, observers.ViewObserver
         messageP.repaint();
     }
     
-
+    @Override
     public JPanel getJPanel() {return mainP;}
     public JButton getJButton() {return sendB;}
     public JButton getBackButton() {return backB;}
