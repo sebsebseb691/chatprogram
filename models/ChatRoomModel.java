@@ -8,7 +8,7 @@ import observers.*;
 
 /**
  * Represents a chat room
- * All messages and connected users are saved two separate linked lists
+ * All messages and connected users are saved as two separate linked lists
  */
 interface ChatRoomModelInterface {
     /**
@@ -69,6 +69,7 @@ public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject, Seria
         notifyObservers(); 
     }
 
+    @Override
     public void notifyObservers() {
         for(ViewObserver observer : observers){
             observer.update();
@@ -80,7 +81,9 @@ public class ChatRoomModel implements ChatRoomModelInterface, ViewSubject, Seria
         observers = new LinkedList<>(); // Initialize the observers list after deserialization
     }
 
+    @Override
     public void addObserver(ViewObserver observer) {observers.add(observer);}
+    @Override
     public void removeObserver(ViewObserver observer) {observers.remove(observer);}
     public String getChatName() {return chatName;}
     @Override

@@ -5,7 +5,7 @@ package controllers;
  */
 public interface ControllerInterface {
     /**
-     * Create a view and add the view's JPanel to a JFrame, also the JFrame visible
+     * Create a view and add the view's JPanel to a JFrame, also set the JFrame visible
      */
     public void addPanelToFrame();
 
@@ -15,7 +15,7 @@ public interface ControllerInterface {
     public void addListener();
 
     /**
-     * Add listeners to many JButtons
+     * Add many listeners to many JButtons
      */
     public void addListeners();
 }

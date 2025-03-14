@@ -1,7 +1,10 @@
 package controllers;
 import javax.swing.JFrame;
 
-
+/**
+ * Facade for controllers, used in controllers to accces JFrame
+ * Navigator part used to open different "windows" in the application
+ */
 public class ControllersFacade {
     private JFrame frame;
 

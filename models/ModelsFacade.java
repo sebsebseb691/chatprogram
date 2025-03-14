@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 
+/**
+ * Facade for all models
+ * Used to access all models and handle the communication between them
+ */
 public class ModelsFacade {
     private static ModelsFacade instance = new ModelsFacade();
     private ChatRoomModel currentChatRoom;

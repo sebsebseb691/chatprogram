@@ -3,7 +3,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
 
-
+/**
+ * Represents an image message, checkout MessageInterface for more information
+ */
 public class Image implements MessageInterface {
     private static final long serialVersionUID = 2L; // Unique serialVersionUID for Image class
     private transient BufferedImage image;

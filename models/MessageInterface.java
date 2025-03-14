@@ -3,7 +3,8 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 /**
- * Represents a message. Contains message as text, user that sent the message, name of the chat room it belongs to and an image if there is one
+ * Represents both a text-message and image-message
+ * Contains message as text, user that sent the message, name of the chat room it belongs to and an image if there is one
  */
 public interface MessageInterface extends Serializable {
     /**

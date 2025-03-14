@@ -22,12 +22,14 @@ public class HomePageController implements ActionListener, ControllerInterface{
 
     @Override
     public void addListener() {
+        //Listener for back button
         sl.getBackButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cf.openLoginPage();
             }
         });
     
+        //Create a new server
         sl.getCreateServerButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -54,6 +56,7 @@ public class HomePageController implements ActionListener, ControllerInterface{
     public void addListeners() {
         List<JButton> joinButtons = sl.getButtons();
     
+        //Add listeners on all chat room buttons
         for (JButton joinButton : joinButtons) {
             joinButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {

@@ -25,6 +25,7 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
     
     @Override
     public void addListener() {
+        //Listener for text message
         chatRoomView.getJButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -36,7 +37,7 @@ public class ChatRoomController extends JFrame implements ActionListener, Contro
             }
         });
 
-        //Add listener for sending image messages
+        //Add listener for sending image message
         chatRoomView.getSendImageButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();

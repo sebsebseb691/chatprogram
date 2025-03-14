@@ -1,7 +1,9 @@
 package models;
 import java.awt.image.BufferedImage;
 
-
+/**
+ * Represents a text message, checkout MessageInterface for more information
+ */
 public class Message implements MessageInterface {
     private static final long serialVersionUID = 1L; // Add a serialVersionUID for better serialization control
     private String text;

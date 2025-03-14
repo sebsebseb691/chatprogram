@@ -1,10 +1,12 @@
 import controllers.*;
 import models.Client;
 
+//Run this class to start a client
 public class ClientStart {
     public static void main(String[] args) {
         Client client = Client.getInstance();
-        client.connect("172.20.10.14", 54321);
+        //Change the IP address to the server's IP address
+        client.connect("192.168.156.1", 54321);
 
         ControllersFacade cf = new ControllersFacade();
         cf.openLoginPage();
